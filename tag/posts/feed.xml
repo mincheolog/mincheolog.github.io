@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<feed xmlns="http://www.w3.org/2005/Atom" >
+  <generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator>
+  <link href="http://localhost:4000/tag/posts/feed.xml" rel="self" type="application/atom+xml" />
+  <link href="http://localhost:4000/" rel="alternate" type="text/html" />
+  <updated>2020-08-23T17:48:59+09:00</updated>
+  <id>http://localhost:4000/tag/posts/feed.xml</id>
+
+  
+  
+  
+
+  
+    <title type="html">ArdoDulcis | </title>
+  
+
+  
+
+  
+
+  
+    
+      
+    
+  
+
+  
+  
+
+  
+    <entry>
+      <title type="html">TestPost</title>
+      <link href="http://localhost:4000/testpost" rel="alternate" type="text/html" title="TestPost" />
+      <published>2020-08-16T00:00:00+09:00</published>
+      <updated>2020-08-16T00:00:00+09:00</updated>
+      <id>http://localhost:4000/testpost</id>
+      <content type="html" xml:base="http://localhost:4000/testpost">&lt;h1 id=&quot;h1&quot;&gt;h1&lt;/h1&gt;
+&lt;h2 id=&quot;h2&quot;&gt;h2&lt;/h2&gt;
+&lt;h3 id=&quot;h3&quot;&gt;h3&lt;/h3&gt;
+&lt;h4 id=&quot;h4&quot;&gt;h4&lt;/h4&gt;
+&lt;h5 id=&quot;h5&quot;&gt;h5&lt;/h5&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;list&lt;/li&gt;
+  &lt;li&gt;list2&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;testtest&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;a href=&quot;link&quot;&gt;link&lt;/a&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;testFunction&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&amp;gt;&lt;/span&gt;hogehoge&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;p&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;code&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;p and &lt;code class=&quot;highlighter-rouge&quot;&gt;code&lt;/code&gt;&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>Ardo</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="posts" />
+      
+
+      
+        <summary type="html">h1 h2 h3 h4 h5 list list2 testtest link const testFunction = () =&amp;gt; { this.a = a; return a; }; &amp;lt;div&amp;gt;hogehoge&amp;lt;/div&amp;gt; p code p and code</summary>
+      
+
+      
+      
+    </entry>
+  
+    <entry>
+      <title type="html">JavaScript 호이스팅이란?</title>
+      <link href="http://localhost:4000/hoisting" rel="alternate" type="text/html" title="JavaScript 호이스팅이란?" />
+      <published>2020-08-15T21:00:00+09:00</published>
+      <updated>2020-08-15T21:00:00+09:00</updated>
+      <id>http://localhost:4000/hoisting</id>
+      <content type="html" xml:base="http://localhost:4000/hoisting">&lt;h2 id=&quot;호이스팅이란&quot;&gt;호이스팅이란?&lt;/h2&gt;
+&lt;p&gt;영어로 끌어올리기라는 뜻을 가졌는데 말 그대로 선언식을 끌어올려 해석하는 현상이다. 이 호이스팅 현상은 블록 스코프에서 일어나는가 아님 전역 스코프에서 일어나는가에 따라서 결과가 달라지는데 스코프가 무엇인지 먼저 알아두어야 좀 이해하기 편한 것 같다.
+그럼 호이스팅을 알아보기전에 스코프가 무엇인지부터 알아보자.&lt;/p&gt;
+
+&lt;h2 id=&quot;스코프scope란&quot;&gt;스코프(Scope)란?&lt;/h2&gt;
+&lt;p&gt;스코프란 프로그래밍에서 변수가 유효성을 갖는 영역을 말한다. 사람으로 예를 들자면 프라이버시 영역이라 보면 된다. 사람들이 모여사는 아파트를 생각해보자. A아파트에는 집이 여러채로 구분되어있고 그 안에서 사람들이 산다. A아파트의 101호에 살고있는 사람은 102호에 살고있는 사람이 어떤 물건을 가지고 있는지 알려주지 않는다면 알수있는 방법이 없다. 역으로 102호에 살고있는 사람은 101호에 살고있는 사람이 무엇을 가지고있는지 모른다. 그리고 이 A아파트를 관리하고있는 관리자는 101호와 102호에 사는 사람들이 어떤 물건을 가지고 있는지 알수없다.
+그럼 이 예를 전제로 코드를 한번 보자. A아파트는 전역(Global)스코프로 가정한다. 그리고 101호와 102호는 각각 함수내 블록(Block)스코프로 가정하자.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// num101함수안의 변수 item1은 참조할수 없기때문에 이 부분에서부터 에러가 난다. &lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;item1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// 물론 위에 코드를 지우고 이 코드만 실행한다 해도 num102함수안의 변수는 참조 할수없기 때문에 에러가 난다.&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;item2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;num101&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;item1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'book'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;num102&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;item2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'soundvar'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>Ardo</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="posts" />
+      
+        <category term="JavaScript" />
+      
+
+      
+        <summary type="html">호이스팅이란? 영어로 끌어올리기라는 뜻을 가졌는데 말 그대로 선언식을 끌어올려 해석하는 현상이다. 이 호이스팅 현상은 블록 스코프에서 일어나는가 아님 전역 스코프에서 일어나는가에 따라서 결과가 달라지는데 스코프가 무엇인지 먼저 알아두어야 좀 이해하기 편한 것 같다. 그럼 호이스팅을 알아보기전에 스코프가 무엇인지부터 알아보자. 스코프(Scope)란? 스코프란 프로그래밍에서 변수가 유효성을 갖는 영역을 말한다. 사람으로 예를 들자면 프라이버시 영역이라 보면 된다. 사람들이 모여사는 아파트를 생각해보자. A아파트에는 집이 여러채로 구분되어있고 그 안에서 사람들이 산다. A아파트의 101호에 살고있는 사람은 102호에 살고있는 사람이 어떤 물건을 가지고 있는지 알려주지 않는다면 알수있는 방법이 없다. 역으로 102호에 살고있는 사람은 101호에 살고있는 사람이 무엇을 가지고있는지 모른다. 그리고 이 A아파트를 관리하고있는 관리자는 101호와 102호에 사는 사람들이 어떤 물건을 가지고 있는지 알수없다. 그럼 이 예를 전제로 코드를 한번 보자. A아파트는 전역(Global)스코프로 가정한다. 그리고 101호와 102호는 각각 함수내 블록(Block)스코프로 가정하자. // num101함수안의 변수 item1은 참조할수 없기때문에 이 부분에서부터 에러가 난다. console.log(item1); // 물론 위에 코드를 지우고 이 코드만 실행한다 해도 num102함수안의 변수는 참조 할수없기 때문에 에러가 난다. console.log(item2); function num101() { var item1 = 'book'; }; function num102() { var item2 = 'soundvar'; };</summary>
+      
+
+      
+      
+    </entry>
+  
+    <entry>
+      <title type="html">var, let, const 대체 무슨 차이일까?</title>
+      <link href="http://localhost:4000/let,const,var" rel="alternate" type="text/html" title="var, let, const 대체 무슨 차이일까?" />
+      <published>2019-09-27T19:00:00+09:00</published>
+      <updated>2019-09-27T19:00:00+09:00</updated>
+      <id>http://localhost:4000/let,const,var</id>
+      <content type="html" xml:base="http://localhost:4000/let,const,var">&lt;h2 id=&quot;서술하기에-앞서&quot;&gt;서술하기에 앞서.&lt;/h2&gt;
+
+&lt;p&gt;앞서 먼저 말씀드립니다. 이 포스트는 var와 let, const에 어떤 차이가 있는지 정도만 알수있게끔 아주 가볍게 다룬 글입니다. var는 Function Scope다 let, const는 Block Scope다 뭐다 하는 설명은 싹다 생략 되어있습니다. 좀 더 깊은 지식을 위한 글이 아니며, JavaScript를 처음 배우시는 분들을 위해 궁금증을 해소하기 위한 정도의 글이오니 양해 부탁드립니다. Function Scope는 무엇인지, Block Scope는 무엇인지에 관한 것은 후에 다른 포스트에서 서술 할 예정입니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;var-let-const-대체-무슨-차이일까&quot;&gt;var, let, const 대체 무슨 차이일까?&lt;/h2&gt;
+
+&lt;p&gt;ES6에 오면서 추가 된 변수 선언중에 let과 const가 있다. 대체 이놈들이 var로 선언해왔던 변수선언과 어떤 차이가 있을까? 이번 포스트에서는 var와 let, cosnt의 차이를 알아보고자 한다.&lt;/p&gt;
+
+&lt;h2 id=&quot;javascript를-배우면-가장-처음-접하는-선언법-var&quot;&gt;JavaScript를 배우면 가장 처음 접하는 선언법 var.&lt;/h2&gt;
+
+&lt;p&gt;요즘에는 어떤지 잘 모르겠는데, ES6문법이 주된 문법이 되기전까진 JavaScript를 배우기 시작하면 가장 먼저 배우게 되는 변수 선언이다.
+거창한 설명은 안하겠다. 선언법은 아래와 같다.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'hello world'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//a라는 상자에 hello world라는 문자를 집어넣음&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//콘솔창에 표시 hello world&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;let-const-이건-뭐지&quot;&gt;let?? const?? 이건 뭐지…&lt;/h2&gt;
+
+&lt;p&gt;필자같은 경운 JavaScript를 어느정도 배우고 난뒤에 ES6라는 문법을 알게되었다.&lt;/p&gt;
+
+&lt;p&gt;ES6의 변수 선언식. 즉 var로 선언하던 ES5문법이 진화(?)한 형태다. 일단 코드부터 보자.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'hello world'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//a라는 상자에 hello world라는 문자를 집어넣음&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//b라는 상자에 1이라는 숫자를 집어넣음&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//콘솔창에 표시 결과는 hello world&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//콘솔창에 표시 결과는 1&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;아니-같은-변수선언식이면-var로-선언하면-되잖아&quot;&gt;아니 같은 변수선언식이면 var로 선언하면 되잖아.&lt;/h2&gt;
+
+&lt;p&gt;솔직히 필자도 처음에 봤을때 ‘아니 그냥 var로 선언하면 되잖아. 왜 굳이?’라고 생각했었다.&lt;/p&gt;
+
+&lt;p&gt;하지만 우리가 누군가? 개발자다! 왜?라는 사고를 가진 사람들이다. 그래서 찾아봤다!
+왜! let, const라는 놈이 탄생했는지! var가 뭐가 나쁜데!를 말이다.&lt;/p&gt;
+
+&lt;h2 id=&quot;var-나쁜애-아니에요&quot;&gt;var 나쁜애 아니에요.&lt;/h2&gt;
+&lt;p&gt;그렇다. var는 나쁜애가 아니다. 나쁘다고 한다면 언어자체가 엄청나게? 유연한 JavaScript가 나쁜놈이다. 다음 코드를 보자.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//결과는 undefined&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Dulcis'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// name이라는 상자안에 Dulcis라는 문자를 집어넣음&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//결과는 Dulcis&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;왜 나쁠까? 일반적으로 프로그래밍에선 변수선언을 안하고 바로 변수를 참조하려고 하면 그냥 바로 에러를 뱉는다. 근데 JavaScript라는 놈은 호이스팅이라는 현상으로 인해 에러를 안뱉는다!! 호이스팅이라는 이슈는 나중에 다른 포스팅에서 다루도록 하겠다. 호이스팅이란 간단하게 말하자면 변수선언전에 참조하려고 할 때 참조하려는 변수를 참조를 할 수 없어서 최상단으로 끌어올려서 선언해버리는 현상이다. 호이스팅 현상으로 인해 위의 같은 코드를 JavaScript에선 이렇게 해석한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//name이라는 변수를 선언&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//결과는 undefined&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Dulcis'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//name이라는 상자안에 Dulcis라는 문자를 집어넣음&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//결과는 Dulcis&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;읭? 난 저렇게 코드 쓴적 없는데? &lt;code class=&quot;highlighter-rouge&quot;&gt;console.log(name)&lt;/code&gt;사이에 선언한 변수식이 제멋대로 위로 올라갔다. 황당하기 그지없다. 개발자가 쓴 코드대로 실행이 안되고 지멋대로 변수 선언을 위로 올리고 앉아있다.&lt;/p&gt;
+
+&lt;h2 id=&quot;그래서-왔습니다-im-let-im-const&quot;&gt;그래서 왔습니다! I’m let! I’m const!&lt;/h2&gt;
+
+&lt;h3 id=&quot;let의-특징&quot;&gt;let의 특징&lt;/h3&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;let&lt;/code&gt;은 &lt;code class=&quot;highlighter-rouge&quot;&gt;var&lt;/code&gt;와는 틀리게 재선언이 불가한 애다. 다음 코드를 보자.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;animalName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'native'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;animalName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//결과는 native &lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;animalName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'mave'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;animalName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//결과는 Uncaught SyntaxError: Identifier 'animalName' has already been declared.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;위의 코드와 같이 재선언을 하려고 하면 너 문법 틀림. 하고 빨갛게 엄청 화내는 걸 볼 수 있다. 그럼 재할당은 어떨까??&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;animalName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'native'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;animalName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//결과는 native &lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;animalName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'mave'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;animalName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//결과는 mave&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;재선언은 안되지만 재할당은 아주 좋아하신다. &lt;code class=&quot;highlighter-rouge&quot;&gt;let&lt;/code&gt;선언은 재선언은 불가능하지만 재할당은 가능한 걸 알 수 있다.&lt;/p&gt;
+
+&lt;p&gt;다음은 &lt;code class=&quot;highlighter-rouge&quot;&gt;const&lt;/code&gt;를 보자.&lt;/p&gt;
+
+&lt;h3 id=&quot;const의-특징&quot;&gt;const의 특징&lt;/h3&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;const&lt;/code&gt;는 &lt;code class=&quot;highlighter-rouge&quot;&gt;let&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;var&lt;/code&gt;와는 틀리게 재선언도 안되고 재할당도 안된다. 그냥 “나 한번 먹으면 끝임.” 이러는 고집불통이다. 그래서 그런지 변수선언과 동시에 값을 부여 해주지 않으면 바로 에러를 내뱉어 주신다. 다음 코드를 보자.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;animalName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//결과는 Uncaught SyntaxError: Missing initializer in const declaration.&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;animalName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'native'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;animalName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//결과는 native &lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;animalName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'mave'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;animalName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//결과는 Uncaught SyntaxError: Identifier 'animalName' has already been declared.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;let&lt;/code&gt;과 똑같이 재선언을 못하고 에러를 내뱉는다. &lt;code class=&quot;highlighter-rouge&quot;&gt;let&lt;/code&gt;도 그랬으니 여기까진 봐주자. 그렇다면 &lt;code class=&quot;highlighter-rouge&quot;&gt;let&lt;/code&gt;에서는 가능했던 재할당은 어떨까? 다음 코드를 보자.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;animalName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'native'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;animalName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//결과는 native &lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;animalName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'mave'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;animalName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//결과는 Uncaught TypeError: Assignment to constant variable.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;한번 먹였으면 됬지 뭘 더 먹이려고 하냐면서 화를 내신다. 참 까탈스러운 분이다. 정리해보자면 &lt;code class=&quot;highlighter-rouge&quot;&gt;let&lt;/code&gt;은 재선언은 불가능하지만 재할당은 가능하다. 그에 반해 &lt;code class=&quot;highlighter-rouge&quot;&gt;const&lt;/code&gt;는 재할당도 안되고 재선언도 못한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;var&lt;/code&gt;의 호이스팅 문제로 인하여 &lt;code class=&quot;highlighter-rouge&quot;&gt;let&lt;/code&gt;과 &lt;code class=&quot;highlighter-rouge&quot;&gt;const&lt;/code&gt;변수선언이 ES6에서 등장했다고 서술했다. 방금 전 호이스팅 현상을 &lt;code class=&quot;highlighter-rouge&quot;&gt;let&lt;/code&gt;과 &lt;code class=&quot;highlighter-rouge&quot;&gt;const&lt;/code&gt;로 써보면 어떨까? 다음 코드에서는 한 눈으로 확인해보기 위하여 &lt;code class=&quot;highlighter-rouge&quot;&gt;let&lt;/code&gt;과 &lt;code class=&quot;highlighter-rouge&quot;&gt;const&lt;/code&gt; 둘 다 사용한 예제이다.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'abcd'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//Uncaught ReferenceError: Cannot access 'name' before initialization.&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Yeah!!!!!!!'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
+
+&lt;span class=&quot;nx&quot;&gt;animal&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'bat'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//Uncaught ReferenceError: Cannot access 'animal' before initialization.&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;animal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;animal&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'O.O'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;호이스팅이고 뭐고 다 필요없고 아주 멋지게 당장 에러를 내뱉어 주신다.&lt;/p&gt;
+
+&lt;h2 id=&quot;정리&quot;&gt;정리&lt;/h2&gt;
+
+&lt;p&gt;지금까지 ES5에서의 선언법 var와 ES6에서 새롭게 탑재된 선언법인 let과 const에 대해서 알아보았다.&lt;/p&gt;
+
+&lt;p&gt;정리해보자면 var와 let, const의 차이점은 아래의 표와 같다.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;선언문&lt;/th&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;재선언&lt;/th&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;재할당&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;var&lt;/code&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;가능&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;가능&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;let&lt;/code&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;불가능&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;가능&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;const&lt;/code&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;불가능&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;불가능&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>Ardo</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="posts" />
+      
+        <category term="JavaScript" />
+      
+
+      
+        <summary type="html">서술하기에 앞서. 앞서 먼저 말씀드립니다. 이 포스트는 var와 let, const에 어떤 차이가 있는지 정도만 알수있게끔 아주 가볍게 다룬 글입니다. var는 Function Scope다 let, const는 Block Scope다 뭐다 하는 설명은 싹다 생략 되어있습니다. 좀 더 깊은 지식을 위한 글이 아니며, JavaScript를 처음 배우시는 분들을 위해 궁금증을 해소하기 위한 정도의 글이오니 양해 부탁드립니다. Function Scope는 무엇인지, Block Scope는 무엇인지에 관한 것은 후에 다른 포스트에서 서술 할 예정입니다. var, let, const 대체 무슨 차이일까? ES6에 오면서 추가 된 변수 선언중에 let과 const가 있다. 대체 이놈들이 var로 선언해왔던 변수선언과 어떤 차이가 있을까? 이번 포스트에서는 var와 let, cosnt의 차이를 알아보고자 한다. JavaScript를 배우면 가장 처음 접하는 선언법 var. 요즘에는 어떤지 잘 모르겠는데, ES6문법이 주된 문법이 되기전까진 JavaScript를 배우기 시작하면 가장 먼저 배우게 되는 변수 선언이다. 거창한 설명은 안하겠다. 선언법은 아래와 같다. var a = 'hello world'; //a라는 상자에 hello world라는 문자를 집어넣음 console.log(a); //콘솔창에 표시 hello world let?? const?? 이건 뭐지… 필자같은 경운 JavaScript를 어느정도 배우고 난뒤에 ES6라는 문법을 알게되었다. ES6의 변수 선언식. 즉 var로 선언하던 ES5문법이 진화(?)한 형태다. 일단 코드부터 보자. let a = 'hello world'; //a라는 상자에 hello world라는 문자를 집어넣음 const b = 1; //b라는 상자에 1이라는 숫자를 집어넣음 console.log(a); //콘솔창에 표시 결과는 hello world console.log(b); //콘솔창에 표시 결과는 1 아니 같은 변수선언식이면 var로 선언하면 되잖아. 솔직히 필자도 처음에 봤을때 ‘아니 그냥 var로 선언하면 되잖아. 왜 굳이?’라고 생각했었다. 하지만 우리가 누군가? 개발자다! 왜?라는 사고를 가진 사람들이다. 그래서 찾아봤다! 왜! let, const라는 놈이 탄생했는지! var가 뭐가 나쁜데!를 말이다. var 나쁜애 아니에요. 그렇다. var는 나쁜애가 아니다. 나쁘다고 한다면 언어자체가 엄청나게? 유연한 JavaScript가 나쁜놈이다. 다음 코드를 보자. console.log(name); //결과는 undefined var name = 'Dulcis'; // name이라는 상자안에 Dulcis라는 문자를 집어넣음 console.log(name); //결과는 Dulcis 왜 나쁠까? 일반적으로 프로그래밍에선 변수선언을 안하고 바로 변수를 참조하려고 하면 그냥 바로 에러를 뱉는다. 근데 JavaScript라는 놈은 호이스팅이라는 현상으로 인해 에러를 안뱉는다!! 호이스팅이라는 이슈는 나중에 다른 포스팅에서 다루도록 하겠다. 호이스팅이란 간단하게 말하자면 변수선언전에 참조하려고 할 때 참조하려는 변수를 참조를 할 수 없어서 최상단으로 끌어올려서 선언해버리는 현상이다. 호이스팅 현상으로 인해 위의 같은 코드를 JavaScript에선 이렇게 해석한다. var name; //name이라는 변수를 선언 console.log(name); //결과는 undefined name = 'Dulcis'; //name이라는 상자안에 Dulcis라는 문자를 집어넣음 console.log(name); //결과는 Dulcis 읭? 난 저렇게 코드 쓴적 없는데? console.log(name)사이에 선언한 변수식이 제멋대로 위로 올라갔다. 황당하기 그지없다. 개발자가 쓴 코드대로 실행이 안되고 지멋대로 변수 선언을 위로 올리고 앉아있다. 그래서 왔습니다! I’m let! I’m const! let의 특징 let은 var와는 틀리게 재선언이 불가한 애다. 다음 코드를 보자. let animalName = 'native'; console.log(animalName); //결과는 native let animalName = 'mave'; console.log(animalName); //결과는 Uncaught SyntaxError: Identifier 'animalName' has already been declared. 위의 코드와 같이 재선언을 하려고 하면 너 문법 틀림. 하고 빨갛게 엄청 화내는 걸 볼 수 있다. 그럼 재할당은 어떨까?? let animalName = 'native'; console.log(animalName); //결과는 native animalName = 'mave'; console.log(animalName); //결과는 mave 재선언은 안되지만 재할당은 아주 좋아하신다. let선언은 재선언은 불가능하지만 재할당은 가능한 걸 알 수 있다. 다음은 const를 보자. const의 특징 const는 let, var와는 틀리게 재선언도 안되고 재할당도 안된다. 그냥 “나 한번 먹으면 끝임.” 이러는 고집불통이다. 그래서 그런지 변수선언과 동시에 값을 부여 해주지 않으면 바로 에러를 내뱉어 주신다. 다음 코드를 보자. const animalName; //결과는 Uncaught SyntaxError: Missing initializer in const declaration. const animalName = 'native'; console.log(animalName); //결과는 native const animalName = 'mave'; console.log(animalName); //결과는 Uncaught SyntaxError: Identifier 'animalName' has already been declared. let과 똑같이 재선언을 못하고 에러를 내뱉는다. let도 그랬으니 여기까진 봐주자. 그렇다면 let에서는 가능했던 재할당은 어떨까? 다음 코드를 보자. const animalName = 'native'; console.log(animalName); //결과는 native animalName = 'mave'; console.log(animalName); //결과는 Uncaught TypeError: Assignment to constant variable. 한번 먹였으면 됬지 뭘 더 먹이려고 하냐면서 화를 내신다. 참 까탈스러운 분이다. 정리해보자면 let은 재선언은 불가능하지만 재할당은 가능하다. 그에 반해 const는 재할당도 안되고 재선언도 못한다. var의 호이스팅 문제로 인하여 let과 const변수선언이 ES6에서 등장했다고 서술했다. 방금 전 호이스팅 현상을 let과 const로 써보면 어떨까? 다음 코드에서는 한 눈으로 확인해보기 위하여 let과 const 둘 다 사용한 예제이다. name = 'abcd'; //Uncaught ReferenceError: Cannot access 'name' before initialization. console.log(name); let name = 'Yeah!!!!!!!'; animal = 'bat'; //Uncaught ReferenceError: Cannot access 'animal' before initialization. console.log(animal); const animal = 'O.O'; 호이스팅이고 뭐고 다 필요없고 아주 멋지게 당장 에러를 내뱉어 주신다. 정리 지금까지 ES5에서의 선언법 var와 ES6에서 새롭게 탑재된 선언법인 let과 const에 대해서 알아보았다. 정리해보자면 var와 let, const의 차이점은 아래의 표와 같다. 선언문 재선언 재할당 var 가능 가능 let 불가능 가능 const 불가능 불가능</summary>
+      
+
+      
+      
+    </entry>
+  
+</feed>
