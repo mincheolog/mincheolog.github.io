@@ -4,51 +4,7 @@
     <title> - Articles</title>
     <description></description>
     <link>
-    http://localhost:4000</link>
-    
-      
-      <item>
-        <title>TestPost</title>
-        
-          <description>&lt;h1 id=&quot;h1&quot;&gt;h1&lt;/h1&gt;
-&lt;h2 id=&quot;h2&quot;&gt;h2&lt;/h2&gt;
-&lt;h3 id=&quot;h3&quot;&gt;h3&lt;/h3&gt;
-&lt;h4 id=&quot;h4&quot;&gt;h4&lt;/h4&gt;
-&lt;h5 id=&quot;h5&quot;&gt;h5&lt;/h5&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;list&lt;/li&gt;
-  &lt;li&gt;list2&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;testtest&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;a href=&quot;link&quot;&gt;link&lt;/a&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;testFunction&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&amp;gt;&lt;/span&gt;hogehoge&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;p&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;code&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;p and &lt;code class=&quot;highlighter-rouge&quot;&gt;code&lt;/code&gt;&lt;/p&gt;
-</description>
-        
-        <pubDate>Sun, 16 Aug 2020 00:00:00 +0900</pubDate>
-        <link>
-        http://localhost:4000/testpost</link>
-        <guid isPermaLink="true">http://localhost:4000/testpost</guid>
-      </item>
-      
+    </link>
     
       
       <item>
@@ -79,8 +35,8 @@
         
         <pubDate>Sat, 15 Aug 2020 21:00:00 +0900</pubDate>
         <link>
-        http://localhost:4000/hoisting</link>
-        <guid isPermaLink="true">http://localhost:4000/hoisting</guid>
+        /hoisting</link>
+        <guid isPermaLink="true">/hoisting</guid>
       </item>
       
     
@@ -260,8 +216,8 @@
         
         <pubDate>Fri, 27 Sep 2019 19:00:00 +0900</pubDate>
         <link>
-        http://localhost:4000/let,const,var</link>
-        <guid isPermaLink="true">http://localhost:4000/let,const,var</guid>
+        /let,const,var</link>
+        <guid isPermaLink="true">/let,const,var</guid>
       </item>
       
     
