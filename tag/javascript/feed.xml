@@ -4,7 +4,7 @@
   <generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator>
   <link href="http://localhost:4000/tag/javascript/feed.xml" rel="self" type="application/atom+xml" />
   <link href="http://localhost:4000/" rel="alternate" type="text/html" />
-  <updated>2020-11-21T16:01:24+09:00</updated>
+  <updated>2020-11-21T16:37:06+09:00</updated>
   <id>http://localhost:4000/tag/javascript/feed.xml</id>
 
   
@@ -28,100 +28,6 @@
   
   
 
-  
-    <entry>
-      <title type="html">코드 리뷰?</title>
-      <link href="http://localhost:4000/code-review" rel="alternate" type="text/html" title="코드 리뷰?" />
-      <published>2020-08-15T21:00:00+09:00</published>
-      <updated>2020-08-15T21:00:00+09:00</updated>
-      <id>http://localhost:4000/code-review</id>
-      <content type="html" xml:base="http://localhost:4000/code-review">&lt;h2 id=&quot;표제1&quot;&gt;표제1&lt;/h2&gt;
-
-&lt;p&gt;내용&lt;/p&gt;</content>
-
-      
-      
-      
-      
-      
-
-      <author>
-          <name>Ardo</name>
-        
-        
-      </author>
-
-      
-
-      
-        <category term="posts" />
-      
-        <category term="JavaScript" />
-      
-
-      
-        <summary type="html">표제1 내용</summary>
-      
-
-      
-      
-    </entry>
-  
-    <entry>
-      <title type="html">JavaScript 호이스팅이란?</title>
-      <link href="http://localhost:4000/hoisting" rel="alternate" type="text/html" title="JavaScript 호이스팅이란?" />
-      <published>2020-08-15T21:00:00+09:00</published>
-      <updated>2020-08-15T21:00:00+09:00</updated>
-      <id>http://localhost:4000/hoisting</id>
-      <content type="html" xml:base="http://localhost:4000/hoisting">&lt;h2 id=&quot;호이스팅이란&quot;&gt;호이스팅이란?&lt;/h2&gt;
-&lt;p&gt;영어로 끌어올리기라는 뜻을 가졌는데 말 그대로 선언식을 끌어올려 해석하는 현상이다. 이 호이스팅 현상은 블록 스코프에서 일어나는가 아님 전역 스코프에서 일어나는가에 따라서 결과가 달라지는데 스코프가 무엇인지 먼저 알아두어야 좀 이해하기 편한 것 같다.
-그럼 호이스팅을 알아보기전에 스코프가 무엇인지부터 알아보자.&lt;/p&gt;
-
-&lt;h2 id=&quot;스코프scope란&quot;&gt;스코프(Scope)란?&lt;/h2&gt;
-&lt;p&gt;스코프란 프로그래밍에서 변수가 유효성을 갖는 영역을 말한다. 사람으로 예를 들자면 프라이버시 영역이라 보면 된다. 사람들이 모여사는 아파트를 생각해보자. A아파트에는 집이 여러채로 구분되어있고 그 안에서 사람들이 산다. A아파트의 101호에 살고있는 사람은 102호에 살고있는 사람이 어떤 물건을 가지고 있는지 알려주지 않는다면 알수있는 방법이 없다. 역으로 102호에 살고있는 사람은 101호에 살고있는 사람이 무엇을 가지고있는지 모른다. 그리고 이 A아파트를 관리하고있는 관리자는 101호와 102호에 사는 사람들이 어떤 물건을 가지고 있는지 알수없다.
-그럼 이 예를 전제로 코드를 한번 보자. A아파트는 전역(Global)스코프로 가정한다. 그리고 101호와 102호는 각각 함수내 블록(Block)스코프로 가정하자.&lt;/p&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// num101함수안의 변수 item1은 참조할수 없기때문에 이 부분에서부터 에러가 난다. &lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;item1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// 물론 위에 코드를 지우고 이 코드만 실행한다 해도 num102함수안의 변수는 참조 할수없기 때문에 에러가 난다.&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;item2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-
-&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;num101&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;item1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'book'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
-
-&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;num102&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;item2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'soundvar'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content>
-
-      
-      
-      
-      
-      
-
-      <author>
-          <name>Ardo</name>
-        
-        
-      </author>
-
-      
-
-      
-        <category term="posts" />
-      
-        <category term="JavaScript" />
-      
-
-      
-        <summary type="html">호이스팅이란? 영어로 끌어올리기라는 뜻을 가졌는데 말 그대로 선언식을 끌어올려 해석하는 현상이다. 이 호이스팅 현상은 블록 스코프에서 일어나는가 아님 전역 스코프에서 일어나는가에 따라서 결과가 달라지는데 스코프가 무엇인지 먼저 알아두어야 좀 이해하기 편한 것 같다. 그럼 호이스팅을 알아보기전에 스코프가 무엇인지부터 알아보자. 스코프(Scope)란? 스코프란 프로그래밍에서 변수가 유효성을 갖는 영역을 말한다. 사람으로 예를 들자면 프라이버시 영역이라 보면 된다. 사람들이 모여사는 아파트를 생각해보자. A아파트에는 집이 여러채로 구분되어있고 그 안에서 사람들이 산다. A아파트의 101호에 살고있는 사람은 102호에 살고있는 사람이 어떤 물건을 가지고 있는지 알려주지 않는다면 알수있는 방법이 없다. 역으로 102호에 살고있는 사람은 101호에 살고있는 사람이 무엇을 가지고있는지 모른다. 그리고 이 A아파트를 관리하고있는 관리자는 101호와 102호에 사는 사람들이 어떤 물건을 가지고 있는지 알수없다. 그럼 이 예를 전제로 코드를 한번 보자. A아파트는 전역(Global)스코프로 가정한다. 그리고 101호와 102호는 각각 함수내 블록(Block)스코프로 가정하자. // num101함수안의 변수 item1은 참조할수 없기때문에 이 부분에서부터 에러가 난다. console.log(item1); // 물론 위에 코드를 지우고 이 코드만 실행한다 해도 num102함수안의 변수는 참조 할수없기 때문에 에러가 난다. console.log(item2); function num101() { var item1 = 'book'; }; function num102() { var item2 = 'soundvar'; };</summary>
-      
-
-      
-      
-    </entry>
   
     <entry>
       <title type="html">var, let, const 대체 무슨 차이일까?</title>
