@@ -2,10 +2,10 @@
 
 <feed xmlns="http://www.w3.org/2005/Atom" >
   <generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator>
-  <link href="/tag/javascript/feed.xml" rel="self" type="application/atom+xml" />
-  <link href="/" rel="alternate" type="text/html" />
-  <updated>2020-08-30T18:53:46+09:00</updated>
-  <id>/tag/javascript/feed.xml</id>
+  <link href="http://localhost:4000/tag/javascript/feed.xml" rel="self" type="application/atom+xml" />
+  <link href="http://localhost:4000/" rel="alternate" type="text/html" />
+  <updated>2020-11-21T16:01:24+09:00</updated>
+  <id>http://localhost:4000/tag/javascript/feed.xml</id>
 
   
   
@@ -30,12 +30,50 @@
 
   
     <entry>
-      <title type="html">JavaScript 호이스팅이란?</title>
-      <link href="/hoisting" rel="alternate" type="text/html" title="JavaScript 호이스팅이란?" />
+      <title type="html">코드 리뷰?</title>
+      <link href="http://localhost:4000/code-review" rel="alternate" type="text/html" title="코드 리뷰?" />
       <published>2020-08-15T21:00:00+09:00</published>
       <updated>2020-08-15T21:00:00+09:00</updated>
-      <id>/hoisting</id>
-      <content type="html" xml:base="/hoisting">&lt;h2 id=&quot;호이스팅이란&quot;&gt;호이스팅이란?&lt;/h2&gt;
+      <id>http://localhost:4000/code-review</id>
+      <content type="html" xml:base="http://localhost:4000/code-review">&lt;h2 id=&quot;표제1&quot;&gt;표제1&lt;/h2&gt;
+
+&lt;p&gt;내용&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>Ardo</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="posts" />
+      
+        <category term="JavaScript" />
+      
+
+      
+        <summary type="html">표제1 내용</summary>
+      
+
+      
+      
+    </entry>
+  
+    <entry>
+      <title type="html">JavaScript 호이스팅이란?</title>
+      <link href="http://localhost:4000/hoisting" rel="alternate" type="text/html" title="JavaScript 호이스팅이란?" />
+      <published>2020-08-15T21:00:00+09:00</published>
+      <updated>2020-08-15T21:00:00+09:00</updated>
+      <id>http://localhost:4000/hoisting</id>
+      <content type="html" xml:base="http://localhost:4000/hoisting">&lt;h2 id=&quot;호이스팅이란&quot;&gt;호이스팅이란?&lt;/h2&gt;
 &lt;p&gt;영어로 끌어올리기라는 뜻을 가졌는데 말 그대로 선언식을 끌어올려 해석하는 현상이다. 이 호이스팅 현상은 블록 스코프에서 일어나는가 아님 전역 스코프에서 일어나는가에 따라서 결과가 달라지는데 스코프가 무엇인지 먼저 알아두어야 좀 이해하기 편한 것 같다.
 그럼 호이스팅을 알아보기전에 스코프가 무엇인지부터 알아보자.&lt;/p&gt;
 
@@ -87,11 +125,11 @@
   
     <entry>
       <title type="html">var, let, const 대체 무슨 차이일까?</title>
-      <link href="/let,const,var" rel="alternate" type="text/html" title="var, let, const 대체 무슨 차이일까?" />
+      <link href="http://localhost:4000/let,const,var" rel="alternate" type="text/html" title="var, let, const 대체 무슨 차이일까?" />
       <published>2019-09-27T19:00:00+09:00</published>
       <updated>2019-09-27T19:00:00+09:00</updated>
-      <id>/let,const,var</id>
-      <content type="html" xml:base="/let,const,var">&lt;h2 id=&quot;서술하기에-앞서&quot;&gt;서술하기에 앞서.&lt;/h2&gt;
+      <id>http://localhost:4000/let,const,var</id>
+      <content type="html" xml:base="http://localhost:4000/let,const,var">&lt;h2 id=&quot;서술하기에-앞서&quot;&gt;서술하기에 앞서.&lt;/h2&gt;
 
 &lt;p&gt;앞서 먼저 말씀드립니다. 이 포스트는 var와 let, const에 어떤 차이가 있는지 정도만 알수있게끔 아주 가볍게 다룬 글입니다. var는 Function Scope다 let, const는 Block Scope다 뭐다 하는 설명은 싹다 생략 되어있습니다. 좀 더 깊은 지식을 위한 글이 아니며, JavaScript를 처음 배우시는 분들을 위해 궁금증을 해소하기 위한 정도의 글이오니 양해 부탁드립니다. Function Scope는 무엇인지, Block Scope는 무엇인지에 관한 것은 후에 다른 포스트에서 서술 할 예정입니다.&lt;/p&gt;
 
