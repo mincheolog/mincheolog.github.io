@@ -4,7 +4,7 @@
   <generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator>
   <link href="http://localhost:4000/tag/posts/feed.xml" rel="self" type="application/atom+xml" />
   <link href="http://localhost:4000/" rel="alternate" type="text/html" />
-  <updated>2020-11-21T16:37:06+09:00</updated>
+  <updated>2020-12-12T17:30:46+09:00</updated>
   <id>http://localhost:4000/tag/posts/feed.xml</id>
 
   
@@ -30,6 +30,151 @@
 
   
     <entry>
+      <title type="html">왜 가상 DOM인가</title>
+      <link href="http://localhost:4000/virtualDOM" rel="alternate" type="text/html" title="왜 가상 DOM인가" />
+      <published>2020-12-05T21:00:00+09:00</published>
+      <updated>2020-12-05T21:00:00+09:00</updated>
+      <id>http://localhost:4000/virtualDOM</id>
+      <content type="html" xml:base="http://localhost:4000/virtualDOM">&lt;h2 id=&quot;virtualdom-가상-dom에-대해-알고계신가요&quot;&gt;VirtualDOM (가상 DOM)에 대해 알고계신가요?&lt;/h2&gt;
+
+&lt;p&gt;2년전 프론트엔드 기술 중에 어떤 기술들이 유행하고있는지 알아보다가 접한 React. 처음엔 기존의 JavaScript와는 틀린 독특한 문법때문에 막연히 배우기 시작한 React.
+최근 실무에서 React를 이용해서 웹 어플리케이션을 개발하는 일이 잦아졌다. 그래서 그런지 문득 React란 무엇이고 어떤 장점을 가졌고 어떤 기술들을 기반으로 개발되었는지 등등 기본적인 것들을 제대로 이해하고 쓰고있는 것인지 의문이 들었다.&lt;/p&gt;
+
+&lt;p&gt;단방향 데이터 바인딩, 컴포넌트를 기준으로 한 프로젝트 구성, Virtual DOM등등 여러 장점이 있다는건 알고있다.&lt;/p&gt;
+
+&lt;p&gt;그 중 SPA개발에 특화되어있는 라이브러리 React나 프레임워크인 Vue을 보면 Virtual DOM이라는 개념을 자세하게 설명이 가능한지 내 자신에게 물어보았다. 그러나 음…?? 전반적인 개념은 알겠는데 대체 무슨 장점이 있고 구체적으로 어떤 일을 하는건지 결국 대답을 못하고 있었다.&lt;/p&gt;
+
+&lt;p&gt;그런도중 여러 기술 블로그를 본 결과 정말 이해가 잘 가도록 정리된 글을 보아 공유하고자 한다.&lt;/p&gt;
+
+&lt;h2 id=&quot;왜-virtualdom-가상-dom을-쓰는건데요&quot;&gt;왜 VirtualDOM (가상 DOM)을 쓰는건데요?&lt;/h2&gt;
+
+&lt;p&gt;참고한 블로그 글에 이런 기술이 있었다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The other day a friend had this React question for me: “Composition through components, one way data binding; I understand all that, but why Virtual DOM?”.
+I’ve given him the usual answer. “Because, direct DOM manipulation is inefficient, and slow.”
+“There’s always news on how JavaScript engines are getting performant; what makes adding something directly to the DOM slow?”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://hashnode.com/post/the-one-thing-that-no-one-properly-explains-about-react-why-virtual-dom-cisczhfj41bmssp53mvfwmgrq&quot;&gt;블로그 원문&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;내용은 어느 날 친구가 React의 장점에 대해서는 알겠는데 왜 Virtual DOM인지 질문하는 장면이다. 질문을 받은 친구는 직접적인 DOM 조작은 비효율적이며 또한 느리기때문이라고 설명한다. 그러나 답변을 받은 친구는 최근의 JavaScript는 퍼포먼스적으로도 빨라지고 있는데 대체 무엇때문에 직접적인 DOM조작이 느려지는 원인인건지 모르겠다는 것이다.&lt;/p&gt;
+
+&lt;p&gt;이 대화내용을 보고 나 또한 2년전쯤엔가 읽었던 하나의 블로그 글이 떠올랐다. 직접적인 DOM조작을 기반으로 하는 jQuery의 한계. 그리고 등장한 새로운 패러다임 React와 Vue, Anguler. 그 당시에는 아 그냥 유행이 그런가보다 하고 이해해버린 글이었다.&lt;/p&gt;
+
+&lt;p&gt;JavaScript 엔진 자체는 나날히 발전을 거듭하면서 퍼포먼스적으로도 지속해서 개선되어 지고있다. 그러나 거진 10년이란 세월을 80%이상의 사이트가 jQuery를 이용할 정도로 많은 개발자들이 써왔던 jQuery. 그것을 최근 React들이 대체하기 시작했다.&lt;/p&gt;
+
+&lt;p&gt;왜일까? 그 이유는 직접적인 DOM조작후에 일어나는 일에 있다고 한다.&lt;/p&gt;
+
+&lt;h3 id=&quot;브라우저에서-일어나는-일들&quot;&gt;브라우저에서 일어나는 일들&lt;/h3&gt;
+
+&lt;p&gt;간략하게 브라우저에서 일어나는 일들을 나열해보자면 다음과 같다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;HTML Parse&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;서버에서 받아온 HTML소스를 파싱한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;DOM Tree 생성&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;파싱한 HTML소스를 기반으로 DOM Tree (Node)를 작성한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Render Tree 생성&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;작성된 DOM Tree에 스타일을 입히고 Render Tree를 작성한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Layout or Reflow (각 노드의 표시 장소 결정)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;작성된 Render Tree를 가지고 각 노드 (엘리먼트 or 요소라고도 불립니다.)를 어디에 배치할지 계산.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Painting (브라우저에 표시)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;마지막단계로서 Layout단계에서 각 노드가 어디에 배치되야 될지 계산이 끝나면 색을 입히면서 브라우저에 그리기 시작. 이때 유저에게 컨텐츠가 표시되기 시작한다.
+아래 그림을 참고하면 이해하기 쉬울 것 같다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;assets/images/renderDom.png&quot; alt=&quot;브라우저의 페이지가 유저에게 보여지기 까지&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;이미지 출처: &lt;a href=&quot;https://hacks.mozilla.org/2017/08/inside-a-super-fast-css-engine-quantum-css-aka-stylo/&quot;&gt;모질라 HACKS&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;직접적인-dom-조작-무엇이-문제인가&quot;&gt;직접적인 DOM 조작 무엇이 문제인가&lt;/h3&gt;
+
+&lt;p&gt;대략적으로 브라우저에서 일어나는 일들을 알아보았다. 그렇다면 대체 무엇이 직접적인 DOM 조작을 하면 성능상 문제가 생기는걸까?&lt;/p&gt;
+
+&lt;p&gt;결론부터 말하자면 상황에 따라서 문제가 생긴다. 브라우저는 JavaScript로 인하여 DOM Tree나 요소의 CSS속성이 변경될 경우 레이아웃 (리플로우라고도 불린다.) 과정을 거친다. 이 과정에서 브라우저는 적용할 DOM Tree를 재구성 및 각 노드들의 배치를 재결정하기 위해 계산을 한다. 이게 어느정도 DOM을 조작한다던가 하면 그렇게 문제될 상황은 아닐것이다. 그러나 SPA (Single Page Application)의 경우는 전혀 그렇지 않다. 사용자에게 더욱 빠르게 반응하기 위해서 기존의 SSR (Server Side Rendering)에서 CSR (Client Side Rendering)를 기본이고 렌더링 방법으로 사용하며 CSR은 SSR과는 다르게 웹페이지를 사용자가 원하는 컨텐츠를 보여주기 위해 서버에 새로운 HTML정보를 요청하지 않고 &lt;strong&gt;그 자리에서&lt;/strong&gt; DOM구조를 바꾸어서 보여준다.&lt;/p&gt;
+
+&lt;p&gt;여기서 문제가 생긴다. DOM구조를 바꾼다는 것은 결국 리플로우를 발생시킨다는 것이다. 이것이 SPA에선 자주 발생한다. 만약 20번의 구조에 변화가 생긴다면 어떨까?? 브라우저는 뒤에서 20번의 연산을 하게 된다. 사용자에게 빠르게 반응하기 위한 SPA에 있어서 이보다 나쁜소식은 없다.&lt;/p&gt;
+
+&lt;h3 id=&quot;virtual-dom은-뭐가-좋은가&quot;&gt;Virtual DOM은 뭐가 좋은가&lt;/h3&gt;
+
+&lt;p&gt;다시 본론으로 돌아와서 가상DOM을 쓰면 어느 부분에서 좋은지 알아보자. 가상DOM은 2가지를 해결하기 위해 생겼다고 한다. 이 설명은 원문 기사에 있는 어느 Reddit 유저분이 정리해주신 걸 참고하겠다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;가상DOM을 이용해 변화된 부분만 감지, 여러 변화를 하나로 묶어서 연산하고 실제 DOM에 넘겨준다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The real problem with DOM manipulation is that each manipulation can trigger layout changes, tree modifications and rendering. Each of them. So, say you modified 30 nodes, one by one. That would mean 30 (potential) re-calculations of the layout, 30 (potential) re-renderings, etc.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;DOM조작의 진짜 문제는 조작으로 인한 레이아웃과 DOM 트리의 변화에 있습니다. 이 변화로 인해 렌더링을 일으키구요. 만약 여러분들이 30개의 노드를 하나하나 변경했다고 합시다. 이것은 30번(잠재적인)의 재계산과 레이아웃 (리플로우), 30번(잠재적인)의 리렌더링을 일으킨다는 것을 의미합니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;이 Reddit유저분이 정리해준것과 같이 DOM의 직접적인 조작의 문제는 DOM트리의 변화에 있다. 이 변화가 재계산, 레이아웃, 리렌더링을 초래한다는것이다. 이 변화를 렌더링되지 않는 가상 DOM에서 처리하고 최종적인 결과를 DOM에 전달하는것으로 1번만 리렌더링을 하는것으로 연산비용을 최소화 시켜준다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;DOM fragment를 관리하는 과정을 자동화 추상화 하기 위함이다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;이러한 해결방법은 굳이 가상DOM을 쓰지않아도 DOM fragment를 이용해서 그 변화를 묶어서 DOM에게 최종적인 결과만 전달해주면 된다고 한다. 하지만 이러한 방식은 프론트엔드 개발자가 상황을 지속적으로 파악하고 있어야 되며 개발하는데 있어 코스트를 높일 뿐이다. 이것을 가상DOM에서 자동화하고 추상화하여 개발 코스트를 낮출수 있던것이 아닐까??&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;But actually, this particular behaviour can be achieved without a virtual DOM. You can manually group all the DOM modifications in a DOM fragment yourself and then dump it into the DOM.
+So, again, what does a Virtual DOM solve? It automates and abstracts the management of that DOM fragment so you don’t have to do it manually. Not only that, but when doing it manually you have to keep track of which parts have changed and which ones haven’t (because if you don’t you’d end up refreshing huge pieces of the DOM tree that may not need to be refreshed). So a Virtual DOM (if implemented correctly) also automates this for you, knowing which parts need to be refreshed and which parts don’t.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;솔직히 이러한 해결방법은 굳이 가상DOM이 아니어도 해결할수 있습니다. 변화가 있을때 DOM fragment를 이용해 그 변화를 묶어서 DOM에게 넘겨주면 그만이니까요.
+그러면 정말 가상DOM에서 무엇을 해결하려고 한걸까요? 그것은 DOM fragment를 자동화하고 추상화하여 일일히 관리하지 않기 위해서에요. 만약 이 과정을 일일히 관리한다고 하면 여러분들이 어떤 값들이 변경되었고 어떤 값들이 변경되지 않았는지 변화를 파악하고 관리해줘야합니다 (안 그러면 갱신할 필요도 없는 DOM트리를 갱신해버릴수도 있어요.).하지만 가상DOM(올바르게 구현 된 경우)은 이것들을 여러분 대신에 자동으로 관리해줍니다. 어떤 것이 갱신이 필요한지 알려주죠.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;끝으로&quot;&gt;끝으로&lt;/h2&gt;
+
+&lt;p&gt;지금까지 가상DOM이 어떤 부분이 좋고 무엇을 해결하기 위해 태어났는지 알아보았다. 필자 또한 이 공유를 통해 꼭 React나 Vue, Angular를 쓰는것이 좋은 것만이 아니구나라고 느꼈다. 만드는 웹페이지, 어플리케이션에 목적에 따라 jQuery를 쓸수도 있는것이고 React를 쓸수도 있다.
+이 포스트를 읽은 모든 개발자분들이 가상DOM에 대해 한층 깊게 이해되는 계기가 되길 빌며 마친다.&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>Ardo</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="posts" />
+      
+        <category term="WebApplication" />
+      
+        <category term="FrontEnd" />
+      
+        <category term="tech" />
+      
+
+      
+        <summary type="html">VirtualDOM (가상 DOM)에 대해 알고계신가요? 2년전 프론트엔드 기술 중에 어떤 기술들이 유행하고있는지 알아보다가 접한 React. 처음엔 기존의 JavaScript와는 틀린 독특한 문법때문에 막연히 배우기 시작한 React. 최근 실무에서 React를 이용해서 웹 어플리케이션을 개발하는 일이 잦아졌다. 그래서 그런지 문득 React란 무엇이고 어떤 장점을 가졌고 어떤 기술들을 기반으로 개발되었는지 등등 기본적인 것들을 제대로 이해하고 쓰고있는 것인지 의문이 들었다. 단방향 데이터 바인딩, 컴포넌트를 기준으로 한 프로젝트 구성, Virtual DOM등등 여러 장점이 있다는건 알고있다. 그 중 SPA개발에 특화되어있는 라이브러리 React나 프레임워크인 Vue을 보면 Virtual DOM이라는 개념을 자세하게 설명이 가능한지 내 자신에게 물어보았다. 그러나 음…?? 전반적인 개념은 알겠는데 대체 무슨 장점이 있고 구체적으로 어떤 일을 하는건지 결국 대답을 못하고 있었다. 그런도중 여러 기술 블로그를 본 결과 정말 이해가 잘 가도록 정리된 글을 보아 공유하고자 한다. 왜 VirtualDOM (가상 DOM)을 쓰는건데요? 참고한 블로그 글에 이런 기술이 있었다. The other day a friend had this React question for me: “Composition through components, one way data binding; I understand all that, but why Virtual DOM?”. I’ve given him the usual answer. “Because, direct DOM manipulation is inefficient, and slow.” “There’s always news on how JavaScript engines are getting performant; what makes adding something directly to the DOM slow?” 블로그 원문 내용은 어느 날 친구가 React의 장점에 대해서는 알겠는데 왜 Virtual DOM인지 질문하는 장면이다. 질문을 받은 친구는 직접적인 DOM 조작은 비효율적이며 또한 느리기때문이라고 설명한다. 그러나 답변을 받은 친구는 최근의 JavaScript는 퍼포먼스적으로도 빨라지고 있는데 대체 무엇때문에 직접적인 DOM조작이 느려지는 원인인건지 모르겠다는 것이다. 이 대화내용을 보고 나 또한 2년전쯤엔가 읽었던 하나의 블로그 글이 떠올랐다. 직접적인 DOM조작을 기반으로 하는 jQuery의 한계. 그리고 등장한 새로운 패러다임 React와 Vue, Anguler. 그 당시에는 아 그냥 유행이 그런가보다 하고 이해해버린 글이었다. JavaScript 엔진 자체는 나날히 발전을 거듭하면서 퍼포먼스적으로도 지속해서 개선되어 지고있다. 그러나 거진 10년이란 세월을 80%이상의 사이트가 jQuery를 이용할 정도로 많은 개발자들이 써왔던 jQuery. 그것을 최근 React들이 대체하기 시작했다. 왜일까? 그 이유는 직접적인 DOM조작후에 일어나는 일에 있다고 한다. 브라우저에서 일어나는 일들 간략하게 브라우저에서 일어나는 일들을 나열해보자면 다음과 같다. HTML Parse 서버에서 받아온 HTML소스를 파싱한다. DOM Tree 생성 파싱한 HTML소스를 기반으로 DOM Tree (Node)를 작성한다. Render Tree 생성 작성된 DOM Tree에 스타일을 입히고 Render Tree를 작성한다. Layout or Reflow (각 노드의 표시 장소 결정) 작성된 Render Tree를 가지고 각 노드 (엘리먼트 or 요소라고도 불립니다.)를 어디에 배치할지 계산. Painting (브라우저에 표시) 마지막단계로서 Layout단계에서 각 노드가 어디에 배치되야 될지 계산이 끝나면 색을 입히면서 브라우저에 그리기 시작. 이때 유저에게 컨텐츠가 표시되기 시작한다. 아래 그림을 참고하면 이해하기 쉬울 것 같다. 이미지 출처: 모질라 HACKS 직접적인 DOM 조작 무엇이 문제인가 대략적으로 브라우저에서 일어나는 일들을 알아보았다. 그렇다면 대체 무엇이 직접적인 DOM 조작을 하면 성능상 문제가 생기는걸까? 결론부터 말하자면 상황에 따라서 문제가 생긴다. 브라우저는 JavaScript로 인하여 DOM Tree나 요소의 CSS속성이 변경될 경우 레이아웃 (리플로우라고도 불린다.) 과정을 거친다. 이 과정에서 브라우저는 적용할 DOM Tree를 재구성 및 각 노드들의 배치를 재결정하기 위해 계산을 한다. 이게 어느정도 DOM을 조작한다던가 하면 그렇게 문제될 상황은 아닐것이다. 그러나 SPA (Single Page Application)의 경우는 전혀 그렇지 않다. 사용자에게 더욱 빠르게 반응하기 위해서 기존의 SSR (Server Side Rendering)에서 CSR (Client Side Rendering)를 기본이고 렌더링 방법으로 사용하며 CSR은 SSR과는 다르게 웹페이지를 사용자가 원하는 컨텐츠를 보여주기 위해 서버에 새로운 HTML정보를 요청하지 않고 그 자리에서 DOM구조를 바꾸어서 보여준다. 여기서 문제가 생긴다. DOM구조를 바꾼다는 것은 결국 리플로우를 발생시킨다는 것이다. 이것이 SPA에선 자주 발생한다. 만약 20번의 구조에 변화가 생긴다면 어떨까?? 브라우저는 뒤에서 20번의 연산을 하게 된다. 사용자에게 빠르게 반응하기 위한 SPA에 있어서 이보다 나쁜소식은 없다. Virtual DOM은 뭐가 좋은가 다시 본론으로 돌아와서 가상DOM을 쓰면 어느 부분에서 좋은지 알아보자. 가상DOM은 2가지를 해결하기 위해 생겼다고 한다. 이 설명은 원문 기사에 있는 어느 Reddit 유저분이 정리해주신 걸 참고하겠다. 가상DOM을 이용해 변화된 부분만 감지, 여러 변화를 하나로 묶어서 연산하고 실제 DOM에 넘겨준다. The real problem with DOM manipulation is that each manipulation can trigger layout changes, tree modifications and rendering. Each of them. So, say you modified 30 nodes, one by one. That would mean 30 (potential) re-calculations of the layout, 30 (potential) re-renderings, etc. DOM조작의 진짜 문제는 조작으로 인한 레이아웃과 DOM 트리의 변화에 있습니다. 이 변화로 인해 렌더링을 일으키구요. 만약 여러분들이 30개의 노드를 하나하나 변경했다고 합시다. 이것은 30번(잠재적인)의 재계산과 레이아웃 (리플로우), 30번(잠재적인)의 리렌더링을 일으킨다는 것을 의미합니다. 이 Reddit유저분이 정리해준것과 같이 DOM의 직접적인 조작의 문제는 DOM트리의 변화에 있다. 이 변화가 재계산, 레이아웃, 리렌더링을 초래한다는것이다. 이 변화를 렌더링되지 않는 가상 DOM에서 처리하고 최종적인 결과를 DOM에 전달하는것으로 1번만 리렌더링을 하는것으로 연산비용을 최소화 시켜준다. DOM fragment를 관리하는 과정을 자동화 추상화 하기 위함이다. 이러한 해결방법은 굳이 가상DOM을 쓰지않아도 DOM fragment를 이용해서 그 변화를 묶어서 DOM에게 최종적인 결과만 전달해주면 된다고 한다. 하지만 이러한 방식은 프론트엔드 개발자가 상황을 지속적으로 파악하고 있어야 되며 개발하는데 있어 코스트를 높일 뿐이다. 이것을 가상DOM에서 자동화하고 추상화하여 개발 코스트를 낮출수 있던것이 아닐까?? But actually, this particular behaviour can be achieved without a virtual DOM. You can manually group all the DOM modifications in a DOM fragment yourself and then dump it into the DOM. So, again, what does a Virtual DOM solve? It automates and abstracts the management of that DOM fragment so you don’t have to do it manually. Not only that, but when doing it manually you have to keep track of which parts have changed and which ones haven’t (because if you don’t you’d end up refreshing huge pieces of the DOM tree that may not need to be refreshed). So a Virtual DOM (if implemented correctly) also automates this for you, knowing which parts need to be refreshed and which parts don’t. 솔직히 이러한 해결방법은 굳이 가상DOM이 아니어도 해결할수 있습니다. 변화가 있을때 DOM fragment를 이용해 그 변화를 묶어서 DOM에게 넘겨주면 그만이니까요. 그러면 정말 가상DOM에서 무엇을 해결하려고 한걸까요? 그것은 DOM fragment를 자동화하고 추상화하여 일일히 관리하지 않기 위해서에요. 만약 이 과정을 일일히 관리한다고 하면 여러분들이 어떤 값들이 변경되었고 어떤 값들이 변경되지 않았는지 변화를 파악하고 관리해줘야합니다 (안 그러면 갱신할 필요도 없는 DOM트리를 갱신해버릴수도 있어요.).하지만 가상DOM(올바르게 구현 된 경우)은 이것들을 여러분 대신에 자동으로 관리해줍니다. 어떤 것이 갱신이 필요한지 알려주죠. 끝으로 지금까지 가상DOM이 어떤 부분이 좋고 무엇을 해결하기 위해 태어났는지 알아보았다. 필자 또한 이 공유를 통해 꼭 React나 Vue, Angular를 쓰는것이 좋은 것만이 아니구나라고 느꼈다. 만드는 웹페이지, 어플리케이션에 목적에 따라 jQuery를 쓸수도 있는것이고 React를 쓸수도 있다. 이 포스트를 읽은 모든 개발자분들이 가상DOM에 대해 한층 깊게 이해되는 계기가 되길 빌며 마친다.</summary>
+      
+
+      
+      
+    </entry>
+  
+    <entry>
       <title type="html">var, let, const 대체 무슨 차이일까?</title>
       <link href="http://localhost:4000/let,const,var" rel="alternate" type="text/html" title="var, let, const 대체 무슨 차이일까?" />
       <published>2019-09-27T19:00:00+09:00</published>
@@ -48,7 +193,7 @@
 &lt;p&gt;요즘에는 어떤지 잘 모르겠는데, ES6문법이 주된 문법이 되기전까진 JavaScript를 배우기 시작하면 가장 먼저 배우게 되는 변수 선언이다.
 거창한 설명은 안하겠다. 선언법은 아래와 같다.&lt;/p&gt;
 
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'hello world'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//a라는 상자에 hello world라는 문자를 집어넣음&lt;/span&gt;
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;hello world&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//a라는 상자에 hello world라는 문자를 집어넣음&lt;/span&gt;
 
 &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//콘솔창에 표시 hello world&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -59,7 +204,7 @@
 
 &lt;p&gt;ES6의 변수 선언식. 즉 var로 선언하던 ES5문법이 진화(?)한 형태다. 일단 코드부터 보자.&lt;/p&gt;
 
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'hello world'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//a라는 상자에 hello world라는 문자를 집어넣음&lt;/span&gt;
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;hello world&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//a라는 상자에 hello world라는 문자를 집어넣음&lt;/span&gt;
 &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//b라는 상자에 1이라는 숫자를 집어넣음&lt;/span&gt;
 
 &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//콘솔창에 표시 결과는 hello world&lt;/span&gt;
@@ -74,11 +219,12 @@
 왜! let, const라는 놈이 탄생했는지! var가 뭐가 나쁜데!를 말이다.&lt;/p&gt;
 
 &lt;h2 id=&quot;var-나쁜애-아니에요&quot;&gt;var 나쁜애 아니에요.&lt;/h2&gt;
+
 &lt;p&gt;그렇다. var는 나쁜애가 아니다. 나쁘다고 한다면 언어자체가 엄청나게? 유연한 JavaScript가 나쁜놈이다. 다음 코드를 보자.&lt;/p&gt;
 
 &lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//결과는 undefined&lt;/span&gt;
 
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Dulcis'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// name이라는 상자안에 Dulcis라는 문자를 집어넣음&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Dulcis&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// name이라는 상자안에 Dulcis라는 문자를 집어넣음&lt;/span&gt;
 
 &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//결과는 Dulcis&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -89,7 +235,7 @@
 
 &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//결과는 undefined&lt;/span&gt;
 
-&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Dulcis'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//name이라는 상자안에 Dulcis라는 문자를 집어넣음&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Dulcis&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//name이라는 상자안에 Dulcis라는 문자를 집어넣음&lt;/span&gt;
 
 &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//결과는 Dulcis&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -102,22 +248,22 @@
 
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;let&lt;/code&gt;은 &lt;code class=&quot;highlighter-rouge&quot;&gt;var&lt;/code&gt;와는 틀리게 재선언이 불가한 애다. 다음 코드를 보자.&lt;/p&gt;
 
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;animalName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'native'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;animalName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;native&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 
-&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;animalName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//결과는 native &lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;animalName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//결과는 native&lt;/span&gt;
 
-&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;animalName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'mave'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;animalName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;mave&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 
 &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;animalName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//결과는 Uncaught SyntaxError: Identifier 'animalName' has already been declared.&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;위의 코드와 같이 재선언을 하려고 하면 너 문법 틀림. 하고 빨갛게 엄청 화내는 걸 볼 수 있다. 그럼 재할당은 어떨까??&lt;/p&gt;
 
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;animalName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'native'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;animalName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;native&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 
-&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;animalName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//결과는 native &lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;animalName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//결과는 native&lt;/span&gt;
 
-&lt;span class=&quot;nx&quot;&gt;animalName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'mave'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;animalName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;mave&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 
 &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;animalName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//결과는 mave&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -132,22 +278,22 @@
 
 &lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;animalName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//결과는 Uncaught SyntaxError: Missing initializer in const declaration.&lt;/span&gt;
 
-&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;animalName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'native'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;animalName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;native&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 
-&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;animalName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//결과는 native &lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;animalName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//결과는 native&lt;/span&gt;
 
-&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;animalName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'mave'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;animalName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;mave&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 
 &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;animalName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//결과는 Uncaught SyntaxError: Identifier 'animalName' has already been declared.&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;let&lt;/code&gt;과 똑같이 재선언을 못하고 에러를 내뱉는다. &lt;code class=&quot;highlighter-rouge&quot;&gt;let&lt;/code&gt;도 그랬으니 여기까진 봐주자. 그렇다면 &lt;code class=&quot;highlighter-rouge&quot;&gt;let&lt;/code&gt;에서는 가능했던 재할당은 어떨까? 다음 코드를 보자.&lt;/p&gt;
 
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;animalName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'native'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;animalName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;native&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 
-&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;animalName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//결과는 native &lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;animalName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//결과는 native&lt;/span&gt;
 
-&lt;span class=&quot;nx&quot;&gt;animalName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'mave'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;animalName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;mave&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 
 &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;animalName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//결과는 Uncaught TypeError: Assignment to constant variable.&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -156,17 +302,17 @@
 
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;var&lt;/code&gt;의 호이스팅 문제로 인하여 &lt;code class=&quot;highlighter-rouge&quot;&gt;let&lt;/code&gt;과 &lt;code class=&quot;highlighter-rouge&quot;&gt;const&lt;/code&gt;변수선언이 ES6에서 등장했다고 서술했다. 방금 전 호이스팅 현상을 &lt;code class=&quot;highlighter-rouge&quot;&gt;let&lt;/code&gt;과 &lt;code class=&quot;highlighter-rouge&quot;&gt;const&lt;/code&gt;로 써보면 어떨까? 다음 코드에서는 한 눈으로 확인해보기 위하여 &lt;code class=&quot;highlighter-rouge&quot;&gt;let&lt;/code&gt;과 &lt;code class=&quot;highlighter-rouge&quot;&gt;const&lt;/code&gt; 둘 다 사용한 예제이다.&lt;/p&gt;
 
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'abcd'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//Uncaught ReferenceError: Cannot access 'name' before initialization.&lt;/span&gt;
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;abcd&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//Uncaught ReferenceError: Cannot access 'name' before initialization.&lt;/span&gt;
 
 &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 
-&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Yeah!!!!!!!'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
+&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Yeah!!!!!!!&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 
-&lt;span class=&quot;nx&quot;&gt;animal&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'bat'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//Uncaught ReferenceError: Cannot access 'animal' before initialization.&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;animal&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;bat&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//Uncaught ReferenceError: Cannot access 'animal' before initialization.&lt;/span&gt;
 
 &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;animal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 
-&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;animal&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'O.O'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;animal&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;O.O&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;호이스팅이고 뭐고 다 필요없고 아주 멋지게 당장 에러를 내뱉어 주신다.&lt;/p&gt;
@@ -225,7 +371,7 @@
       
 
       
-        <summary type="html">서술하기에 앞서. 앞서 먼저 말씀드립니다. 이 포스트는 var와 let, const에 어떤 차이가 있는지 정도만 알수있게끔 아주 가볍게 다룬 글입니다. var는 Function Scope다 let, const는 Block Scope다 뭐다 하는 설명은 싹다 생략 되어있습니다. 좀 더 깊은 지식을 위한 글이 아니며, JavaScript를 처음 배우시는 분들을 위해 궁금증을 해소하기 위한 정도의 글이오니 양해 부탁드립니다. Function Scope는 무엇인지, Block Scope는 무엇인지에 관한 것은 후에 다른 포스트에서 서술 할 예정입니다. var, let, const 대체 무슨 차이일까? ES6에 오면서 추가 된 변수 선언중에 let과 const가 있다. 대체 이놈들이 var로 선언해왔던 변수선언과 어떤 차이가 있을까? 이번 포스트에서는 var와 let, cosnt의 차이를 알아보고자 한다. JavaScript를 배우면 가장 처음 접하는 선언법 var. 요즘에는 어떤지 잘 모르겠는데, ES6문법이 주된 문법이 되기전까진 JavaScript를 배우기 시작하면 가장 먼저 배우게 되는 변수 선언이다. 거창한 설명은 안하겠다. 선언법은 아래와 같다. var a = 'hello world'; //a라는 상자에 hello world라는 문자를 집어넣음 console.log(a); //콘솔창에 표시 hello world let?? const?? 이건 뭐지… 필자같은 경운 JavaScript를 어느정도 배우고 난뒤에 ES6라는 문법을 알게되었다. ES6의 변수 선언식. 즉 var로 선언하던 ES5문법이 진화(?)한 형태다. 일단 코드부터 보자. let a = 'hello world'; //a라는 상자에 hello world라는 문자를 집어넣음 const b = 1; //b라는 상자에 1이라는 숫자를 집어넣음 console.log(a); //콘솔창에 표시 결과는 hello world console.log(b); //콘솔창에 표시 결과는 1 아니 같은 변수선언식이면 var로 선언하면 되잖아. 솔직히 필자도 처음에 봤을때 ‘아니 그냥 var로 선언하면 되잖아. 왜 굳이?’라고 생각했었다. 하지만 우리가 누군가? 개발자다! 왜?라는 사고를 가진 사람들이다. 그래서 찾아봤다! 왜! let, const라는 놈이 탄생했는지! var가 뭐가 나쁜데!를 말이다. var 나쁜애 아니에요. 그렇다. var는 나쁜애가 아니다. 나쁘다고 한다면 언어자체가 엄청나게? 유연한 JavaScript가 나쁜놈이다. 다음 코드를 보자. console.log(name); //결과는 undefined var name = 'Dulcis'; // name이라는 상자안에 Dulcis라는 문자를 집어넣음 console.log(name); //결과는 Dulcis 왜 나쁠까? 일반적으로 프로그래밍에선 변수선언을 안하고 바로 변수를 참조하려고 하면 그냥 바로 에러를 뱉는다. 근데 JavaScript라는 놈은 호이스팅이라는 현상으로 인해 에러를 안뱉는다!! 호이스팅이라는 이슈는 나중에 다른 포스팅에서 다루도록 하겠다. 호이스팅이란 간단하게 말하자면 변수선언전에 참조하려고 할 때 참조하려는 변수를 참조를 할 수 없어서 최상단으로 끌어올려서 선언해버리는 현상이다. 호이스팅 현상으로 인해 위의 같은 코드를 JavaScript에선 이렇게 해석한다. var name; //name이라는 변수를 선언 console.log(name); //결과는 undefined name = 'Dulcis'; //name이라는 상자안에 Dulcis라는 문자를 집어넣음 console.log(name); //결과는 Dulcis 읭? 난 저렇게 코드 쓴적 없는데? console.log(name)사이에 선언한 변수식이 제멋대로 위로 올라갔다. 황당하기 그지없다. 개발자가 쓴 코드대로 실행이 안되고 지멋대로 변수 선언을 위로 올리고 앉아있다. 그래서 왔습니다! I’m let! I’m const! let의 특징 let은 var와는 틀리게 재선언이 불가한 애다. 다음 코드를 보자. let animalName = 'native'; console.log(animalName); //결과는 native let animalName = 'mave'; console.log(animalName); //결과는 Uncaught SyntaxError: Identifier 'animalName' has already been declared. 위의 코드와 같이 재선언을 하려고 하면 너 문법 틀림. 하고 빨갛게 엄청 화내는 걸 볼 수 있다. 그럼 재할당은 어떨까?? let animalName = 'native'; console.log(animalName); //결과는 native animalName = 'mave'; console.log(animalName); //결과는 mave 재선언은 안되지만 재할당은 아주 좋아하신다. let선언은 재선언은 불가능하지만 재할당은 가능한 걸 알 수 있다. 다음은 const를 보자. const의 특징 const는 let, var와는 틀리게 재선언도 안되고 재할당도 안된다. 그냥 “나 한번 먹으면 끝임.” 이러는 고집불통이다. 그래서 그런지 변수선언과 동시에 값을 부여 해주지 않으면 바로 에러를 내뱉어 주신다. 다음 코드를 보자. const animalName; //결과는 Uncaught SyntaxError: Missing initializer in const declaration. const animalName = 'native'; console.log(animalName); //결과는 native const animalName = 'mave'; console.log(animalName); //결과는 Uncaught SyntaxError: Identifier 'animalName' has already been declared. let과 똑같이 재선언을 못하고 에러를 내뱉는다. let도 그랬으니 여기까진 봐주자. 그렇다면 let에서는 가능했던 재할당은 어떨까? 다음 코드를 보자. const animalName = 'native'; console.log(animalName); //결과는 native animalName = 'mave'; console.log(animalName); //결과는 Uncaught TypeError: Assignment to constant variable. 한번 먹였으면 됬지 뭘 더 먹이려고 하냐면서 화를 내신다. 참 까탈스러운 분이다. 정리해보자면 let은 재선언은 불가능하지만 재할당은 가능하다. 그에 반해 const는 재할당도 안되고 재선언도 못한다. var의 호이스팅 문제로 인하여 let과 const변수선언이 ES6에서 등장했다고 서술했다. 방금 전 호이스팅 현상을 let과 const로 써보면 어떨까? 다음 코드에서는 한 눈으로 확인해보기 위하여 let과 const 둘 다 사용한 예제이다. name = 'abcd'; //Uncaught ReferenceError: Cannot access 'name' before initialization. console.log(name); let name = 'Yeah!!!!!!!'; animal = 'bat'; //Uncaught ReferenceError: Cannot access 'animal' before initialization. console.log(animal); const animal = 'O.O'; 호이스팅이고 뭐고 다 필요없고 아주 멋지게 당장 에러를 내뱉어 주신다. 정리 지금까지 ES5에서의 선언법 var와 ES6에서 새롭게 탑재된 선언법인 let과 const에 대해서 알아보았다. 정리해보자면 var와 let, const의 차이점은 아래의 표와 같다. 선언문 재선언 재할당 var 가능 가능 let 불가능 가능 const 불가능 불가능</summary>
+        <summary type="html">서술하기에 앞서. 앞서 먼저 말씀드립니다. 이 포스트는 var와 let, const에 어떤 차이가 있는지 정도만 알수있게끔 아주 가볍게 다룬 글입니다. var는 Function Scope다 let, const는 Block Scope다 뭐다 하는 설명은 싹다 생략 되어있습니다. 좀 더 깊은 지식을 위한 글이 아니며, JavaScript를 처음 배우시는 분들을 위해 궁금증을 해소하기 위한 정도의 글이오니 양해 부탁드립니다. Function Scope는 무엇인지, Block Scope는 무엇인지에 관한 것은 후에 다른 포스트에서 서술 할 예정입니다. var, let, const 대체 무슨 차이일까? ES6에 오면서 추가 된 변수 선언중에 let과 const가 있다. 대체 이놈들이 var로 선언해왔던 변수선언과 어떤 차이가 있을까? 이번 포스트에서는 var와 let, cosnt의 차이를 알아보고자 한다. JavaScript를 배우면 가장 처음 접하는 선언법 var. 요즘에는 어떤지 잘 모르겠는데, ES6문법이 주된 문법이 되기전까진 JavaScript를 배우기 시작하면 가장 먼저 배우게 되는 변수 선언이다. 거창한 설명은 안하겠다. 선언법은 아래와 같다. var a = &quot;hello world&quot;; //a라는 상자에 hello world라는 문자를 집어넣음 console.log(a); //콘솔창에 표시 hello world let?? const?? 이건 뭐지… 필자같은 경운 JavaScript를 어느정도 배우고 난뒤에 ES6라는 문법을 알게되었다. ES6의 변수 선언식. 즉 var로 선언하던 ES5문법이 진화(?)한 형태다. 일단 코드부터 보자. let a = &quot;hello world&quot;; //a라는 상자에 hello world라는 문자를 집어넣음 const b = 1; //b라는 상자에 1이라는 숫자를 집어넣음 console.log(a); //콘솔창에 표시 결과는 hello world console.log(b); //콘솔창에 표시 결과는 1 아니 같은 변수선언식이면 var로 선언하면 되잖아. 솔직히 필자도 처음에 봤을때 ‘아니 그냥 var로 선언하면 되잖아. 왜 굳이?’라고 생각했었다. 하지만 우리가 누군가? 개발자다! 왜?라는 사고를 가진 사람들이다. 그래서 찾아봤다! 왜! let, const라는 놈이 탄생했는지! var가 뭐가 나쁜데!를 말이다. var 나쁜애 아니에요. 그렇다. var는 나쁜애가 아니다. 나쁘다고 한다면 언어자체가 엄청나게? 유연한 JavaScript가 나쁜놈이다. 다음 코드를 보자. console.log(name); //결과는 undefined var name = &quot;Dulcis&quot;; // name이라는 상자안에 Dulcis라는 문자를 집어넣음 console.log(name); //결과는 Dulcis 왜 나쁠까? 일반적으로 프로그래밍에선 변수선언을 안하고 바로 변수를 참조하려고 하면 그냥 바로 에러를 뱉는다. 근데 JavaScript라는 놈은 호이스팅이라는 현상으로 인해 에러를 안뱉는다!! 호이스팅이라는 이슈는 나중에 다른 포스팅에서 다루도록 하겠다. 호이스팅이란 간단하게 말하자면 변수선언전에 참조하려고 할 때 참조하려는 변수를 참조를 할 수 없어서 최상단으로 끌어올려서 선언해버리는 현상이다. 호이스팅 현상으로 인해 위의 같은 코드를 JavaScript에선 이렇게 해석한다. var name; //name이라는 변수를 선언 console.log(name); //결과는 undefined name = &quot;Dulcis&quot;; //name이라는 상자안에 Dulcis라는 문자를 집어넣음 console.log(name); //결과는 Dulcis 읭? 난 저렇게 코드 쓴적 없는데? console.log(name)사이에 선언한 변수식이 제멋대로 위로 올라갔다. 황당하기 그지없다. 개발자가 쓴 코드대로 실행이 안되고 지멋대로 변수 선언을 위로 올리고 앉아있다. 그래서 왔습니다! I’m let! I’m const! let의 특징 let은 var와는 틀리게 재선언이 불가한 애다. 다음 코드를 보자. let animalName = &quot;native&quot;; console.log(animalName); //결과는 native let animalName = &quot;mave&quot;; console.log(animalName); //결과는 Uncaught SyntaxError: Identifier 'animalName' has already been declared. 위의 코드와 같이 재선언을 하려고 하면 너 문법 틀림. 하고 빨갛게 엄청 화내는 걸 볼 수 있다. 그럼 재할당은 어떨까?? let animalName = &quot;native&quot;; console.log(animalName); //결과는 native animalName = &quot;mave&quot;; console.log(animalName); //결과는 mave 재선언은 안되지만 재할당은 아주 좋아하신다. let선언은 재선언은 불가능하지만 재할당은 가능한 걸 알 수 있다. 다음은 const를 보자. const의 특징 const는 let, var와는 틀리게 재선언도 안되고 재할당도 안된다. 그냥 “나 한번 먹으면 끝임.” 이러는 고집불통이다. 그래서 그런지 변수선언과 동시에 값을 부여 해주지 않으면 바로 에러를 내뱉어 주신다. 다음 코드를 보자. const animalName; //결과는 Uncaught SyntaxError: Missing initializer in const declaration. const animalName = &quot;native&quot;; console.log(animalName); //결과는 native const animalName = &quot;mave&quot;; console.log(animalName); //결과는 Uncaught SyntaxError: Identifier 'animalName' has already been declared. let과 똑같이 재선언을 못하고 에러를 내뱉는다. let도 그랬으니 여기까진 봐주자. 그렇다면 let에서는 가능했던 재할당은 어떨까? 다음 코드를 보자. const animalName = &quot;native&quot;; console.log(animalName); //결과는 native animalName = &quot;mave&quot;; console.log(animalName); //결과는 Uncaught TypeError: Assignment to constant variable. 한번 먹였으면 됬지 뭘 더 먹이려고 하냐면서 화를 내신다. 참 까탈스러운 분이다. 정리해보자면 let은 재선언은 불가능하지만 재할당은 가능하다. 그에 반해 const는 재할당도 안되고 재선언도 못한다. var의 호이스팅 문제로 인하여 let과 const변수선언이 ES6에서 등장했다고 서술했다. 방금 전 호이스팅 현상을 let과 const로 써보면 어떨까? 다음 코드에서는 한 눈으로 확인해보기 위하여 let과 const 둘 다 사용한 예제이다. name = &quot;abcd&quot;; //Uncaught ReferenceError: Cannot access 'name' before initialization. console.log(name); let name = &quot;Yeah!!!!!!!&quot;; animal = &quot;bat&quot;; //Uncaught ReferenceError: Cannot access 'animal' before initialization. console.log(animal); const animal = &quot;O.O&quot;; 호이스팅이고 뭐고 다 필요없고 아주 멋지게 당장 에러를 내뱉어 주신다. 정리 지금까지 ES5에서의 선언법 var와 ES6에서 새롭게 탑재된 선언법인 let과 const에 대해서 알아보았다. 정리해보자면 var와 let, const의 차이점은 아래의 표와 같다. 선언문 재선언 재할당 var 가능 가능 let 불가능 가능 const 불가능 불가능</summary>
       
 
       
