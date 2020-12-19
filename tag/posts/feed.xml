@@ -2,10 +2,10 @@
 
 <feed xmlns="http://www.w3.org/2005/Atom" >
   <generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator>
-  <link href="http://localhost:4000/tag/posts/feed.xml" rel="self" type="application/atom+xml" />
-  <link href="http://localhost:4000/" rel="alternate" type="text/html" />
-  <updated>2020-12-19T17:11:43+09:00</updated>
-  <id>http://localhost:4000/tag/posts/feed.xml</id>
+  <link href="/tag/posts/feed.xml" rel="self" type="application/atom+xml" />
+  <link href="/" rel="alternate" type="text/html" />
+  <updated>2020-12-19T17:20:06+09:00</updated>
+  <id>/tag/posts/feed.xml</id>
 
   
   
@@ -31,11 +31,11 @@
   
     <entry>
       <title type="html">왜 가상 DOM인가</title>
-      <link href="http://localhost:4000/virtualDOM" rel="alternate" type="text/html" title="왜 가상 DOM인가" />
+      <link href="/virtualDOM" rel="alternate" type="text/html" title="왜 가상 DOM인가" />
       <published>2020-12-05T21:00:00+09:00</published>
       <updated>2020-12-05T21:00:00+09:00</updated>
-      <id>http://localhost:4000/virtualDOM</id>
-      <content type="html" xml:base="http://localhost:4000/virtualDOM">&lt;h2 id=&quot;virtualdom-가상-dom에-대해-알고계신가요&quot;&gt;VirtualDOM (가상 DOM)에 대해 알고계신가요?&lt;/h2&gt;
+      <id>/virtualDOM</id>
+      <content type="html" xml:base="/virtualDOM">&lt;h2 id=&quot;virtualdom-가상-dom에-대해-알고계신가요&quot;&gt;VirtualDOM (가상 DOM)에 대해 알고계신가요?&lt;/h2&gt;
 
 &lt;p&gt;2년전 프론트엔드 기술 중에 어떤 기술들이 유행하고있는지 알아보다가 접한 React. 처음엔 기존의 JavaScript와는 틀린 독특한 문법때문에 막연히 배우기 시작한 React.
 최근 실무에서 React를 이용해서 웹 어플리케이션을 개발하는 일이 잦아졌다. 그래서 그런지 문득 React란 무엇이고 어떤 장점을 가졌고 어떤 기술들을 기반으로 개발되었는지 등등 기본적인 것들을 제대로 이해하고 쓰고있는 것인지 의문이 들었다.&lt;/p&gt;
@@ -176,11 +176,11 @@ So, again, what does a Virtual DOM solve? It automates and abstracts the managem
   
     <entry>
       <title type="html">var, let, const 대체 무슨 차이일까?</title>
-      <link href="http://localhost:4000/let,const,var" rel="alternate" type="text/html" title="var, let, const 대체 무슨 차이일까?" />
+      <link href="/let,const,var" rel="alternate" type="text/html" title="var, let, const 대체 무슨 차이일까?" />
       <published>2019-09-27T19:00:00+09:00</published>
       <updated>2019-09-27T19:00:00+09:00</updated>
-      <id>http://localhost:4000/let,const,var</id>
-      <content type="html" xml:base="http://localhost:4000/let,const,var">&lt;h2 id=&quot;서술하기에-앞서&quot;&gt;서술하기에 앞서.&lt;/h2&gt;
+      <id>/let,const,var</id>
+      <content type="html" xml:base="/let,const,var">&lt;h2 id=&quot;서술하기에-앞서&quot;&gt;서술하기에 앞서.&lt;/h2&gt;
 
 &lt;p&gt;앞서 먼저 말씀드립니다. 이 포스트는 var와 let, const에 어떤 차이가 있는지 정도만 알수있게끔 아주 가볍게 다룬 글입니다. var는 Function Scope다 let, const는 Block Scope다 뭐다 하는 설명은 싹다 생략 되어있습니다. 좀 더 깊은 지식을 위한 글이 아니며, JavaScript를 처음 배우시는 분들을 위해 궁금증을 해소하기 위한 정도의 글이오니 양해 부탁드립니다. Function Scope는 무엇인지, Block Scope는 무엇인지에 관한 것은 후에 다른 포스트에서 서술 할 예정입니다.&lt;/p&gt;
 
