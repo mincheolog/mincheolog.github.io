@@ -9,6 +9,10 @@
 <lastmod>2020-12-05T21:00:00+09:00</lastmod>
 </url>
 <url>
+<loc>/using-react-component</loc>
+<lastmod>2021-01-09T09:00:00+09:00</lastmod>
+</url>
+<url>
 <loc>/</loc>
 </url>
 <url>
@@ -31,5 +35,8 @@
 </url>
 <url>
 <loc>/tag/tech/</loc>
+</url>
+<url>
+<loc>/tag/react/</loc>
 </url>
 </urlset>
