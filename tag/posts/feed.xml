@@ -4,7 +4,7 @@
   <generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator>
   <link href="/tag/posts/feed.xml" rel="self" type="application/atom+xml" />
   <link href="/" rel="alternate" type="text/html" />
-  <updated>2021-01-11T22:12:41+09:00</updated>
+  <updated>2021-01-24T21:16:42+09:00</updated>
   <id>/tag/posts/feed.xml</id>
 
   
@@ -30,12 +30,342 @@
 
   
     <entry>
+      <title type="html">타입스크립트 유틸 타입 - 1</title>
+      <link href="/typescript-utility-types-1" rel="alternate" type="text/html" title="타입스크립트 유틸 타입 - 1" />
+      <published>2021-01-24T09:00:00+09:00</published>
+      <updated>2021-01-24T09:00:00+09:00</updated>
+      <id>/typescript-utility-types-1</id>
+      <content type="html" xml:base="/typescript-utility-types-1">&lt;h1 id=&quot;oh-my-typescript-utility-type&quot;&gt;Oh My TypeScript Utility Type.&lt;/h1&gt;
+
+&lt;p&gt;TypeScript를 처음접하고 Type을 지정해주면서 쓸 때 중복되는 타입객체를 만드는경우가 허다 했다. 특히나 API에서 받아오는 데이터 타입을 지정하고 그 데이터를 기반으로 form에 담아 갱신된 데이터를 보낼떄 그 Request데이터도 따로 타입을 지정해줬었다. 당시 TypeScript의 유틸 타입이 뭔지도 몰랐고 C나 Java를 거의 안만지다 싶이 살아왔기에 제네릭이 뭔지도 몰라서 보면 개발 D-Day는 오고 개발은 해야되는데 머리속만 복잡해져서 넘겼었다. 최근에 와서야 여유가 생겨서 핸드북 좀 보고 있는데 TypeScript 유틸 타입이 엄청나게 좋은걸 깨닫고 정리 좀 해보려고 한다.
+덕분에 지금은 유틸타입을써서 재이용하여 타입을 지정하고 하고 있는데 전에썼던 Type정의부분을 전부 다 리팩터 해야되지 않나… 라는 고민이 생겼다 ㅋㅋ;;
+TypeScript에서 제공하는 유틸이 거의 20개에 육박한다. 솔직히 다 숙지하고 쓰기에는 자주 않쓰는것도 많아서 1편에선 자주 쓰는 유틸타입을 정리하고 2편에서 나머지를 다뤄보고자 한다.&lt;/p&gt;
+
+&lt;h2 id=&quot;partialtype&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Partial&amp;lt;Type&amp;gt;&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;필수 타입을 그냥 싸그리 필수가 아닌 타입으로 바꿔서 Type을 만들어준다. (기존에 있던 필수가 아닌 타입은 그대로 유지된다.)&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Person&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;NoReuiredPerson&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Partial&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Person&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// NoReuiredPerson은 밑의 결과와 같다.&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt;/*
+type Person = {
+  name?: string;
+  age?: number;
+};
+*/&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;readonlytype&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Readonly&amp;lt;Type&amp;gt;&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;싸그리 Readonly로 바꾸어서 새롭게 Type을 만들어준다.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Color&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;property&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;red&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ImmutableColor&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Readonly&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Color&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Red&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ImmutableColor&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;property&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;red&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// property에 새로운 값으로 할당하려 할 경우 TypeScript에서 에러를 내뱉는다.&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;Red&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;property&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;blue&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Cannot assign to 'title' because it is a read-only property.&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// ImmutableColor는 밑의 결과와 같다.&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt;/*
+type Color = {
+  readonly property: 'red';
+};
+*/&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;recordkeystype&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Record&amp;lt;Keys,Type&amp;gt;&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;Keys에는 새롭게 만들어질 객체의 key를 Type에는 객체의 value값을 의미한다. 즉 key와 value를 갖는 객체의 type을 만들어준다.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;BookTitle&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;BookInfo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;category&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Fantasy&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Action&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Comic&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;price&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Book&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Record&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;BookTitle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;BookInfo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Book&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;category&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Action&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;price&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;12000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}),&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;category&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Comic&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;price&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}),&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 새롭게 만들어진 Record타입인 Book은 밑의 결과와 같다.&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt;/*
+type Book = {
+  [key: string]: {
+    category: 'Fantasy' | 'Action' | 'Comic';
+    price: number;
+  };
+};
+*/&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;picktype-keys&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Pick&amp;lt;Type, Keys&amp;gt;&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;Pick은 기존 Type객체를 기준으로 Keys에서 지정한 key값만 뽑아 새로운 Type객체를 만들어준다. key값의 지정은 Union형식으로 지정한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Form&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;email&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;RequestParams&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Pick&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Form&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'email'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'password'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;reqParams&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;RequestParams&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;email&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'eeefa'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'pick test'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 새롭게 만들어진 RequestParams의 타입은 밑의 결과와 같다.&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt;/*
+type RequestParams = {
+  email: string;
+  password: string;
+};
+*/&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;omittype-keys&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Omit&amp;lt;Type, Keys&amp;gt;&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;Omit은 Pick의 반대 개념이다. 기존 Type객체를 기준으로 Keys에서 지정한 key값을 제외한 모든 key값을 뽑아 새로운 Type객체를 만들어준다. Pick과 마찬가지로 key값의 지정은 Union형식으로 지정한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Form&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;email&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;RequestParams&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Omit&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Form&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'name'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;reqParams&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;RequestParams&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;email&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'eeefa'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'omit test'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 새롭게 만들어진 RequestParams의 타입은 밑의 결과와 같다.&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt;/*
+type RequestParams = {
+  email: string;
+  password: string;
+};
+*/&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;excludetype-excludedunion&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Exclude&amp;lt;Type, ExcludedUnion&amp;gt;&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;Exclude는 Type에서 ExcludedUnion에 지정된 타입을 Type에서 제외하여 새로운 Type으로 만들어준다. Union타입만 넣을수 있다. Union이 아닌 객체타입으로 새롭게 만들경우에는 Record를 이용한다던지 좀 생각을해줘야한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;A&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;a&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;b&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;c&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;B&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;a&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;b&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;e&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ExcludeType&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Exclude&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;B&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;exclude&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ExcludeType&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;c&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 새롭게 만들어진 ExcludeType 타입은 밑의 결과와 같다.&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt;/*
+type ExcludeType = 'c';
+*/&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Exclude를 이용하여 새로운 객체 타입을 만들고 싶을 경우. 객체 A와 B의 프로퍼티를 비교하여 겹치는 부분만 제외 A의 필요한 프로퍼티만 추출할때 유용하다.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;A&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;B&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// Exclude안에 keyof를 이용하여 type A과 type B를 union형식으로 추출, Record를 이용하여 새로운 Type객체를 만들어준다.&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ObjectExcludeType&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Record&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Exclude&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;keyof&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;keyof&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;B&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;objectExclude&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ObjectExcludeType&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;hello!&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 새롭게 만들어진 ObjectExcludeType 타입은 밑의 결과와 같다.&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt;/*
+type ObjectExcludeType = {
+  e: string;
+};
+*/&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;extracttype-union&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Extract&amp;lt;Type, Union&amp;gt;&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;Extract의 경우 Exclude와는 반대개념이다. Type에서 Union에 지정한 타입을 Type에서 추출, 새로운 Type으로 만들어준다. 물론, Union에는 Union타입만 넣을수있다.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;A&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;a&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;b&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;c&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;B&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;a&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;b&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;e&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ExtractType&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Extract&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;B&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;extract&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ExtractType&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;a&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;extract2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ExtractType&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;b&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 새롭게 만들어진 ExtractType 타입은 밑의 결과와 같다.&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt;/*
+type ExcludeType = 'a' | 'b';
+*/&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Exclude의 반대로 A 객체와 B 객체를 비교해서 겹치는 부분을 A 객체를 기준으로 새로운 Type을 만들고 싶을 경우 아래와 같이 쓸 수있다.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;A&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;B&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// Exclude안에 keyof를 이용하여 type A과 type B를 union형식으로 추출, Record를 이용하여 새로운 Type객체를 만들어준다.&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ObjectExtractType&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Record&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Extract&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;keyof&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;keyof&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;B&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;objectExclude&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ObjectExtractType&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;hello!&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;world!&quot;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 새롭게 만들어진 ObjectExtractType 타입은 밑의 결과와 같다.&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt;/*
+type ObjectExtractType = {
+  a: string;
+  b: string;
+};
+*/&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;nonnullabletype&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;NonNullable&amp;lt;Type&amp;gt;&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;NonNullable은 Type안에 있는 ‘undefined’와 ‘null’타입을 제거한 타입을 만들어준다. 솔직히 요래 돌려쓰기보단 Required을 쓰는게 훨신 직관적이니 상황에 따라 잘 판단하여 쓰는게 좋다.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;undefined&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Age&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;number&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Person&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;NonNullable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;NonNullable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Age&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// ok&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;human1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Person&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;kim&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// NG TS2322: Type 'null' is not assignable to type 'string'&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;human2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Person&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 새롭게 만들어진 Person 타입은 밑의 결과와 같다.&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt;/*
+type Person = {
+  name: string;
+  age: number;
+};
+*/&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;requiredtype&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Required&amp;lt;Type&amp;gt;&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;Required는 Partial과 반대 개념이다 Type안에 있는 모든 undefined값을 가지는 타입, 즉 필수가 아닌 타입을 싸그리 필수 타입으로 새롭게 만들어준다.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Animal&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;?:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ReuiredAnimalInfo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Required&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Animal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// ReuiredAnimalInfo 밑의 결과와 같다.&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt;/*
+type ReuiredAnimalInfo = {
+  name: string;
+  age: number;
+};
+*/&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;마치며&quot;&gt;마치며&lt;/h2&gt;
+
+&lt;p&gt;이번 포스트에선 TypeScript로 코딩하면서 자주 쓰일것 같은 유틸 타입을 정리 해보았다. (진짜 Omit이나 Pick은 정말 많이 쓰인다.) 솔직히 이런 유틸 타입이 없어도 그에 맞는 타입을 만들어서 박으면 그만이다. 그러나 재사용성의 측면이나 유지, 보수 측면에서 본다면 여간 안좋은게 아니다. 예를 들면 유저정보를 편집하는 화면에서 초기화할때 요청하는 API의 파라메터와 갱신 된 정보를 보낼때 API의 파라메터가 같다. 물론 받아온 정보를 갱신하면 그 정보를 그대로 서버로 보내기때문에 유저 정보를 받아올 때의 파라메터를 정의해놓은 Type과 갱신 된 정보를 보낼때의 파라메터를 정의해놓은 Type이 있는데 이것도 같다. 이런 상황에서 서버쪽에서 받는 Type이 변경되어 프론트엔드쪽의 Type을 수정하게 된다고 하면 유저 정보를 받아올때 Type과 갱신된 정보를 보내는 Type을 둘다 수정해줘야 한다. 개발자에겐 얼마나 귀찮은 일인지 모른다. 더욱이 프로젝트가 큰 규모에서 이런 상황이 오면 수정해야될 부분을 싸그리 찾아야 된다.
+TypeScript로 개발할때도 정의해놓은 Type의 재사용성을 염두에 두고 개발을 한다면 이런 불상사는 없을것이라 생각되며 유지, 보수하는 개발자가 본다면 얼마나 고마운 일인지 모른다. 그리고 하나 더 좋은 점은 유틸 타입을 쓰면 뭔가 TypeScript를 만질줄 알아보인다 ㅋㅋ TypeScript로 개발하는 모든 프론트엔드 개발자분들께 이 글을 바친다.&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>Ardo</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="posts" />
+      
+        <category term="TypeScript" />
+      
+        <category term="FrontEnd" />
+      
+
+      
+        <summary type="html">Oh My TypeScript Utility Type. TypeScript를 처음접하고 Type을 지정해주면서 쓸 때 중복되는 타입객체를 만드는경우가 허다 했다. 특히나 API에서 받아오는 데이터 타입을 지정하고 그 데이터를 기반으로 form에 담아 갱신된 데이터를 보낼떄 그 Request데이터도 따로 타입을 지정해줬었다. 당시 TypeScript의 유틸 타입이 뭔지도 몰랐고 C나 Java를 거의 안만지다 싶이 살아왔기에 제네릭이 뭔지도 몰라서 보면 개발 D-Day는 오고 개발은 해야되는데 머리속만 복잡해져서 넘겼었다. 최근에 와서야 여유가 생겨서 핸드북 좀 보고 있는데 TypeScript 유틸 타입이 엄청나게 좋은걸 깨닫고 정리 좀 해보려고 한다. 덕분에 지금은 유틸타입을써서 재이용하여 타입을 지정하고 하고 있는데 전에썼던 Type정의부분을 전부 다 리팩터 해야되지 않나… 라는 고민이 생겼다 ㅋㅋ;; TypeScript에서 제공하는 유틸이 거의 20개에 육박한다. 솔직히 다 숙지하고 쓰기에는 자주 않쓰는것도 많아서 1편에선 자주 쓰는 유틸타입을 정리하고 2편에서 나머지를 다뤄보고자 한다. Partial&amp;lt;Type&amp;gt; 필수 타입을 그냥 싸그리 필수가 아닌 타입으로 바꿔서 Type을 만들어준다. (기존에 있던 필수가 아닌 타입은 그대로 유지된다.) type Person = { name: string, age: number, }; type NoReuiredPerson = Partial&amp;lt;Person&amp;gt;; // NoReuiredPerson은 밑의 결과와 같다. /* type Person = { name?: string; age?: number; }; */ Readonly&amp;lt;Type&amp;gt; 싸그리 Readonly로 바꾸어서 새롭게 Type을 만들어준다. type Color = { property: &quot;red&quot;, }; type ImmutableColor = Readonly&amp;lt;Color&amp;gt;; const Red: ImmutableColor = { property: &quot;red&quot;, }; // property에 새로운 값으로 할당하려 할 경우 TypeScript에서 에러를 내뱉는다. Red.property = &quot;blue&quot;; // Cannot assign to 'title' because it is a read-only property. // ImmutableColor는 밑의 결과와 같다. /* type Color = { readonly property: 'red'; }; */ Record&amp;lt;Keys,Type&amp;gt; Keys에는 새롭게 만들어질 객체의 key를 Type에는 객체의 value값을 의미한다. 즉 key와 value를 갖는 객체의 type을 만들어준다. type BookTitle = string; type BookInfo = { category: &quot;Fantasy&quot; | &quot;Action&quot; | &quot;Comic&quot;, price: number, }; type Book = Record&amp;lt;BookTitle, BookInfo&amp;gt;; const items: Book[] = [ (a: { category: &quot;Action&quot;, price: 12000, }), (b: { category: &quot;Comic&quot;, price: 10000, }), ]; // 새롭게 만들어진 Record타입인 Book은 밑의 결과와 같다. /* type Book = { [key: string]: { category: 'Fantasy' | 'Action' | 'Comic'; price: number; }; }; */ Pick&amp;lt;Type, Keys&amp;gt; Pick은 기존 Type객체를 기준으로 Keys에서 지정한 key값만 뽑아 새로운 Type객체를 만들어준다. key값의 지정은 Union형식으로 지정한다. type Form = { name: string; email: string; password: string; }; type RequestParams = Pick&amp;lt;Form, 'email' | 'password'&amp;gt;; const reqParams: RequestParams = { email: 'eeefa'; password: 'pick test'; }; // 새롭게 만들어진 RequestParams의 타입은 밑의 결과와 같다. /* type RequestParams = { email: string; password: string; }; */ Omit&amp;lt;Type, Keys&amp;gt; Omit은 Pick의 반대 개념이다. 기존 Type객체를 기준으로 Keys에서 지정한 key값을 제외한 모든 key값을 뽑아 새로운 Type객체를 만들어준다. Pick과 마찬가지로 key값의 지정은 Union형식으로 지정한다. type Form = { name: string; email: string; password: string; }; type RequestParams = Omit&amp;lt;Form, 'name'&amp;gt;; const reqParams: RequestParams = { email: 'eeefa'; password: 'omit test'; }; // 새롭게 만들어진 RequestParams의 타입은 밑의 결과와 같다. /* type RequestParams = { email: string; password: string; }; */ Exclude&amp;lt;Type, ExcludedUnion&amp;gt; Exclude는 Type에서 ExcludedUnion에 지정된 타입을 Type에서 제외하여 새로운 Type으로 만들어준다. Union타입만 넣을수 있다. Union이 아닌 객체타입으로 새롭게 만들경우에는 Record를 이용한다던지 좀 생각을해줘야한다. type A = &quot;a&quot; | &quot;b&quot; | &quot;c&quot;; type B = &quot;a&quot; | &quot;b&quot; | &quot;e&quot;; type ExcludeType = Exclude&amp;lt;A, B&amp;gt;; const exclude: ExcludeType = &quot;c&quot;; // 새롭게 만들어진 ExcludeType 타입은 밑의 결과와 같다. /* type ExcludeType = 'c'; */ Exclude를 이용하여 새로운 객체 타입을 만들고 싶을 경우. 객체 A와 B의 프로퍼티를 비교하여 겹치는 부분만 제외 A의 필요한 프로퍼티만 추출할때 유용하다. type A = { a: string; b: string; e: string; }; type B = { a: string; b: string; d: string; }; // Exclude안에 keyof를 이용하여 type A과 type B를 union형식으로 추출, Record를 이용하여 새로운 Type객체를 만들어준다. type ObjectExcludeType = Record&amp;lt;Exclude&amp;lt;keyof A, keyof B&amp;gt;, string&amp;gt;; const objectExclude: ObjectExcludeType = { e: &quot;hello!&quot;, }; // 새롭게 만들어진 ObjectExcludeType 타입은 밑의 결과와 같다. /* type ObjectExcludeType = { e: string; }; */ Extract&amp;lt;Type, Union&amp;gt; Extract의 경우 Exclude와는 반대개념이다. Type에서 Union에 지정한 타입을 Type에서 추출, 새로운 Type으로 만들어준다. 물론, Union에는 Union타입만 넣을수있다. type A = &quot;a&quot; | &quot;b&quot; | &quot;c&quot;; type B = &quot;a&quot; | &quot;b&quot; | &quot;e&quot;; type ExtractType = Extract&amp;lt;A, B&amp;gt;; const extract: ExtractType = &quot;a&quot;; const extract2: ExtractType = &quot;b&quot;; // 새롭게 만들어진 ExtractType 타입은 밑의 결과와 같다. /* type ExcludeType = 'a' | 'b'; */ Exclude의 반대로 A 객체와 B 객체를 비교해서 겹치는 부분을 A 객체를 기준으로 새로운 Type을 만들고 싶을 경우 아래와 같이 쓸 수있다. type A = { a: string; b: string; e: string; }; type B = { a: string; b: string; d: string; }; // Exclude안에 keyof를 이용하여 type A과 type B를 union형식으로 추출, Record를 이용하여 새로운 Type객체를 만들어준다. type ObjectExtractType = Record&amp;lt;Extract&amp;lt;keyof A, keyof B&amp;gt;, string&amp;gt;; const objectExclude: ObjectExtractType = { a: &quot;hello!&quot;, b: &quot;world!&quot; }; // 새롭게 만들어진 ObjectExtractType 타입은 밑의 결과와 같다. /* type ObjectExtractType = { a: string; b: string; }; */ NonNullable&amp;lt;Type&amp;gt; NonNullable은 Type안에 있는 ‘undefined’와 ‘null’타입을 제거한 타입을 만들어준다. 솔직히 요래 돌려쓰기보단 Required을 쓰는게 훨신 직관적이니 상황에 따라 잘 판단하여 쓰는게 좋다. type Name = string | undefined | null; type Age = number | null; type Person = { name: NonNullable&amp;lt;Name&amp;gt;, age: NonNullable&amp;lt;Age&amp;gt;, }; // ok const human1: Person = { name: &quot;kim&quot;, age: 20, }; // NG TS2322: Type 'null' is not assignable to type 'string' const human2: Person = { name: null, age: 20, }; // 새롭게 만들어진 Person 타입은 밑의 결과와 같다. /* type Person = { name: string; age: number; }; */ Required&amp;lt;Type&amp;gt; Required는 Partial과 반대 개념이다 Type안에 있는 모든 undefined값을 가지는 타입, 즉 필수가 아닌 타입을 싸그리 필수 타입으로 새롭게 만들어준다. type Animal = { name: string, age?: number, }; type ReuiredAnimalInfo = Required&amp;lt;Animal&amp;gt;; // ReuiredAnimalInfo 밑의 결과와 같다. /* type ReuiredAnimalInfo = { name: string; age: number; }; */ 마치며 이번 포스트에선 TypeScript로 코딩하면서 자주 쓰일것 같은 유틸 타입을 정리 해보았다. (진짜 Omit이나 Pick은 정말 많이 쓰인다.) 솔직히 이런 유틸 타입이 없어도 그에 맞는 타입을 만들어서 박으면 그만이다. 그러나 재사용성의 측면이나 유지, 보수 측면에서 본다면 여간 안좋은게 아니다. 예를 들면 유저정보를 편집하는 화면에서 초기화할때 요청하는 API의 파라메터와 갱신 된 정보를 보낼때 API의 파라메터가 같다. 물론 받아온 정보를 갱신하면 그 정보를 그대로 서버로 보내기때문에 유저 정보를 받아올 때의 파라메터를 정의해놓은 Type과 갱신 된 정보를 보낼때의 파라메터를 정의해놓은 Type이 있는데 이것도 같다. 이런 상황에서 서버쪽에서 받는 Type이 변경되어 프론트엔드쪽의 Type을 수정하게 된다고 하면 유저 정보를 받아올때 Type과 갱신된 정보를 보내는 Type을 둘다 수정해줘야 한다. 개발자에겐 얼마나 귀찮은 일인지 모른다. 더욱이 프로젝트가 큰 규모에서 이런 상황이 오면 수정해야될 부분을 싸그리 찾아야 된다. TypeScript로 개발할때도 정의해놓은 Type의 재사용성을 염두에 두고 개발을 한다면 이런 불상사는 없을것이라 생각되며 유지, 보수하는 개발자가 본다면 얼마나 고마운 일인지 모른다. 그리고 하나 더 좋은 점은 유틸 타입을 쓰면 뭔가 TypeScript를 만질줄 알아보인다 ㅋㅋ TypeScript로 개발하는 모든 프론트엔드 개발자분들께 이 글을 바친다.</summary>
+      
+
+      
+      
+    </entry>
+  
+    <entry>
       <title type="html">자식 컴포넌트를 쓰는 방식들</title>
       <link href="/using-react-component" rel="alternate" type="text/html" title="자식 컴포넌트를 쓰는 방식들" />
       <published>2021-01-09T09:00:00+09:00</published>
       <updated>2021-01-09T09:00:00+09:00</updated>
       <id>/using-react-component</id>
-      <content type="html" xml:base="/using-react-component">&lt;p&gt;작년부터 React로 SPA개발하면서 자식 컴포넌트를 쓰는방식에 대해 의문점이 들었다. 자식 컴포넌트를 컴포넌트 내부에서 선언하고 바로 가져다 쓰는 방식과 컴포넌트 외부에서 자식 컴포넌트를 선언하거나 끌어다 쓰는 방식에 대한 것이었다. 분명히 차이가 있는데 대체 무슨 차이가 있는지 어떤 상황에서 쓰면 좋을지 잘 몰라서 열심히 구글링 해보았지만 이렇다할 글이 없었다. 끝내 필자의 마음속의 &lt;a href=&quot;https://blog.shiren.dev/&quot;&gt;멘토&lt;/a&gt;이신 분께 따로 여쭈어보고 그 조언을 바탕으로 내 나름대로 &lt;strong&gt;이렇게 쓰면 좋겠다&lt;/strong&gt; 라는게 확립되어서 공유해보고자 한다.&lt;/p&gt;
+      <content type="html" xml:base="/using-react-component">&lt;p&gt;작년부터 React로 SPA개발하면서 자식 컴포넌트를 쓰는방식에 대해 의문점이 들었다. 자식 컴포넌트를 컴포넌트 내부에서 선언하고 바로 가져다 쓰는 방식과 컴포넌트 외부에서 자식 컴포넌트를 선언하거나 끌어다 쓰는 방식에 대한 것이었다. 분명히 차이가 있는데 무슨 차이가 있는지 어떤 상황에서 쓰면 좋을지 잘 몰라서 열심히 구글링 해보았지만 이렇다할 글이 없었다. 끝내 필자의 마음속의 &lt;a href=&quot;https://blog.shiren.dev/&quot;&gt;멘토&lt;/a&gt;이신 분께 따로 여쭈어보고 그 조언을 바탕으로 내 나름대로 &lt;strong&gt;이렇게 쓰면 좋겠다&lt;/strong&gt; 라는게 확립되어서 공유해보고자 한다.&lt;/p&gt;
 
 &lt;h2 id=&quot;자식-컴포넌트-child-component&quot;&gt;자식 컴포넌트 (Child Component)?&lt;/h2&gt;
 
@@ -148,7 +478,7 @@
       
 
       
-        <summary type="html">작년부터 React로 SPA개발하면서 자식 컴포넌트를 쓰는방식에 대해 의문점이 들었다. 자식 컴포넌트를 컴포넌트 내부에서 선언하고 바로 가져다 쓰는 방식과 컴포넌트 외부에서 자식 컴포넌트를 선언하거나 끌어다 쓰는 방식에 대한 것이었다. 분명히 차이가 있는데 대체 무슨 차이가 있는지 어떤 상황에서 쓰면 좋을지 잘 몰라서 열심히 구글링 해보았지만 이렇다할 글이 없었다. 끝내 필자의 마음속의 멘토이신 분께 따로 여쭈어보고 그 조언을 바탕으로 내 나름대로 이렇게 쓰면 좋겠다 라는게 확립되어서 공유해보고자 한다. 자식 컴포넌트 (Child Component)? 거창하게 자식 컴포넌트라고 써놓긴 했는데 진짜 별거없다. 그냥 메인이 되는 부모컴포넌트에서 렌더링시에 끌어다가 쓰는 컴포넌트라 보면 되겠다. 컴포넌트의 상하관계를 설명하기 위해서 쓰는 용어인거 같다. (아직 주니어 개발자라 솔직히 이 이상 정확하게 설명하기 어렵다 흑흑…) 자식 컴포넌트를 쓰는 방식들 React에서 컴포넌트를 끌어다 쓰는 방식은 필자의 지식 선에선 3가지 방법이 있다. 첫째 이미 만들어진 다른 컴포넌트를 import하여 끌어다 쓰는 방식. 둘째 메인 컴포넌트 (즉 부모가 되는 컴포넌트) 스코프 밖에서 다른 컴포넌트를 선언하여 끌어다 쓰는 방식. 마지막으로 컴포넌트 내부 스코프에서 컴포넌트를 선언하여 쓰는 방식. 이 3가지가 있다. 예제 코드를 보면서 차이점을 보자. (예제 코드는 최근 React의 대세라고 생각하는 React hook을 이용한 함수형 컴포넌트를 기반으로 썼다.) 컴포넌트를 import하는 경우 // ./Components/AnyChild.tsx import React from &quot;react&quot;; const AnyChild: React.FC&amp;lt;{ childState: string, }&amp;gt; = ({ childState }) =&amp;gt; &amp;lt;div&amp;gt;{childState}&amp;lt;/div&amp;gt;; export default AnyChild; // ./Components/Parent.tsx import React, { useState } from &quot;react&quot;; import AnyChild from &quot;./Components/AnyChild.tsx&quot;; const Parent: React.FC = () =&amp;gt; { const [parentState, setParentState] = useState(&quot;&quot;); return &amp;lt;AnyChild childState={parentState} /&amp;gt;; }; 위의 방식은 AnyChild라는 컴포넌트를 import하여 childState라는 props로 데이터를 할당하고 있다. 컴포넌트 외부 스코프에서 선언하여 쓰는 경우 import React, { useState } from &quot;react&quot;; const AnyChild: React.FC&amp;lt;{ childState: string, }&amp;gt; = ({ childState }) =&amp;gt; &amp;lt;div&amp;gt;{childState}&amp;lt;/div&amp;gt;; const Parent: React.FC = () =&amp;gt; { const [parentState, setParentState] = useState(&quot;&quot;); return &amp;lt;AnyChild childState={parentState} /&amp;gt;; }; 위의 방식은 Parent라는 컴포넌트의 외부 스코프에 AnyChild라는 컴포넌트를 만들어 참조하여 쓰는 방식이다. childState라는 props로 데이터를 받아와서 렌더링하고 있다. 컴포넌트의 외부 스코프에서 직접 컴포넌트를 선언하여 쓰는 것 외에는 import하여 쓰는방식과 별반 차이가 없다. 컴포넌트 내부 스코프에서 선언하여 쓰는 경우 import React, { useState } from &quot;react&quot;; const Parent: React.FC = () =&amp;gt; { const [parentState, setParentState] = useState(&quot;&quot;); const AnyChild: React.FC = () =&amp;gt; &amp;lt;div&amp;gt;{parentState}&amp;lt;/div&amp;gt;; return &amp;lt;AnyChild /&amp;gt;; }; 위의 방식은 Parent라는 컴포넌트의 내부 스코프에 AnyChild라는 컴포넌트를 만들고 AnyChild컴포넌트에서 Parent컴포넌트의 상태변수를 직접적으로 참조하고 있다. props로 데이터를 넘겨서 렌더링하는 위의 두 방식과는 확연히 차이가 난다. 개인적인 견해 결론부터 말하자면 컴포넌트의 목적과 성격에 맞게 쓰면 된다고 말하고 싶다. 첫째. import하여 컴포넌트를 끌어다 쓰는 방식 이 경우 재사용의 가능성이 높은 컴포넌트를 끌어다 쓸때 쓰면 좋을 것 같다. 딱히 다른 컴포넌트에서 import할 필요도 없는 재사용의 가능성이 0인 컴포넌트인데 별개의 파일로 만들어서 import하여 쓸경우 괜히 파일만 늘어나는 꼴이 된다. 둘째. 컴포넌트의 스코프 외부에서 선언하여 참조하여 쓰는 경우 이 경우 재사용 가능성이 0지만 부모컴포넌트와 밀접한 관련이 있고 비즈니스 로직이 복잡하여 로직을 확연하게 구분할 필요성이 있을 경우 쓰면 좋을 것같다. 예를 들어 데이터가 부모컴포넌트에 의존하고 그 데이터를 기반으로 연산을 한다던지 input요소의 데이터가 부모컴포넌트의 데이터와 밀접한 관련이 있는데 데이터 조작을 위해 자식 컴포넌트의 상태만 갱신할 필요성이 있다던지 말이다. (이 부분은 최적화에도 연관이 있을것 같다.) 마지막. 컴포넌트 내부 스코프에 컴포넌트를 선언하여 쓰는 경우 이경우 재사용 가능성도 0, 부모컴포넌트의 데이터를 기반으로 보여주기만 하는 컴포넌트일 경우 쓰면 좋을 것 같다. 데이터를 조작할 필요도 없는데 props를 이용하여 데이터를 넘기는 건 너무 돌려 쓰는것 같고 해당 컴포넌트가 어디에 있는가도 확인해야 하며 개발자에게 “아 이 컴포넌트에서 무언갈 하고있구나” 라는 인식을 심어주고 확인했더니 아무것도 안하고 있으면 괜한 시간만 쓴 격이 되어 유지 보수 측면에서 안좋을 수도 있다. 물론 세번째 방식은 부모컴포넌트의 상태가 갱신될 경우 함수(컴포넌트)가 새롭게 정의 되니 메모리 관리 측면에서 안좋을 수도 있다. 하지만 스코프 체인을 통해 부모컴포넌트의 상태를 직접 참조 할수있고 자원을 공유할수있는 장점이 있고 파일안에서 코드를 파악하기 쉽다. 마치며 컴포넌트를 선언하고 끌어다 쓰는 방식은 여러가지가 있다. 솔직히 그냥 막 쓰면 된다. 그러나 자고로 개발자란 항상 설계를 염두에 두고 개발해야한다고 생각한다. 염두에 안두고 대충 막쓰면 나중에 프로젝트가 커지거나 코드 전체를 리팩토링해야 될 경우가 오면 설계를 염두에 안두고 막 쓴 자신이 정말 미워지기 시작한다. (필자도 이 github page로 블로그를 이전하기전에 next.js 기반으로 만든 블로그가 있는데 설계도 안하고 대충 막 개발했다가 리팩토링 하면서 엄청 후회한 경험이 있다. 결국 포기하고 github page로 도망왔다 ㅋㅋ) 그렇기에 컴포넌트를 만들거나 쓸때 어떤 상황에 써야 적합할지 어떻게 개발을 하면 좋을지 혹은 지금도 React로 개발을하면서 왜 이렇게 쓰는거지? 라는 고민을 고민을 가진 개발자분들께 도움이 되길 바라며 글을 마친다.</summary>
+        <summary type="html">작년부터 React로 SPA개발하면서 자식 컴포넌트를 쓰는방식에 대해 의문점이 들었다. 자식 컴포넌트를 컴포넌트 내부에서 선언하고 바로 가져다 쓰는 방식과 컴포넌트 외부에서 자식 컴포넌트를 선언하거나 끌어다 쓰는 방식에 대한 것이었다. 분명히 차이가 있는데 무슨 차이가 있는지 어떤 상황에서 쓰면 좋을지 잘 몰라서 열심히 구글링 해보았지만 이렇다할 글이 없었다. 끝내 필자의 마음속의 멘토이신 분께 따로 여쭈어보고 그 조언을 바탕으로 내 나름대로 이렇게 쓰면 좋겠다 라는게 확립되어서 공유해보고자 한다. 자식 컴포넌트 (Child Component)? 거창하게 자식 컴포넌트라고 써놓긴 했는데 진짜 별거없다. 그냥 메인이 되는 부모컴포넌트에서 렌더링시에 끌어다가 쓰는 컴포넌트라 보면 되겠다. 컴포넌트의 상하관계를 설명하기 위해서 쓰는 용어인거 같다. (아직 주니어 개발자라 솔직히 이 이상 정확하게 설명하기 어렵다 흑흑…) 자식 컴포넌트를 쓰는 방식들 React에서 컴포넌트를 끌어다 쓰는 방식은 필자의 지식 선에선 3가지 방법이 있다. 첫째 이미 만들어진 다른 컴포넌트를 import하여 끌어다 쓰는 방식. 둘째 메인 컴포넌트 (즉 부모가 되는 컴포넌트) 스코프 밖에서 다른 컴포넌트를 선언하여 끌어다 쓰는 방식. 마지막으로 컴포넌트 내부 스코프에서 컴포넌트를 선언하여 쓰는 방식. 이 3가지가 있다. 예제 코드를 보면서 차이점을 보자. (예제 코드는 최근 React의 대세라고 생각하는 React hook을 이용한 함수형 컴포넌트를 기반으로 썼다.) 컴포넌트를 import하는 경우 // ./Components/AnyChild.tsx import React from &quot;react&quot;; const AnyChild: React.FC&amp;lt;{ childState: string, }&amp;gt; = ({ childState }) =&amp;gt; &amp;lt;div&amp;gt;{childState}&amp;lt;/div&amp;gt;; export default AnyChild; // ./Components/Parent.tsx import React, { useState } from &quot;react&quot;; import AnyChild from &quot;./Components/AnyChild.tsx&quot;; const Parent: React.FC = () =&amp;gt; { const [parentState, setParentState] = useState(&quot;&quot;); return &amp;lt;AnyChild childState={parentState} /&amp;gt;; }; 위의 방식은 AnyChild라는 컴포넌트를 import하여 childState라는 props로 데이터를 할당하고 있다. 컴포넌트 외부 스코프에서 선언하여 쓰는 경우 import React, { useState } from &quot;react&quot;; const AnyChild: React.FC&amp;lt;{ childState: string, }&amp;gt; = ({ childState }) =&amp;gt; &amp;lt;div&amp;gt;{childState}&amp;lt;/div&amp;gt;; const Parent: React.FC = () =&amp;gt; { const [parentState, setParentState] = useState(&quot;&quot;); return &amp;lt;AnyChild childState={parentState} /&amp;gt;; }; 위의 방식은 Parent라는 컴포넌트의 외부 스코프에 AnyChild라는 컴포넌트를 만들어 참조하여 쓰는 방식이다. childState라는 props로 데이터를 받아와서 렌더링하고 있다. 컴포넌트의 외부 스코프에서 직접 컴포넌트를 선언하여 쓰는 것 외에는 import하여 쓰는방식과 별반 차이가 없다. 컴포넌트 내부 스코프에서 선언하여 쓰는 경우 import React, { useState } from &quot;react&quot;; const Parent: React.FC = () =&amp;gt; { const [parentState, setParentState] = useState(&quot;&quot;); const AnyChild: React.FC = () =&amp;gt; &amp;lt;div&amp;gt;{parentState}&amp;lt;/div&amp;gt;; return &amp;lt;AnyChild /&amp;gt;; }; 위의 방식은 Parent라는 컴포넌트의 내부 스코프에 AnyChild라는 컴포넌트를 만들고 AnyChild컴포넌트에서 Parent컴포넌트의 상태변수를 직접적으로 참조하고 있다. props로 데이터를 넘겨서 렌더링하는 위의 두 방식과는 확연히 차이가 난다. 개인적인 견해 결론부터 말하자면 컴포넌트의 목적과 성격에 맞게 쓰면 된다고 말하고 싶다. 첫째. import하여 컴포넌트를 끌어다 쓰는 방식 이 경우 재사용의 가능성이 높은 컴포넌트를 끌어다 쓸때 쓰면 좋을 것 같다. 딱히 다른 컴포넌트에서 import할 필요도 없는 재사용의 가능성이 0인 컴포넌트인데 별개의 파일로 만들어서 import하여 쓸경우 괜히 파일만 늘어나는 꼴이 된다. 둘째. 컴포넌트의 스코프 외부에서 선언하여 참조하여 쓰는 경우 이 경우 재사용 가능성이 0지만 부모컴포넌트와 밀접한 관련이 있고 비즈니스 로직이 복잡하여 로직을 확연하게 구분할 필요성이 있을 경우 쓰면 좋을 것같다. 예를 들어 데이터가 부모컴포넌트에 의존하고 그 데이터를 기반으로 연산을 한다던지 input요소의 데이터가 부모컴포넌트의 데이터와 밀접한 관련이 있는데 데이터 조작을 위해 자식 컴포넌트의 상태만 갱신할 필요성이 있다던지 말이다. (이 부분은 최적화에도 연관이 있을것 같다.) 마지막. 컴포넌트 내부 스코프에 컴포넌트를 선언하여 쓰는 경우 이경우 재사용 가능성도 0, 부모컴포넌트의 데이터를 기반으로 보여주기만 하는 컴포넌트일 경우 쓰면 좋을 것 같다. 데이터를 조작할 필요도 없는데 props를 이용하여 데이터를 넘기는 건 너무 돌려 쓰는것 같고 해당 컴포넌트가 어디에 있는가도 확인해야 하며 개발자에게 “아 이 컴포넌트에서 무언갈 하고있구나” 라는 인식을 심어주고 확인했더니 아무것도 안하고 있으면 괜한 시간만 쓴 격이 되어 유지 보수 측면에서 안좋을 수도 있다. 물론 세번째 방식은 부모컴포넌트의 상태가 갱신될 경우 함수(컴포넌트)가 새롭게 정의 되니 메모리 관리 측면에서 안좋을 수도 있다. 하지만 스코프 체인을 통해 부모컴포넌트의 상태를 직접 참조 할수있고 자원을 공유할수있는 장점이 있고 파일안에서 코드를 파악하기 쉽다. 마치며 컴포넌트를 선언하고 끌어다 쓰는 방식은 여러가지가 있다. 솔직히 그냥 막 쓰면 된다. 그러나 자고로 개발자란 항상 설계를 염두에 두고 개발해야한다고 생각한다. 염두에 안두고 대충 막쓰면 나중에 프로젝트가 커지거나 코드 전체를 리팩토링해야 될 경우가 오면 설계를 염두에 안두고 막 쓴 자신이 정말 미워지기 시작한다. (필자도 이 github page로 블로그를 이전하기전에 next.js 기반으로 만든 블로그가 있는데 설계도 안하고 대충 막 개발했다가 리팩토링 하면서 엄청 후회한 경험이 있다. 결국 포기하고 github page로 도망왔다 ㅋㅋ) 그렇기에 컴포넌트를 만들거나 쓸때 어떤 상황에 써야 적합할지 어떻게 개발을 하면 좋을지 혹은 지금도 React로 개발을하면서 왜 이렇게 쓰는거지? 라는 고민을 고민을 가진 개발자분들께 도움이 되길 바라며 글을 마친다.</summary>
       
 
       
@@ -168,7 +498,7 @@
 
 &lt;p&gt;단방향 데이터 바인딩, 컴포넌트를 기준으로 한 프로젝트 구성, Virtual DOM등등 여러 장점이 있다는건 알고있다.&lt;/p&gt;
 
-&lt;p&gt;그 중 SPA개발에 특화되어있는 라이브러리 React나 프레임워크인 Vue을 보면 Virtual DOM이라는 개념을 자세하게 설명이 가능한지 내 자신에게 물어보았다. 그러나 음…?? 전반적인 개념은 알겠는데 대체 무슨 장점이 있고 구체적으로 어떤 일을 하는건지 결국 대답을 못하고 있었다.&lt;/p&gt;
+&lt;p&gt;그 중 SPA개발에 특화되어있는 라이브러리 React나 프레임워크인 Vue을 보면 Virtual DOM이라는 개념을 자세하게 설명이 가능한지 내 자신에게 물어보았다. 그러나 음…?? 전반적인 개념은 알겠는데 무슨 장점이 있고 구체적으로 어떤 일을 하는건지 결국 대답을 못하고 있었다.&lt;/p&gt;
 
 &lt;p&gt;그런도중 여러 기술 블로그를 본 결과 정말 이해가 잘 가도록 정리된 글을 보아 공유하고자 한다.&lt;/p&gt;
 
@@ -184,7 +514,7 @@ I’ve given him the usual answer. “Because, direct DOM manipulation is ineffi
 
 &lt;p&gt;&lt;a href=&quot;https://hashnode.com/post/the-one-thing-that-no-one-properly-explains-about-react-why-virtual-dom-cisczhfj41bmssp53mvfwmgrq&quot;&gt;블로그 원문&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;내용은 어느 날 친구가 React의 장점에 대해서는 알겠는데 왜 Virtual DOM인지 질문하는 장면이다. 질문을 받은 친구는 직접적인 DOM 조작은 비효율적이며 또한 느리기때문이라고 설명한다. 그러나 답변을 받은 친구는 최근의 JavaScript는 퍼포먼스적으로도 빨라지고 있는데 대체 무엇때문에 직접적인 DOM조작이 느려지는 원인인건지 모르겠다는 것이다.&lt;/p&gt;
+&lt;p&gt;내용은 어느 날 친구가 React의 장점에 대해서는 알겠는데 왜 Virtual DOM인지 질문하는 장면이다. 질문을 받은 친구는 직접적인 DOM 조작은 비효율적이며 또한 느리기때문이라고 설명한다. 그러나 답변을 받은 친구는 최근의 JavaScript는 퍼포먼스적으로도 빨라지고 있는데 무엇때문에 직접적인 DOM조작이 느려지는 원인인건지 모르겠다는 것이다.&lt;/p&gt;
 
 &lt;p&gt;이 대화내용을 보고 나 또한 2년전쯤엔가 읽었던 하나의 블로그 글이 떠올랐다. 직접적인 DOM조작을 기반으로 하는 jQuery의 한계. 그리고 등장한 새로운 패러다임 React와 Vue, Anguler. 그 당시에는 아 그냥 유행이 그런가보다 하고 이해해버린 글이었다.&lt;/p&gt;
 
@@ -223,7 +553,7 @@ I’ve given him the usual answer. “Because, direct DOM manipulation is ineffi
 
 &lt;h3 id=&quot;직접적인-dom-조작-무엇이-문제인가&quot;&gt;직접적인 DOM 조작 무엇이 문제인가&lt;/h3&gt;
 
-&lt;p&gt;대략적으로 브라우저에서 일어나는 일들을 알아보았다. 그렇다면 대체 무엇이 직접적인 DOM 조작을 하면 성능상 문제가 생기는걸까?&lt;/p&gt;
+&lt;p&gt;대략적으로 브라우저에서 일어나는 일들을 알아보았다. 그렇다면 무엇이 직접적인 DOM 조작을 하면 성능상 문제가 생기는걸까?&lt;/p&gt;
 
 &lt;p&gt;결론부터 말하자면 상황에 따라서 문제가 생긴다. 브라우저는 JavaScript로 인하여 DOM Tree나 요소의 CSS속성이 변경될 경우 레이아웃 (리플로우라고도 불린다.) 과정을 거친다. 이 과정에서 브라우저는 적용할 DOM Tree를 재구성 및 각 노드들의 배치를 재결정하기 위해 계산을 한다. 이게 어느정도 DOM을 조작한다던가 하면 그렇게 문제될 상황은 아닐것이다. 그러나 SPA (Single Page Application)의 경우는 전혀 그렇지 않다. 사용자에게 더욱 빠르게 반응하기 위해서 기존의 SSR (Server Side Rendering)에서 CSR (Client Side Rendering)를 기본이고 렌더링 방법으로 사용하며 CSR은 SSR과는 다르게 웹페이지를 사용자가 원하는 컨텐츠를 보여주기 위해 서버에 새로운 HTML정보를 요청하지 않고 &lt;strong&gt;그 자리에서&lt;/strong&gt; DOM구조를 바꾸어서 보여준다.&lt;/p&gt;
 
@@ -293,7 +623,7 @@ So, again, what does a Virtual DOM solve? It automates and abstracts the managem
       
 
       
-        <summary type="html">VirtualDOM (가상 DOM)에 대해 알고계신가요? 2년전 프론트엔드 기술 중에 어떤 기술들이 유행하고있는지 알아보다가 접한 React. 처음엔 기존의 JavaScript와는 틀린 독특한 문법때문에 막연히 배우기 시작한 React. 최근 실무에서 React를 이용해서 웹 어플리케이션을 개발하는 일이 잦아졌다. 그래서 그런지 문득 React란 무엇이고 어떤 장점을 가졌고 어떤 기술들을 기반으로 개발되었는지 등등 기본적인 것들을 제대로 이해하고 쓰고있는 것인지 의문이 들었다. 단방향 데이터 바인딩, 컴포넌트를 기준으로 한 프로젝트 구성, Virtual DOM등등 여러 장점이 있다는건 알고있다. 그 중 SPA개발에 특화되어있는 라이브러리 React나 프레임워크인 Vue을 보면 Virtual DOM이라는 개념을 자세하게 설명이 가능한지 내 자신에게 물어보았다. 그러나 음…?? 전반적인 개념은 알겠는데 대체 무슨 장점이 있고 구체적으로 어떤 일을 하는건지 결국 대답을 못하고 있었다. 그런도중 여러 기술 블로그를 본 결과 정말 이해가 잘 가도록 정리된 글을 보아 공유하고자 한다. 왜 VirtualDOM (가상 DOM)을 쓰는건데요? 참고한 블로그 글에 이런 기술이 있었다. The other day a friend had this React question for me: “Composition through components, one way data binding; I understand all that, but why Virtual DOM?”. I’ve given him the usual answer. “Because, direct DOM manipulation is inefficient, and slow.” “There’s always news on how JavaScript engines are getting performant; what makes adding something directly to the DOM slow?” 블로그 원문 내용은 어느 날 친구가 React의 장점에 대해서는 알겠는데 왜 Virtual DOM인지 질문하는 장면이다. 질문을 받은 친구는 직접적인 DOM 조작은 비효율적이며 또한 느리기때문이라고 설명한다. 그러나 답변을 받은 친구는 최근의 JavaScript는 퍼포먼스적으로도 빨라지고 있는데 대체 무엇때문에 직접적인 DOM조작이 느려지는 원인인건지 모르겠다는 것이다. 이 대화내용을 보고 나 또한 2년전쯤엔가 읽었던 하나의 블로그 글이 떠올랐다. 직접적인 DOM조작을 기반으로 하는 jQuery의 한계. 그리고 등장한 새로운 패러다임 React와 Vue, Anguler. 그 당시에는 아 그냥 유행이 그런가보다 하고 이해해버린 글이었다. JavaScript 엔진 자체는 나날히 발전을 거듭하면서 퍼포먼스적으로도 지속해서 개선되어 지고있다. 그러나 거진 10년이란 세월을 80%이상의 사이트가 jQuery를 이용할 정도로 많은 개발자들이 써왔던 jQuery. 그것을 최근 React들이 대체하기 시작했다. 왜일까? 그 이유는 직접적인 DOM조작후에 일어나는 일에 있다고 한다. 브라우저에서 일어나는 일들 간략하게 브라우저에서 일어나는 일들을 나열해보자면 다음과 같다. HTML Parse 서버에서 받아온 HTML소스를 파싱한다. DOM Tree 생성 파싱한 HTML소스를 기반으로 DOM Tree (Node)를 작성한다. Render Tree 생성 작성된 DOM Tree에 스타일을 입히고 Render Tree를 작성한다. Layout or Reflow (각 노드의 표시 장소 결정) 작성된 Render Tree를 가지고 각 노드 (엘리먼트 or 요소라고도 불립니다.)를 어디에 배치할지 계산. Painting (브라우저에 표시) 마지막단계로서 Layout단계에서 각 노드가 어디에 배치되야 될지 계산이 끝나면 색을 입히면서 브라우저에 그리기 시작. 이때 유저에게 컨텐츠가 표시되기 시작한다. 아래 그림을 참고하면 이해하기 쉬울 것 같다. 이미지 출처: 모질라 HACKS 직접적인 DOM 조작 무엇이 문제인가 대략적으로 브라우저에서 일어나는 일들을 알아보았다. 그렇다면 대체 무엇이 직접적인 DOM 조작을 하면 성능상 문제가 생기는걸까? 결론부터 말하자면 상황에 따라서 문제가 생긴다. 브라우저는 JavaScript로 인하여 DOM Tree나 요소의 CSS속성이 변경될 경우 레이아웃 (리플로우라고도 불린다.) 과정을 거친다. 이 과정에서 브라우저는 적용할 DOM Tree를 재구성 및 각 노드들의 배치를 재결정하기 위해 계산을 한다. 이게 어느정도 DOM을 조작한다던가 하면 그렇게 문제될 상황은 아닐것이다. 그러나 SPA (Single Page Application)의 경우는 전혀 그렇지 않다. 사용자에게 더욱 빠르게 반응하기 위해서 기존의 SSR (Server Side Rendering)에서 CSR (Client Side Rendering)를 기본이고 렌더링 방법으로 사용하며 CSR은 SSR과는 다르게 웹페이지를 사용자가 원하는 컨텐츠를 보여주기 위해 서버에 새로운 HTML정보를 요청하지 않고 그 자리에서 DOM구조를 바꾸어서 보여준다. 여기서 문제가 생긴다. DOM구조를 바꾼다는 것은 결국 리플로우를 발생시킨다는 것이다. 이것이 SPA에선 자주 발생한다. 만약 20번의 구조에 변화가 생긴다면 어떨까?? 브라우저는 뒤에서 20번의 연산을 하게 된다. 사용자에게 빠르게 반응하기 위한 SPA에 있어서 이보다 나쁜소식은 없다. Virtual DOM은 뭐가 좋은가 다시 본론으로 돌아와서 가상DOM을 쓰면 어느 부분에서 좋은지 알아보자. 가상DOM은 2가지를 해결하기 위해 생겼다고 한다. 이 설명은 원문 기사에 있는 어느 Reddit 유저분이 정리해주신 걸 참고하겠다. 가상DOM을 이용해 변화된 부분만 감지, 여러 변화를 하나로 묶어서 연산하고 실제 DOM에 넘겨준다. The real problem with DOM manipulation is that each manipulation can trigger layout changes, tree modifications and rendering. Each of them. So, say you modified 30 nodes, one by one. That would mean 30 (potential) re-calculations of the layout, 30 (potential) re-renderings, etc. DOM조작의 진짜 문제는 조작으로 인한 레이아웃과 DOM 트리의 변화에 있습니다. 이 변화로 인해 렌더링을 일으키구요. 만약 여러분들이 30개의 노드를 하나하나 변경했다고 합시다. 이것은 30번(잠재적인)의 재계산과 레이아웃 (리플로우), 30번(잠재적인)의 리렌더링을 일으킨다는 것을 의미합니다. 이 Reddit유저분이 정리해준것과 같이 DOM의 직접적인 조작의 문제는 DOM트리의 변화에 있다. 이 변화가 재계산, 레이아웃, 리렌더링을 초래한다는것이다. 이 변화를 렌더링되지 않는 가상 DOM에서 처리하고 최종적인 결과를 DOM에 전달하는것으로 1번만 리렌더링을 하는것으로 연산비용을 최소화 시켜준다. DOM fragment를 관리하는 과정을 자동화 추상화 하기 위함이다. 이러한 해결방법은 굳이 가상DOM을 쓰지않아도 DOM fragment를 이용해서 그 변화를 묶어서 DOM에게 최종적인 결과만 전달해주면 된다고 한다. 하지만 이러한 방식은 프론트엔드 개발자가 상황을 지속적으로 파악하고 있어야 되며 개발하는데 있어 코스트를 높일 뿐이다. 이것을 가상DOM에서 자동화하고 추상화하여 개발 코스트를 낮출수 있던것이 아닐까?? But actually, this particular behaviour can be achieved without a virtual DOM. You can manually group all the DOM modifications in a DOM fragment yourself and then dump it into the DOM. So, again, what does a Virtual DOM solve? It automates and abstracts the management of that DOM fragment so you don’t have to do it manually. Not only that, but when doing it manually you have to keep track of which parts have changed and which ones haven’t (because if you don’t you’d end up refreshing huge pieces of the DOM tree that may not need to be refreshed). So a Virtual DOM (if implemented correctly) also automates this for you, knowing which parts need to be refreshed and which parts don’t. 솔직히 이러한 해결방법은 굳이 가상DOM이 아니어도 해결할수 있습니다. 변화가 있을때 DOM fragment를 이용해 그 변화를 묶어서 DOM에게 넘겨주면 그만이니까요. 그러면 정말 가상DOM에서 무엇을 해결하려고 한걸까요? 그것은 DOM fragment를 자동화하고 추상화하여 일일히 관리하지 않기 위해서에요. 만약 이 과정을 일일히 관리한다고 하면 여러분들이 어떤 값들이 변경되었고 어떤 값들이 변경되지 않았는지 변화를 파악하고 관리해줘야합니다 (안 그러면 갱신할 필요도 없는 DOM트리를 갱신해버릴수도 있어요.).하지만 가상DOM(올바르게 구현 된 경우)은 이것들을 여러분 대신에 자동으로 관리해줍니다. 어떤 것이 갱신이 필요한지 알려주죠. 끝으로 지금까지 가상DOM이 어떤 부분이 좋고 무엇을 해결하기 위해 태어났는지 알아보았다. 필자 또한 이 공유를 통해 꼭 React나 Vue, Angular를 쓰는것이 좋은 것만이 아니구나라고 느꼈다. 만드는 웹페이지, 어플리케이션에 목적에 따라 jQuery를 쓸수도 있는것이고 React를 쓸수도 있다. 이 포스트를 읽은 모든 개발자분들이 가상DOM에 대해 한층 깊게 이해되는 계기가 되길 빌며 마친다.</summary>
+        <summary type="html">VirtualDOM (가상 DOM)에 대해 알고계신가요? 2년전 프론트엔드 기술 중에 어떤 기술들이 유행하고있는지 알아보다가 접한 React. 처음엔 기존의 JavaScript와는 틀린 독특한 문법때문에 막연히 배우기 시작한 React. 최근 실무에서 React를 이용해서 웹 어플리케이션을 개발하는 일이 잦아졌다. 그래서 그런지 문득 React란 무엇이고 어떤 장점을 가졌고 어떤 기술들을 기반으로 개발되었는지 등등 기본적인 것들을 제대로 이해하고 쓰고있는 것인지 의문이 들었다. 단방향 데이터 바인딩, 컴포넌트를 기준으로 한 프로젝트 구성, Virtual DOM등등 여러 장점이 있다는건 알고있다. 그 중 SPA개발에 특화되어있는 라이브러리 React나 프레임워크인 Vue을 보면 Virtual DOM이라는 개념을 자세하게 설명이 가능한지 내 자신에게 물어보았다. 그러나 음…?? 전반적인 개념은 알겠는데 무슨 장점이 있고 구체적으로 어떤 일을 하는건지 결국 대답을 못하고 있었다. 그런도중 여러 기술 블로그를 본 결과 정말 이해가 잘 가도록 정리된 글을 보아 공유하고자 한다. 왜 VirtualDOM (가상 DOM)을 쓰는건데요? 참고한 블로그 글에 이런 기술이 있었다. The other day a friend had this React question for me: “Composition through components, one way data binding; I understand all that, but why Virtual DOM?”. I’ve given him the usual answer. “Because, direct DOM manipulation is inefficient, and slow.” “There’s always news on how JavaScript engines are getting performant; what makes adding something directly to the DOM slow?” 블로그 원문 내용은 어느 날 친구가 React의 장점에 대해서는 알겠는데 왜 Virtual DOM인지 질문하는 장면이다. 질문을 받은 친구는 직접적인 DOM 조작은 비효율적이며 또한 느리기때문이라고 설명한다. 그러나 답변을 받은 친구는 최근의 JavaScript는 퍼포먼스적으로도 빨라지고 있는데 무엇때문에 직접적인 DOM조작이 느려지는 원인인건지 모르겠다는 것이다. 이 대화내용을 보고 나 또한 2년전쯤엔가 읽었던 하나의 블로그 글이 떠올랐다. 직접적인 DOM조작을 기반으로 하는 jQuery의 한계. 그리고 등장한 새로운 패러다임 React와 Vue, Anguler. 그 당시에는 아 그냥 유행이 그런가보다 하고 이해해버린 글이었다. JavaScript 엔진 자체는 나날히 발전을 거듭하면서 퍼포먼스적으로도 지속해서 개선되어 지고있다. 그러나 거진 10년이란 세월을 80%이상의 사이트가 jQuery를 이용할 정도로 많은 개발자들이 써왔던 jQuery. 그것을 최근 React들이 대체하기 시작했다. 왜일까? 그 이유는 직접적인 DOM조작후에 일어나는 일에 있다고 한다. 브라우저에서 일어나는 일들 간략하게 브라우저에서 일어나는 일들을 나열해보자면 다음과 같다. HTML Parse 서버에서 받아온 HTML소스를 파싱한다. DOM Tree 생성 파싱한 HTML소스를 기반으로 DOM Tree (Node)를 작성한다. Render Tree 생성 작성된 DOM Tree에 스타일을 입히고 Render Tree를 작성한다. Layout or Reflow (각 노드의 표시 장소 결정) 작성된 Render Tree를 가지고 각 노드 (엘리먼트 or 요소라고도 불립니다.)를 어디에 배치할지 계산. Painting (브라우저에 표시) 마지막단계로서 Layout단계에서 각 노드가 어디에 배치되야 될지 계산이 끝나면 색을 입히면서 브라우저에 그리기 시작. 이때 유저에게 컨텐츠가 표시되기 시작한다. 아래 그림을 참고하면 이해하기 쉬울 것 같다. 이미지 출처: 모질라 HACKS 직접적인 DOM 조작 무엇이 문제인가 대략적으로 브라우저에서 일어나는 일들을 알아보았다. 그렇다면 무엇이 직접적인 DOM 조작을 하면 성능상 문제가 생기는걸까? 결론부터 말하자면 상황에 따라서 문제가 생긴다. 브라우저는 JavaScript로 인하여 DOM Tree나 요소의 CSS속성이 변경될 경우 레이아웃 (리플로우라고도 불린다.) 과정을 거친다. 이 과정에서 브라우저는 적용할 DOM Tree를 재구성 및 각 노드들의 배치를 재결정하기 위해 계산을 한다. 이게 어느정도 DOM을 조작한다던가 하면 그렇게 문제될 상황은 아닐것이다. 그러나 SPA (Single Page Application)의 경우는 전혀 그렇지 않다. 사용자에게 더욱 빠르게 반응하기 위해서 기존의 SSR (Server Side Rendering)에서 CSR (Client Side Rendering)를 기본이고 렌더링 방법으로 사용하며 CSR은 SSR과는 다르게 웹페이지를 사용자가 원하는 컨텐츠를 보여주기 위해 서버에 새로운 HTML정보를 요청하지 않고 그 자리에서 DOM구조를 바꾸어서 보여준다. 여기서 문제가 생긴다. DOM구조를 바꾼다는 것은 결국 리플로우를 발생시킨다는 것이다. 이것이 SPA에선 자주 발생한다. 만약 20번의 구조에 변화가 생긴다면 어떨까?? 브라우저는 뒤에서 20번의 연산을 하게 된다. 사용자에게 빠르게 반응하기 위한 SPA에 있어서 이보다 나쁜소식은 없다. Virtual DOM은 뭐가 좋은가 다시 본론으로 돌아와서 가상DOM을 쓰면 어느 부분에서 좋은지 알아보자. 가상DOM은 2가지를 해결하기 위해 생겼다고 한다. 이 설명은 원문 기사에 있는 어느 Reddit 유저분이 정리해주신 걸 참고하겠다. 가상DOM을 이용해 변화된 부분만 감지, 여러 변화를 하나로 묶어서 연산하고 실제 DOM에 넘겨준다. The real problem with DOM manipulation is that each manipulation can trigger layout changes, tree modifications and rendering. Each of them. So, say you modified 30 nodes, one by one. That would mean 30 (potential) re-calculations of the layout, 30 (potential) re-renderings, etc. DOM조작의 진짜 문제는 조작으로 인한 레이아웃과 DOM 트리의 변화에 있습니다. 이 변화로 인해 렌더링을 일으키구요. 만약 여러분들이 30개의 노드를 하나하나 변경했다고 합시다. 이것은 30번(잠재적인)의 재계산과 레이아웃 (리플로우), 30번(잠재적인)의 리렌더링을 일으킨다는 것을 의미합니다. 이 Reddit유저분이 정리해준것과 같이 DOM의 직접적인 조작의 문제는 DOM트리의 변화에 있다. 이 변화가 재계산, 레이아웃, 리렌더링을 초래한다는것이다. 이 변화를 렌더링되지 않는 가상 DOM에서 처리하고 최종적인 결과를 DOM에 전달하는것으로 1번만 리렌더링을 하는것으로 연산비용을 최소화 시켜준다. DOM fragment를 관리하는 과정을 자동화 추상화 하기 위함이다. 이러한 해결방법은 굳이 가상DOM을 쓰지않아도 DOM fragment를 이용해서 그 변화를 묶어서 DOM에게 최종적인 결과만 전달해주면 된다고 한다. 하지만 이러한 방식은 프론트엔드 개발자가 상황을 지속적으로 파악하고 있어야 되며 개발하는데 있어 코스트를 높일 뿐이다. 이것을 가상DOM에서 자동화하고 추상화하여 개발 코스트를 낮출수 있던것이 아닐까?? But actually, this particular behaviour can be achieved without a virtual DOM. You can manually group all the DOM modifications in a DOM fragment yourself and then dump it into the DOM. So, again, what does a Virtual DOM solve? It automates and abstracts the management of that DOM fragment so you don’t have to do it manually. Not only that, but when doing it manually you have to keep track of which parts have changed and which ones haven’t (because if you don’t you’d end up refreshing huge pieces of the DOM tree that may not need to be refreshed). So a Virtual DOM (if implemented correctly) also automates this for you, knowing which parts need to be refreshed and which parts don’t. 솔직히 이러한 해결방법은 굳이 가상DOM이 아니어도 해결할수 있습니다. 변화가 있을때 DOM fragment를 이용해 그 변화를 묶어서 DOM에게 넘겨주면 그만이니까요. 그러면 정말 가상DOM에서 무엇을 해결하려고 한걸까요? 그것은 DOM fragment를 자동화하고 추상화하여 일일히 관리하지 않기 위해서에요. 만약 이 과정을 일일히 관리한다고 하면 여러분들이 어떤 값들이 변경되었고 어떤 값들이 변경되지 않았는지 변화를 파악하고 관리해줘야합니다 (안 그러면 갱신할 필요도 없는 DOM트리를 갱신해버릴수도 있어요.).하지만 가상DOM(올바르게 구현 된 경우)은 이것들을 여러분 대신에 자동으로 관리해줍니다. 어떤 것이 갱신이 필요한지 알려주죠. 끝으로 지금까지 가상DOM이 어떤 부분이 좋고 무엇을 해결하기 위해 태어났는지 알아보았다. 필자 또한 이 공유를 통해 꼭 React나 Vue, Angular를 쓰는것이 좋은 것만이 아니구나라고 느꼈다. 만드는 웹페이지, 어플리케이션에 목적에 따라 jQuery를 쓸수도 있는것이고 React를 쓸수도 있다. 이 포스트를 읽은 모든 개발자분들이 가상DOM에 대해 한층 깊게 이해되는 계기가 되길 빌며 마친다.</summary>
       
 
       
@@ -301,8 +631,8 @@ So, again, what does a Virtual DOM solve? It automates and abstracts the managem
     </entry>
   
     <entry>
-      <title type="html">var, let, const 대체 무슨 차이일까?</title>
-      <link href="/let,const,var" rel="alternate" type="text/html" title="var, let, const 대체 무슨 차이일까?" />
+      <title type="html">var, let, const 무슨 차이일까?</title>
+      <link href="/let,const,var" rel="alternate" type="text/html" title="var, let, const 무슨 차이일까?" />
       <published>2019-09-27T19:00:00+09:00</published>
       <updated>2019-09-27T19:00:00+09:00</updated>
       <id>/let,const,var</id>

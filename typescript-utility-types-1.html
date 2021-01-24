@@ -11,7 +11,7 @@
 
 
 
-    <title>가상 DOM</title>
+    <title>타입스크립트 유틸 타입 - 1</title>
     <meta name="HandheldFriendly" content="True" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Styles'n'Scripts -->
@@ -36,27 +36,27 @@
     <!-- This tag outputs SEO meta+structured data and other important settings -->
     <meta name="description" content="" />
     <link rel="shortcut icon" href="/assets/images/favicon.png" type="image/png" />
-    <link rel="canonical" href="/virtualDOM" />
+    <link rel="canonical" href="/typescript-utility-types-1" />
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <meta name="referrer" content="no-referrer-when-downgrade" />
 
      <!--title below is coming from _includes/dynamic_title-->
     <meta property="og:site_name" content="ArdoDulcis" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="가상 DOM" />
-    <meta property="og:description" content="VirtualDOM (가상 DOM)에 대해 알고계신가요? 2년전 프론트엔드 기술 중에 어떤 기술들이 유행하고있는지 알아보다가 접한 React. 처음엔 기존의 JavaScript와는 틀린 독특한 문법때문에 막연히 배우기 시작한 React. 최근 실무에서 React를 이용해서 웹 어플리케이션을 개발하는 일이 잦아졌다. 그래서 그런지 문득 React란 무엇이고 어떤 장점을 가졌고 어떤 기술들을 기반으로 개발되었는지 등등 기본적인 것들을 제대로" />
-    <meta property="og:url" content="/virtualDOM" />
-    <meta property="og:image" content="/assets/images/virtualdom.png" />
+    <meta property="og:title" content="타입스크립트 유틸 타입 - 1" />
+    <meta property="og:description" content="Oh My TypeScript Utility Type. TypeScript를 처음접하고 Type을 지정해주면서 쓸 때 중복되는 타입객체를 만드는경우가 허다 했다. 특히나 API에서 받아오는 데이터 타입을 지정하고 그 데이터를 기반으로 form에 담아 갱신된 데이터를 보낼떄 그 Request데이터도 따로 타입을 지정해줬었다. 당시 TypeScript의 유틸 타입이 뭔지도 몰랐고 C나 Java를 거의 안만지다 싶이 살아왔기에 제네릭이 뭔지도 몰라서" />
+    <meta property="og:url" content="/typescript-utility-types-1" />
+    <meta property="og:image" content="/assets/images/typescript.jpg" />
     <meta property="article:publisher" content="https://www.facebook.com/" />
     <meta property="article:author" content="https://www.facebook.com/" />
-    <meta property="article:published_time" content="2020-12-05T21:00:00+09:00" />
-    <meta property="article:modified_time" content="2020-12-05T21:00:00+09:00" />
+    <meta property="article:published_time" content="2021-01-24T09:00:00+09:00" />
+    <meta property="article:modified_time" content="2021-01-24T09:00:00+09:00" />
     <meta property="article:tag" content="Posts" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="가상 DOM" />
-    <meta name="twitter:description" content="VirtualDOM (가상 DOM)에 대해 알고계신가요? 2년전 프론트엔드 기술 중에 어떤 기술들이 유행하고있는지 알아보다가 접한 React. 처음엔 기존의 JavaScript와는 틀린 독특한 문법때문에 막연히 배우기 시작한 React. 최근 실무에서 React를 이용해서 웹 어플리케이션을 개발하는 일이 잦아졌다. 그래서 그런지 문득 React란 무엇이고 어떤 장점을 가졌고 어떤 기술들을 기반으로 개발되었는지 등등 기본적인 것들을 제대로" />
+    <meta name="twitter:title" content="타입스크립트 유틸 타입 - 1" />
+    <meta name="twitter:description" content="Oh My TypeScript Utility Type. TypeScript를 처음접하고 Type을 지정해주면서 쓸 때 중복되는 타입객체를 만드는경우가 허다 했다. 특히나 API에서 받아오는 데이터 타입을 지정하고 그 데이터를 기반으로 form에 담아 갱신된 데이터를 보낼떄 그 Request데이터도 따로 타입을 지정해줬었다. 당시 TypeScript의 유틸 타입이 뭔지도 몰랐고 C나 Java를 거의 안만지다 싶이 살아왔기에 제네릭이 뭔지도 몰라서" />
     <meta name="twitter:url" content="/" />
-    <meta name="twitter:image" content="/assets/images/virtualdom.png" />
+    <meta name="twitter:image" content="/assets/images/typescript.jpg" />
     <meta name="twitter:label1" content="Written by" />
     <meta name="twitter:data1" content="ArdoDulcis" />
     <meta name="twitter:label2" content="Filed under" />
@@ -75,23 +75,23 @@
         "name": "ArdoDulcis",
         "logo": "/"
     },
-    "url": "/virtualDOM",
+    "url": "/typescript-utility-types-1",
     "image": {
         "@type": "ImageObject",
-        "url": "/assets/images/virtualdom.png",
+        "url": "/assets/images/typescript.jpg",
         "width": 2000,
         "height": 666
     },
     "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "/virtualDOM"
+        "@id": "/typescript-utility-types-1"
     },
-    "description": "VirtualDOM (가상 DOM)에 대해 알고계신가요? 2년전 프론트엔드 기술 중에 어떤 기술들이 유행하고있는지 알아보다가 접한 React. 처음엔 기존의 JavaScript와는 틀린 독특한 문법때문에 막연히 배우기 시작한 React. 최근 실무에서 React를 이용해서 웹 어플리케이션을 개발하는 일이 잦아졌다. 그래서 그런지 문득 React란 무엇이고 어떤 장점을 가졌고 어떤 기술들을 기반으로 개발되었는지 등등 기본적인 것들을 제대로"
+    "description": "Oh My TypeScript Utility Type. TypeScript를 처음접하고 Type을 지정해주면서 쓸 때 중복되는 타입객체를 만드는경우가 허다 했다. 특히나 API에서 받아오는 데이터 타입을 지정하고 그 데이터를 기반으로 form에 담아 갱신된 데이터를 보낼떄 그 Request데이터도 따로 타입을 지정해줬었다. 당시 TypeScript의 유틸 타입이 뭔지도 몰랐고 C나 Java를 거의 안만지다 싶이 살아왔기에 제네릭이 뭔지도 몰라서"
 }
     </script>
     
     <meta name="generator" content="Jekyll 3.6.2" />
-    <link rel="alternate" type="application/rss+xml" title="가상 DOM" href="/feed.xml" />
+    <link rel="alternate" type="application/rss+xml" title="타입스크립트 유틸 타입 - 1" href="/feed.xml" />
 
 
 </head>
@@ -261,12 +261,12 @@ style=" fill:#ffffff;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-w
 <main id="site-main" class="site-main outer" role="main">
     <div class="inner">
 
-        <article class="post-full  tag-posts tag-webapplication tag-frontend tag-tech post ">
+        <article class="post-full  tag-posts tag-typescript tag-frontend post ">
 
             <header class="post-full-header">
-                <h1 class="post-full-title">가상 DOM</h1>
+                <h1 class="post-full-title">타입스크립트 유틸 타입 - 1</h1>
                 <section class="post-full-meta">
-                  <time class="post-full-meta-date" datetime=" 5 December 2020"> 5 December 2020</time>
+                  <time class="post-full-meta-date" datetime="24 January 2021">24 January 2021</time>
                   
                       <span class="date-divider">|</span>
                       
@@ -275,15 +275,11 @@ style=" fill:#ffffff;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-w
                           
                       
                           
-                              <a href='/tag/webapplication/'>WEBAPPLICATION</a>,
+                              <a href='/tag/typescript/'>TYPESCRIPT</a>,
                           
                       
                           
-                              <a href='/tag/frontend/'>FRONTEND</a>,
-                          
-                      
-                          
-                              <a href='/tag/tech/'>TECH</a>
+                              <a href='/tag/frontend/'>FRONTEND</a>
                           
                       
                   
@@ -291,118 +287,305 @@ style=" fill:#ffffff;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-w
             </header>
 
             
-            <figure class="post-full-image" style="background-image: url(/assets/images/virtualdom.png)">
+            <figure class="post-full-image" style="background-image: url(/assets/images/typescript.jpg)">
             </figure>
             
 
             <section class="post-full-content ko">
                 <div class="kg-card-markdown">
-                    <h2 id="virtualdom-가상-dom에-대해-알고계신가요">VirtualDOM (가상 DOM)에 대해 알고계신가요?</h2>
+                    <h1 id="oh-my-typescript-utility-type">Oh My TypeScript Utility Type.</h1>
 
-<p>2년전 프론트엔드 기술 중에 어떤 기술들이 유행하고있는지 알아보다가 접한 React. 처음엔 기존의 JavaScript와는 틀린 독특한 문법때문에 막연히 배우기 시작한 React.
-최근 실무에서 React를 이용해서 웹 어플리케이션을 개발하는 일이 잦아졌다. 그래서 그런지 문득 React란 무엇이고 어떤 장점을 가졌고 어떤 기술들을 기반으로 개발되었는지 등등 기본적인 것들을 제대로 이해하고 쓰고있는 것인지 의문이 들었다.</p>
+<p>TypeScript를 처음접하고 Type을 지정해주면서 쓸 때 중복되는 타입객체를 만드는경우가 허다 했다. 특히나 API에서 받아오는 데이터 타입을 지정하고 그 데이터를 기반으로 form에 담아 갱신된 데이터를 보낼떄 그 Request데이터도 따로 타입을 지정해줬었다. 당시 TypeScript의 유틸 타입이 뭔지도 몰랐고 C나 Java를 거의 안만지다 싶이 살아왔기에 제네릭이 뭔지도 몰라서 보면 개발 D-Day는 오고 개발은 해야되는데 머리속만 복잡해져서 넘겼었다. 최근에 와서야 여유가 생겨서 핸드북 좀 보고 있는데 TypeScript 유틸 타입이 엄청나게 좋은걸 깨닫고 정리 좀 해보려고 한다.
+덕분에 지금은 유틸타입을써서 재이용하여 타입을 지정하고 하고 있는데 전에썼던 Type정의부분을 전부 다 리팩터 해야되지 않나… 라는 고민이 생겼다 ㅋㅋ;;
+TypeScript에서 제공하는 유틸이 거의 20개에 육박한다. 솔직히 다 숙지하고 쓰기에는 자주 않쓰는것도 많아서 1편에선 자주 쓰는 유틸타입을 정리하고 2편에서 나머지를 다뤄보고자 한다.</p>
 
-<p>단방향 데이터 바인딩, 컴포넌트를 기준으로 한 프로젝트 구성, Virtual DOM등등 여러 장점이 있다는건 알고있다.</p>
+<h2 id="partialtype"><code class="highlighter-rouge">Partial&lt;Type&gt;</code></h2>
 
-<p>그 중 SPA개발에 특화되어있는 라이브러리 React나 프레임워크인 Vue을 보면 Virtual DOM이라는 개념을 자세하게 설명이 가능한지 내 자신에게 물어보았다. 그러나 음…?? 전반적인 개념은 알겠는데 무슨 장점이 있고 구체적으로 어떤 일을 하는건지 결국 대답을 못하고 있었다.</p>
+<p>필수 타입을 그냥 싸그리 필수가 아닌 타입으로 바꿔서 Type을 만들어준다. (기존에 있던 필수가 아닌 타입은 그대로 유지된다.)</p>
 
-<p>그런도중 여러 기술 블로그를 본 결과 정말 이해가 잘 가도록 정리된 글을 보아 공유하고자 한다.</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">type</span> <span class="nx">Person</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">name</span><span class="p">:</span> <span class="nx">string</span><span class="p">,</span>
+  <span class="na">age</span><span class="p">:</span> <span class="nx">number</span><span class="p">,</span>
+<span class="p">};</span>
 
-<h2 id="왜-virtualdom-가상-dom을-쓰는건데요">왜 VirtualDOM (가상 DOM)을 쓰는건데요?</h2>
+<span class="nx">type</span> <span class="nx">NoReuiredPerson</span> <span class="o">=</span> <span class="nx">Partial</span><span class="o">&lt;</span><span class="nx">Person</span><span class="o">&gt;</span><span class="p">;</span>
 
-<p>참고한 블로그 글에 이런 기술이 있었다.</p>
+<span class="c1">// NoReuiredPerson은 밑의 결과와 같다.</span>
+<span class="cm">/*
+type Person = {
+  name?: string;
+  age?: number;
+};
+*/</span>
+</code></pre></div></div>
 
-<blockquote>
-  <p>The other day a friend had this React question for me: “Composition through components, one way data binding; I understand all that, but why Virtual DOM?”.
-I’ve given him the usual answer. “Because, direct DOM manipulation is inefficient, and slow.”
-“There’s always news on how JavaScript engines are getting performant; what makes adding something directly to the DOM slow?”</p>
-</blockquote>
+<h2 id="readonlytype"><code class="highlighter-rouge">Readonly&lt;Type&gt;</code></h2>
 
-<p><a href="https://hashnode.com/post/the-one-thing-that-no-one-properly-explains-about-react-why-virtual-dom-cisczhfj41bmssp53mvfwmgrq">블로그 원문</a></p>
+<p>싸그리 Readonly로 바꾸어서 새롭게 Type을 만들어준다.</p>
 
-<p>내용은 어느 날 친구가 React의 장점에 대해서는 알겠는데 왜 Virtual DOM인지 질문하는 장면이다. 질문을 받은 친구는 직접적인 DOM 조작은 비효율적이며 또한 느리기때문이라고 설명한다. 그러나 답변을 받은 친구는 최근의 JavaScript는 퍼포먼스적으로도 빨라지고 있는데 무엇때문에 직접적인 DOM조작이 느려지는 원인인건지 모르겠다는 것이다.</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">type</span> <span class="nx">Color</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">property</span><span class="p">:</span> <span class="s2">"red"</span><span class="p">,</span>
+<span class="p">};</span>
 
-<p>이 대화내용을 보고 나 또한 2년전쯤엔가 읽었던 하나의 블로그 글이 떠올랐다. 직접적인 DOM조작을 기반으로 하는 jQuery의 한계. 그리고 등장한 새로운 패러다임 React와 Vue, Anguler. 그 당시에는 아 그냥 유행이 그런가보다 하고 이해해버린 글이었다.</p>
+<span class="nx">type</span> <span class="nx">ImmutableColor</span> <span class="o">=</span> <span class="nx">Readonly</span><span class="o">&lt;</span><span class="nx">Color</span><span class="o">&gt;</span><span class="p">;</span>
 
-<p>JavaScript 엔진 자체는 나날히 발전을 거듭하면서 퍼포먼스적으로도 지속해서 개선되어 지고있다. 그러나 거진 10년이란 세월을 80%이상의 사이트가 jQuery를 이용할 정도로 많은 개발자들이 써왔던 jQuery. 그것을 최근 React들이 대체하기 시작했다.</p>
+<span class="kd">const</span> <span class="nx">Red</span><span class="p">:</span> <span class="nx">ImmutableColor</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">property</span><span class="p">:</span> <span class="s2">"red"</span><span class="p">,</span>
+<span class="p">};</span>
 
-<p>왜일까? 그 이유는 직접적인 DOM조작후에 일어나는 일에 있다고 한다.</p>
+<span class="c1">// property에 새로운 값으로 할당하려 할 경우 TypeScript에서 에러를 내뱉는다.</span>
 
-<h3 id="브라우저에서-일어나는-일들">브라우저에서 일어나는 일들</h3>
+<span class="nx">Red</span><span class="p">.</span><span class="nx">property</span> <span class="o">=</span> <span class="s2">"blue"</span><span class="p">;</span>
+<span class="c1">// Cannot assign to 'title' because it is a read-only property.</span>
 
-<p>간략하게 브라우저에서 일어나는 일들을 나열해보자면 다음과 같다.</p>
+<span class="c1">// ImmutableColor는 밑의 결과와 같다.</span>
+<span class="cm">/*
+type Color = {
+  readonly property: 'red';
+};
+*/</span>
+</code></pre></div></div>
 
-<p><strong>HTML Parse</strong></p>
+<h2 id="recordkeystype"><code class="highlighter-rouge">Record&lt;Keys,Type&gt;</code></h2>
 
-<p>서버에서 받아온 HTML소스를 파싱한다.</p>
+<p>Keys에는 새롭게 만들어질 객체의 key를 Type에는 객체의 value값을 의미한다. 즉 key와 value를 갖는 객체의 type을 만들어준다.</p>
 
-<p><strong>DOM Tree 생성</strong></p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">type</span> <span class="nx">BookTitle</span> <span class="o">=</span> <span class="nx">string</span><span class="p">;</span>
+<span class="nx">type</span> <span class="nx">BookInfo</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">category</span><span class="p">:</span> <span class="s2">"Fantasy"</span> <span class="o">|</span> <span class="s2">"Action"</span> <span class="o">|</span> <span class="s2">"Comic"</span><span class="p">,</span>
+  <span class="na">price</span><span class="p">:</span> <span class="nx">number</span><span class="p">,</span>
+<span class="p">};</span>
 
-<p>파싱한 HTML소스를 기반으로 DOM Tree (Node)를 작성한다.</p>
+<span class="nx">type</span> <span class="nx">Book</span> <span class="o">=</span> <span class="nx">Record</span><span class="o">&lt;</span><span class="nx">BookTitle</span><span class="p">,</span> <span class="nx">BookInfo</span><span class="o">&gt;</span><span class="p">;</span>
 
-<p><strong>Render Tree 생성</strong></p>
+<span class="kd">const</span> <span class="nx">items</span><span class="p">:</span> <span class="nx">Book</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="p">(</span><span class="nx">a</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nl">category</span><span class="p">:</span> <span class="s2">"Action"</span><span class="p">,</span>
+    <span class="nx">price</span><span class="p">:</span> <span class="mi">12000</span><span class="p">,</span>
+  <span class="p">}),</span>
+  <span class="p">(</span><span class="nx">b</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nl">category</span><span class="p">:</span> <span class="s2">"Comic"</span><span class="p">,</span>
+    <span class="nx">price</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span>
+  <span class="p">}),</span>
+<span class="p">];</span>
 
-<p>작성된 DOM Tree에 스타일을 입히고 Render Tree를 작성한다.</p>
+<span class="c1">// 새롭게 만들어진 Record타입인 Book은 밑의 결과와 같다.</span>
+<span class="cm">/*
+type Book = {
+  [key: string]: {
+    category: 'Fantasy' | 'Action' | 'Comic';
+    price: number;
+  };
+};
+*/</span>
+</code></pre></div></div>
 
-<p><strong>Layout or Reflow (각 노드의 표시 장소 결정)</strong></p>
+<h2 id="picktype-keys"><code class="highlighter-rouge">Pick&lt;Type, Keys&gt;</code></h2>
 
-<p>작성된 Render Tree를 가지고 각 노드 (엘리먼트 or 요소라고도 불립니다.)를 어디에 배치할지 계산.</p>
+<p>Pick은 기존 Type객체를 기준으로 Keys에서 지정한 key값만 뽑아 새로운 Type객체를 만들어준다. key값의 지정은 Union형식으로 지정한다.</p>
 
-<p><strong>Painting (브라우저에 표시)</strong></p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">type</span> <span class="nx">Form</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">name</span><span class="p">:</span> <span class="nx">string</span><span class="p">;</span>
+  <span class="nl">email</span><span class="p">:</span> <span class="nx">string</span><span class="p">;</span>
+  <span class="nl">password</span><span class="p">:</span> <span class="nx">string</span><span class="p">;</span>
+<span class="p">};</span>
 
-<p>마지막단계로서 Layout단계에서 각 노드가 어디에 배치되야 될지 계산이 끝나면 색을 입히면서 브라우저에 그리기 시작. 이때 유저에게 컨텐츠가 표시되기 시작한다.
-아래 그림을 참고하면 이해하기 쉬울 것 같다.</p>
+<span class="nx">type</span> <span class="nx">RequestParams</span> <span class="o">=</span> <span class="nx">Pick</span><span class="o">&lt;</span><span class="nx">Form</span><span class="p">,</span> <span class="s1">'email'</span> <span class="o">|</span> <span class="s1">'password'</span><span class="o">&gt;</span><span class="p">;</span>
 
-<p><img src="assets/images/renderDom.png" alt="브라우저의 페이지가 유저에게 보여지기 까지" /></p>
+<span class="kd">const</span> <span class="na">reqParams</span><span class="p">:</span> <span class="nx">RequestParams</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">email</span><span class="p">:</span> <span class="s1">'eeefa'</span><span class="p">;</span>
+  <span class="nl">password</span><span class="p">:</span> <span class="s1">'pick test'</span><span class="p">;</span>
+<span class="p">};</span>
 
-<p>이미지 출처: <a href="https://hacks.mozilla.org/2017/08/inside-a-super-fast-css-engine-quantum-css-aka-stylo/">모질라 HACKS</a></p>
+<span class="c1">// 새롭게 만들어진 RequestParams의 타입은 밑의 결과와 같다.</span>
+<span class="cm">/*
+type RequestParams = {
+  email: string;
+  password: string;
+};
+*/</span>
+</code></pre></div></div>
 
-<h3 id="직접적인-dom-조작-무엇이-문제인가">직접적인 DOM 조작 무엇이 문제인가</h3>
+<h2 id="omittype-keys"><code class="highlighter-rouge">Omit&lt;Type, Keys&gt;</code></h2>
 
-<p>대략적으로 브라우저에서 일어나는 일들을 알아보았다. 그렇다면 무엇이 직접적인 DOM 조작을 하면 성능상 문제가 생기는걸까?</p>
+<p>Omit은 Pick의 반대 개념이다. 기존 Type객체를 기준으로 Keys에서 지정한 key값을 제외한 모든 key값을 뽑아 새로운 Type객체를 만들어준다. Pick과 마찬가지로 key값의 지정은 Union형식으로 지정한다.</p>
 
-<p>결론부터 말하자면 상황에 따라서 문제가 생긴다. 브라우저는 JavaScript로 인하여 DOM Tree나 요소의 CSS속성이 변경될 경우 레이아웃 (리플로우라고도 불린다.) 과정을 거친다. 이 과정에서 브라우저는 적용할 DOM Tree를 재구성 및 각 노드들의 배치를 재결정하기 위해 계산을 한다. 이게 어느정도 DOM을 조작한다던가 하면 그렇게 문제될 상황은 아닐것이다. 그러나 SPA (Single Page Application)의 경우는 전혀 그렇지 않다. 사용자에게 더욱 빠르게 반응하기 위해서 기존의 SSR (Server Side Rendering)에서 CSR (Client Side Rendering)를 기본이고 렌더링 방법으로 사용하며 CSR은 SSR과는 다르게 웹페이지를 사용자가 원하는 컨텐츠를 보여주기 위해 서버에 새로운 HTML정보를 요청하지 않고 <strong>그 자리에서</strong> DOM구조를 바꾸어서 보여준다.</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">type</span> <span class="nx">Form</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">name</span><span class="p">:</span> <span class="nx">string</span><span class="p">;</span>
+  <span class="nl">email</span><span class="p">:</span> <span class="nx">string</span><span class="p">;</span>
+  <span class="nl">password</span><span class="p">:</span> <span class="nx">string</span><span class="p">;</span>
+<span class="p">};</span>
 
-<p>여기서 문제가 생긴다. DOM구조를 바꾼다는 것은 결국 리플로우를 발생시킨다는 것이다. 이것이 SPA에선 자주 발생한다. 만약 20번의 구조에 변화가 생긴다면 어떨까?? 브라우저는 뒤에서 20번의 연산을 하게 된다. 사용자에게 빠르게 반응하기 위한 SPA에 있어서 이보다 나쁜소식은 없다.</p>
+<span class="nx">type</span> <span class="nx">RequestParams</span> <span class="o">=</span> <span class="nx">Omit</span><span class="o">&lt;</span><span class="nx">Form</span><span class="p">,</span> <span class="s1">'name'</span><span class="o">&gt;</span><span class="p">;</span>
 
-<h3 id="virtual-dom은-뭐가-좋은가">Virtual DOM은 뭐가 좋은가</h3>
+<span class="kd">const</span> <span class="na">reqParams</span><span class="p">:</span> <span class="nx">RequestParams</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">email</span><span class="p">:</span> <span class="s1">'eeefa'</span><span class="p">;</span>
+  <span class="nl">password</span><span class="p">:</span> <span class="s1">'omit test'</span><span class="p">;</span>
+<span class="p">};</span>
 
-<p>다시 본론으로 돌아와서 가상DOM을 쓰면 어느 부분에서 좋은지 알아보자. 가상DOM은 2가지를 해결하기 위해 생겼다고 한다. 이 설명은 원문 기사에 있는 어느 Reddit 유저분이 정리해주신 걸 참고하겠다.</p>
+<span class="c1">// 새롭게 만들어진 RequestParams의 타입은 밑의 결과와 같다.</span>
+<span class="cm">/*
+type RequestParams = {
+  email: string;
+  password: string;
+};
+*/</span>
+</code></pre></div></div>
 
-<ul>
-  <li>가상DOM을 이용해 변화된 부분만 감지, 여러 변화를 하나로 묶어서 연산하고 실제 DOM에 넘겨준다.</li>
-</ul>
+<h2 id="excludetype-excludedunion"><code class="highlighter-rouge">Exclude&lt;Type, ExcludedUnion&gt;</code></h2>
 
-<blockquote>
-  <p>The real problem with DOM manipulation is that each manipulation can trigger layout changes, tree modifications and rendering. Each of them. So, say you modified 30 nodes, one by one. That would mean 30 (potential) re-calculations of the layout, 30 (potential) re-renderings, etc.</p>
-</blockquote>
+<p>Exclude는 Type에서 ExcludedUnion에 지정된 타입을 Type에서 제외하여 새로운 Type으로 만들어준다. Union타입만 넣을수 있다. Union이 아닌 객체타입으로 새롭게 만들경우에는 Record를 이용한다던지 좀 생각을해줘야한다.</p>
 
-<blockquote>
-  <p>DOM조작의 진짜 문제는 조작으로 인한 레이아웃과 DOM 트리의 변화에 있습니다. 이 변화로 인해 렌더링을 일으키구요. 만약 여러분들이 30개의 노드를 하나하나 변경했다고 합시다. 이것은 30번(잠재적인)의 재계산과 레이아웃 (리플로우), 30번(잠재적인)의 리렌더링을 일으킨다는 것을 의미합니다.</p>
-</blockquote>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">type</span> <span class="nx">A</span> <span class="o">=</span> <span class="s2">"a"</span> <span class="o">|</span> <span class="s2">"b"</span> <span class="o">|</span> <span class="s2">"c"</span><span class="p">;</span>
 
-<p>이 Reddit유저분이 정리해준것과 같이 DOM의 직접적인 조작의 문제는 DOM트리의 변화에 있다. 이 변화가 재계산, 레이아웃, 리렌더링을 초래한다는것이다. 이 변화를 렌더링되지 않는 가상 DOM에서 처리하고 최종적인 결과를 DOM에 전달하는것으로 1번만 리렌더링을 하는것으로 연산비용을 최소화 시켜준다.</p>
+<span class="nx">type</span> <span class="nx">B</span> <span class="o">=</span> <span class="s2">"a"</span> <span class="o">|</span> <span class="s2">"b"</span> <span class="o">|</span> <span class="s2">"e"</span><span class="p">;</span>
 
-<ul>
-  <li>DOM fragment를 관리하는 과정을 자동화 추상화 하기 위함이다.</li>
-</ul>
+<span class="nx">type</span> <span class="nx">ExcludeType</span> <span class="o">=</span> <span class="nx">Exclude</span><span class="o">&lt;</span><span class="nx">A</span><span class="p">,</span> <span class="nx">B</span><span class="o">&gt;</span><span class="p">;</span>
 
-<p>이러한 해결방법은 굳이 가상DOM을 쓰지않아도 DOM fragment를 이용해서 그 변화를 묶어서 DOM에게 최종적인 결과만 전달해주면 된다고 한다. 하지만 이러한 방식은 프론트엔드 개발자가 상황을 지속적으로 파악하고 있어야 되며 개발하는데 있어 코스트를 높일 뿐이다. 이것을 가상DOM에서 자동화하고 추상화하여 개발 코스트를 낮출수 있던것이 아닐까??</p>
+<span class="kd">const</span> <span class="nx">exclude</span><span class="p">:</span> <span class="nx">ExcludeType</span> <span class="o">=</span> <span class="s2">"c"</span><span class="p">;</span>
 
-<blockquote>
-  <p>But actually, this particular behaviour can be achieved without a virtual DOM. You can manually group all the DOM modifications in a DOM fragment yourself and then dump it into the DOM.
-So, again, what does a Virtual DOM solve? It automates and abstracts the management of that DOM fragment so you don’t have to do it manually. Not only that, but when doing it manually you have to keep track of which parts have changed and which ones haven’t (because if you don’t you’d end up refreshing huge pieces of the DOM tree that may not need to be refreshed). So a Virtual DOM (if implemented correctly) also automates this for you, knowing which parts need to be refreshed and which parts don’t.</p>
-</blockquote>
+<span class="c1">// 새롭게 만들어진 ExcludeType 타입은 밑의 결과와 같다.</span>
+<span class="cm">/*
+type ExcludeType = 'c';
+*/</span>
+</code></pre></div></div>
 
-<blockquote>
-  <p>솔직히 이러한 해결방법은 굳이 가상DOM이 아니어도 해결할수 있습니다. 변화가 있을때 DOM fragment를 이용해 그 변화를 묶어서 DOM에게 넘겨주면 그만이니까요.
-그러면 정말 가상DOM에서 무엇을 해결하려고 한걸까요? 그것은 DOM fragment를 자동화하고 추상화하여 일일히 관리하지 않기 위해서에요. 만약 이 과정을 일일히 관리한다고 하면 여러분들이 어떤 값들이 변경되었고 어떤 값들이 변경되지 않았는지 변화를 파악하고 관리해줘야합니다 (안 그러면 갱신할 필요도 없는 DOM트리를 갱신해버릴수도 있어요.).하지만 가상DOM(올바르게 구현 된 경우)은 이것들을 여러분 대신에 자동으로 관리해줍니다. 어떤 것이 갱신이 필요한지 알려주죠.</p>
-</blockquote>
+<p>Exclude를 이용하여 새로운 객체 타입을 만들고 싶을 경우. 객체 A와 B의 프로퍼티를 비교하여 겹치는 부분만 제외 A의 필요한 프로퍼티만 추출할때 유용하다.</p>
 
-<h2 id="끝으로">끝으로</h2>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">type</span> <span class="nx">A</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">a</span><span class="p">:</span> <span class="nx">string</span><span class="p">;</span>
+  <span class="nl">b</span><span class="p">:</span> <span class="nx">string</span><span class="p">;</span>
+  <span class="nl">e</span><span class="p">:</span> <span class="nx">string</span><span class="p">;</span>
+<span class="p">};</span>
 
-<p>지금까지 가상DOM이 어떤 부분이 좋고 무엇을 해결하기 위해 태어났는지 알아보았다. 필자 또한 이 공유를 통해 꼭 React나 Vue, Angular를 쓰는것이 좋은 것만이 아니구나라고 느꼈다. 만드는 웹페이지, 어플리케이션에 목적에 따라 jQuery를 쓸수도 있는것이고 React를 쓸수도 있다.
-이 포스트를 읽은 모든 개발자분들이 가상DOM에 대해 한층 깊게 이해되는 계기가 되길 빌며 마친다.</p>
+<span class="nx">type</span> <span class="nx">B</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">a</span><span class="p">:</span> <span class="nx">string</span><span class="p">;</span>
+  <span class="nl">b</span><span class="p">:</span> <span class="nx">string</span><span class="p">;</span>
+  <span class="nl">d</span><span class="p">:</span> <span class="nx">string</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// Exclude안에 keyof를 이용하여 type A과 type B를 union형식으로 추출, Record를 이용하여 새로운 Type객체를 만들어준다.</span>
+<span class="nx">type</span> <span class="nx">ObjectExcludeType</span> <span class="o">=</span> <span class="nx">Record</span><span class="o">&lt;</span><span class="nx">Exclude</span><span class="o">&lt;</span><span class="nx">keyof</span> <span class="nx">A</span><span class="p">,</span> <span class="nx">keyof</span> <span class="nx">B</span><span class="o">&gt;</span><span class="p">,</span> <span class="nx">string</span><span class="o">&gt;</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="na">objectExclude</span><span class="p">:</span> <span class="nx">ObjectExcludeType</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">e</span><span class="p">:</span> <span class="s2">"hello!"</span><span class="p">,</span>
+<span class="p">};</span>
+
+<span class="c1">// 새롭게 만들어진 ObjectExcludeType 타입은 밑의 결과와 같다.</span>
+<span class="cm">/*
+type ObjectExcludeType = {
+  e: string;
+};
+*/</span>
+</code></pre></div></div>
+
+<h2 id="extracttype-union"><code class="highlighter-rouge">Extract&lt;Type, Union&gt;</code></h2>
+
+<p>Extract의 경우 Exclude와는 반대개념이다. Type에서 Union에 지정한 타입을 Type에서 추출, 새로운 Type으로 만들어준다. 물론, Union에는 Union타입만 넣을수있다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">type</span> <span class="nx">A</span> <span class="o">=</span> <span class="s2">"a"</span> <span class="o">|</span> <span class="s2">"b"</span> <span class="o">|</span> <span class="s2">"c"</span><span class="p">;</span>
+
+<span class="nx">type</span> <span class="nx">B</span> <span class="o">=</span> <span class="s2">"a"</span> <span class="o">|</span> <span class="s2">"b"</span> <span class="o">|</span> <span class="s2">"e"</span><span class="p">;</span>
+
+<span class="nx">type</span> <span class="nx">ExtractType</span> <span class="o">=</span> <span class="nx">Extract</span><span class="o">&lt;</span><span class="nx">A</span><span class="p">,</span> <span class="nx">B</span><span class="o">&gt;</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">extract</span><span class="p">:</span> <span class="nx">ExtractType</span> <span class="o">=</span> <span class="s2">"a"</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">extract2</span><span class="p">:</span> <span class="nx">ExtractType</span> <span class="o">=</span> <span class="s2">"b"</span><span class="p">;</span>
+
+<span class="c1">// 새롭게 만들어진 ExtractType 타입은 밑의 결과와 같다.</span>
+<span class="cm">/*
+type ExcludeType = 'a' | 'b';
+*/</span>
+</code></pre></div></div>
+
+<p>Exclude의 반대로 A 객체와 B 객체를 비교해서 겹치는 부분을 A 객체를 기준으로 새로운 Type을 만들고 싶을 경우 아래와 같이 쓸 수있다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">type</span> <span class="nx">A</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">a</span><span class="p">:</span> <span class="nx">string</span><span class="p">;</span>
+  <span class="nl">b</span><span class="p">:</span> <span class="nx">string</span><span class="p">;</span>
+  <span class="nl">e</span><span class="p">:</span> <span class="nx">string</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="nx">type</span> <span class="nx">B</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">a</span><span class="p">:</span> <span class="nx">string</span><span class="p">;</span>
+  <span class="nl">b</span><span class="p">:</span> <span class="nx">string</span><span class="p">;</span>
+  <span class="nl">d</span><span class="p">:</span> <span class="nx">string</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// Exclude안에 keyof를 이용하여 type A과 type B를 union형식으로 추출, Record를 이용하여 새로운 Type객체를 만들어준다.</span>
+<span class="nx">type</span> <span class="nx">ObjectExtractType</span> <span class="o">=</span> <span class="nx">Record</span><span class="o">&lt;</span><span class="nx">Extract</span><span class="o">&lt;</span><span class="nx">keyof</span> <span class="nx">A</span><span class="p">,</span> <span class="nx">keyof</span> <span class="nx">B</span><span class="o">&gt;</span><span class="p">,</span> <span class="nx">string</span><span class="o">&gt;</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="na">objectExclude</span><span class="p">:</span> <span class="nx">ObjectExtractType</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">a</span><span class="p">:</span> <span class="s2">"hello!"</span><span class="p">,</span>
+  <span class="na">b</span><span class="p">:</span> <span class="s2">"world!"</span>
+<span class="p">};</span>
+
+<span class="c1">// 새롭게 만들어진 ObjectExtractType 타입은 밑의 결과와 같다.</span>
+<span class="cm">/*
+type ObjectExtractType = {
+  a: string;
+  b: string;
+};
+*/</span>
+</code></pre></div></div>
+
+<h2 id="nonnullabletype"><code class="highlighter-rouge">NonNullable&lt;Type&gt;</code></h2>
+
+<p>NonNullable은 Type안에 있는 ‘undefined’와 ‘null’타입을 제거한 타입을 만들어준다. 솔직히 요래 돌려쓰기보단 Required을 쓰는게 훨신 직관적이니 상황에 따라 잘 판단하여 쓰는게 좋다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">type</span> <span class="nx">Name</span> <span class="o">=</span> <span class="nx">string</span> <span class="o">|</span> <span class="kc">undefined</span> <span class="o">|</span> <span class="kc">null</span><span class="p">;</span>
+<span class="nx">type</span> <span class="nx">Age</span> <span class="o">=</span> <span class="nx">number</span> <span class="o">|</span> <span class="kc">null</span><span class="p">;</span>
+
+<span class="nx">type</span> <span class="nx">Person</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">name</span><span class="p">:</span> <span class="nx">NonNullable</span><span class="o">&lt;</span><span class="nx">Name</span><span class="o">&gt;</span><span class="p">,</span>
+  <span class="na">age</span><span class="p">:</span> <span class="nx">NonNullable</span><span class="o">&lt;</span><span class="nx">Age</span><span class="o">&gt;</span><span class="p">,</span>
+<span class="p">};</span>
+
+<span class="c1">// ok</span>
+<span class="kd">const</span> <span class="nx">human1</span><span class="p">:</span> <span class="nx">Person</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">name</span><span class="p">:</span> <span class="s2">"kim"</span><span class="p">,</span>
+  <span class="na">age</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+<span class="p">};</span>
+
+<span class="c1">// NG TS2322: Type 'null' is not assignable to type 'string'</span>
+<span class="kd">const</span> <span class="nx">human2</span><span class="p">:</span> <span class="nx">Person</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">name</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="na">age</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+<span class="p">};</span>
+
+<span class="c1">// 새롭게 만들어진 Person 타입은 밑의 결과와 같다.</span>
+<span class="cm">/*
+type Person = {
+  name: string;
+  age: number;
+};
+*/</span>
+</code></pre></div></div>
+
+<h2 id="requiredtype"><code class="highlighter-rouge">Required&lt;Type&gt;</code></h2>
+
+<p>Required는 Partial과 반대 개념이다 Type안에 있는 모든 undefined값을 가지는 타입, 즉 필수가 아닌 타입을 싸그리 필수 타입으로 새롭게 만들어준다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">type</span> <span class="nx">Animal</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">name</span><span class="p">:</span> <span class="nx">string</span><span class="p">,</span>
+  <span class="nx">age</span><span class="p">?:</span> <span class="nx">number</span><span class="p">,</span>
+<span class="p">};</span>
+
+<span class="nx">type</span> <span class="nx">ReuiredAnimalInfo</span> <span class="o">=</span> <span class="nx">Required</span><span class="o">&lt;</span><span class="nx">Animal</span><span class="o">&gt;</span><span class="p">;</span>
+
+<span class="c1">// ReuiredAnimalInfo 밑의 결과와 같다.</span>
+<span class="cm">/*
+type ReuiredAnimalInfo = {
+  name: string;
+  age: number;
+};
+*/</span>
+</code></pre></div></div>
+
+<h2 id="마치며">마치며</h2>
+
+<p>이번 포스트에선 TypeScript로 코딩하면서 자주 쓰일것 같은 유틸 타입을 정리 해보았다. (진짜 Omit이나 Pick은 정말 많이 쓰인다.) 솔직히 이런 유틸 타입이 없어도 그에 맞는 타입을 만들어서 박으면 그만이다. 그러나 재사용성의 측면이나 유지, 보수 측면에서 본다면 여간 안좋은게 아니다. 예를 들면 유저정보를 편집하는 화면에서 초기화할때 요청하는 API의 파라메터와 갱신 된 정보를 보낼때 API의 파라메터가 같다. 물론 받아온 정보를 갱신하면 그 정보를 그대로 서버로 보내기때문에 유저 정보를 받아올 때의 파라메터를 정의해놓은 Type과 갱신 된 정보를 보낼때의 파라메터를 정의해놓은 Type이 있는데 이것도 같다. 이런 상황에서 서버쪽에서 받는 Type이 변경되어 프론트엔드쪽의 Type을 수정하게 된다고 하면 유저 정보를 받아올때 Type과 갱신된 정보를 보내는 Type을 둘다 수정해줘야 한다. 개발자에겐 얼마나 귀찮은 일인지 모른다. 더욱이 프로젝트가 큰 규모에서 이런 상황이 오면 수정해야될 부분을 싸그리 찾아야 된다.
+TypeScript로 개발할때도 정의해놓은 Type의 재사용성을 염두에 두고 개발을 한다면 이런 불상사는 없을것이라 생각되며 유지, 보수하는 개발자가 본다면 얼마나 고마운 일인지 모른다. 그리고 하나 더 좋은 점은 유틸 타입을 쓰면 뭔가 TypeScript를 만질줄 알아보인다 ㅋㅋ TypeScript로 개발하는 모든 프론트엔드 개발자분들께 이 글을 바친다.</p>
 
                 </div>
             </section>
@@ -472,11 +655,6 @@ So, again, what does a Virtual DOM solve? It automates and abstracts the managem
                                 
                                   
                                     
-                                        
-                                        
-                                            <li><a href="/typescript-utility-types-1">타입스크립트 유틸 타입 - 1</a></li>
-                                        
-                                    
                                   
                                 
                                   
@@ -489,6 +667,11 @@ So, again, what does a Virtual DOM solve? It automates and abstracts the managem
                                   
                                 
                                   
+                                    
+                                        
+                                        
+                                            <li><a href="/virtualDOM">가상 DOM</a></li>
+                                        
                                     
                                   
                                 
@@ -515,6 +698,9 @@ So, again, what does a Virtual DOM solve? It automates and abstracts the managem
             
 
             <!-- If there's a next post, display it using the same markup included from - partials/post-card.hbs -->
+            
+
+            <!-- If there's a previous post, display it using the same markup included from - partials/post-card.hbs -->
             
                 
 
@@ -574,62 +760,6 @@ So, again, what does a Virtual DOM solve? It automates and abstracts the managem
 
             
 
-            <!-- If there's a previous post, display it using the same markup included from - partials/post-card.hbs -->
-            
-                
-
-    <article class="post-card post-template">
-        
-            <a class="post-card-image-link" href="/let,const,var">
-                <div class="post-card-image" style="background-image: url(/assets/images/javascript.png)"></div>
-            </a>
-        
-        <div class="post-card-content">
-            <a class="post-card-content-link" href="/let,const,var">
-                <header class="post-card-header">
-                    
-                        
-                            
-                               <span class="post-card-tags">Posts</span>
-                            
-                        
-                            
-                                <span class="post-card-tags">Javascript</span>
-                            
-                        
-                    
-
-                    <h2 class="post-card-title">var, let, const 무슨 차이일까?</h2>
-                </header>
-                <section class="post-card-excerpt">
-                    
-                        <p></p>
-                    
-                </section>
-            </a>
-            <footer class="post-card-meta">
-                
-                    
-                        
-                        <img class="author-profile-image" src="/assets/images/ghost.png" alt="Ardo" />
-                        
-                        <span class="post-card-author">
-                            <a href="/author/ardo/">Ardo</a>
-                        </span>
-                    
-                
-                <span class="reading-time">
-                    
-                    
-                      1 min read
-                    
-                </span>
-            </footer>
-        </div>
-    </article>
-
-            
-
         </div>
     </div>
 </aside>
@@ -648,7 +778,7 @@ So, again, what does a Virtual DOM solve? It automates and abstracts the managem
     </a>
   </div>
   <span class="floating-header-divider">&mdash;</span>
-  <div class="floating-header-title">가상 DOM</div>
+  <div class="floating-header-title">타입스크립트 유틸 타입 - 1</div>
   <progress class="progress" value="0">
     <div class="progress-container">
       <span class="progress-bar"></span>

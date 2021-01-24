@@ -13,6 +13,10 @@
 <lastmod>2021-01-09T09:00:00+09:00</lastmod>
 </url>
 <url>
+<loc>/typescript-utility-types-1</loc>
+<lastmod>2021-01-24T09:00:00+09:00</lastmod>
+</url>
+<url>
 <loc>/</loc>
 </url>
 <url>
@@ -38,5 +42,8 @@
 </url>
 <url>
 <loc>/tag/react/</loc>
+</url>
+<url>
+<loc>/tag/typescript/</loc>
 </url>
 </urlset>
