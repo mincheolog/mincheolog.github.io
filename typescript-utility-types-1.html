@@ -408,7 +408,7 @@ type RequestParams = {
 
 <h2 id="omittype-keys"><code class="highlighter-rouge">Omit&lt;Type, Keys&gt;</code></h2>
 
-<p>Omit은 Pick의 반대 개념이다. 기존 Type객체를 기준으로 Keys에서 지정한 key값을 제외한 모든 key값을 뽑아 새로운 Type객체를 만들어준다. Pick과 마찬가지로 key값의 지정은 Union형식으로 지정한다.</p>
+<p>Omit은 <a href="#picktype-keys">Pick</a>의 반대 개념이다. 기존 Type객체를 기준으로 Keys에서 지정한 key값을 제외한 모든 key값을 뽑아 새로운 Type객체를 만들어준다. Pick과 마찬가지로 key값의 지정은 Union형식으로 지정한다.</p>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">type</span> <span class="nx">Form</span> <span class="o">=</span> <span class="p">{</span>
   <span class="na">name</span><span class="p">:</span> <span class="nx">string</span><span class="p">;</span>
@@ -481,7 +481,7 @@ type ObjectExcludeType = {
 
 <h2 id="extracttype-union"><code class="highlighter-rouge">Extract&lt;Type, Union&gt;</code></h2>
 
-<p>Extract의 경우 Exclude와는 반대개념이다. Type에서 Union에 지정한 타입을 Type에서 추출, 새로운 Type으로 만들어준다. 물론, Union에는 Union타입만 넣을수있다.</p>
+<p>Extract의 경우 <a href="#excludetype-excludedunion">Exclude</a>와는 반대개념이다. Type에서 Union에 지정한 타입을 Type에서 추출, 새로운 Type으로 만들어준다. 물론, Union에는 Union타입만 넣을수있다.</p>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">type</span> <span class="nx">A</span> <span class="o">=</span> <span class="s2">"a"</span> <span class="o">|</span> <span class="s2">"b"</span> <span class="o">|</span> <span class="s2">"c"</span><span class="p">;</span>
 
@@ -498,7 +498,7 @@ type ExcludeType = 'a' | 'b';
 */</span>
 </code></pre></div></div>
 
-<p>Exclude의 반대로 A 객체와 B 객체를 비교해서 겹치는 부분을 A 객체를 기준으로 새로운 Type을 만들고 싶을 경우 아래와 같이 쓸 수있다.</p>
+<p><a href="#excludetype-excludedunion">Exclude</a>의 반대로 A 객체와 B 객체를 비교해서 겹치는 부분을 A 객체를 기준으로 새로운 Type을 만들고 싶을 경우 아래와 같이 쓸 수있다.</p>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">type</span> <span class="nx">A</span> <span class="o">=</span> <span class="p">{</span>
   <span class="na">a</span><span class="p">:</span> <span class="nx">string</span><span class="p">;</span>
@@ -531,7 +531,9 @@ type ObjectExtractType = {
 
 <h2 id="nonnullabletype"><code class="highlighter-rouge">NonNullable&lt;Type&gt;</code></h2>
 
-<p>NonNullable은 Type안에 있는 ‘undefined’와 ‘null’타입을 제거한 타입을 만들어준다. 솔직히 요래 돌려쓰기보단 Required을 쓰는게 훨신 직관적이니 상황에 따라 잘 판단하여 쓰는게 좋다.</p>
+<p>NonNullable은 Type안에 있는 ‘undefined’와 ‘null’타입을 제거한 타입을 만들어준다. 솔직히 요래 돌려쓰기보단 <a href="#requiredtype">Required</a>을 쓰는게 훨신 직관적이니 상황에 따라 잘 판단하여 쓰는게 좋다.</p>
+
+<p><strong>주의. 명시적으로 null타입을 넣은 타입도 null이 제거된 타입으로 바뀌니 조심해야한다. 이때는 <a href="#requiredtype">Required</a> 써주도록 하자.</strong></p>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">type</span> <span class="nx">Name</span> <span class="o">=</span> <span class="nx">string</span> <span class="o">|</span> <span class="kc">undefined</span> <span class="o">|</span> <span class="kc">null</span><span class="p">;</span>
 <span class="nx">type</span> <span class="nx">Age</span> <span class="o">=</span> <span class="nx">number</span> <span class="o">|</span> <span class="kc">null</span><span class="p">;</span>
@@ -564,7 +566,7 @@ type Person = {
 
 <h2 id="requiredtype"><code class="highlighter-rouge">Required&lt;Type&gt;</code></h2>
 
-<p>Required는 Partial과 반대 개념이다 Type안에 있는 모든 undefined값을 가지는 타입, 즉 필수가 아닌 타입을 싸그리 필수 타입으로 새롭게 만들어준다.</p>
+<p>Required는 <a href="#partialtype">Partial</a>과 반대 개념이다 Type안에 있는 모든 undefined값을 가지는 타입, 즉 필수가 아닌 타입을 싸그리 필수 타입으로 새롭게 만들어준다.</p>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">type</span> <span class="nx">Animal</span> <span class="o">=</span> <span class="p">{</span>
   <span class="na">name</span><span class="p">:</span> <span class="nx">string</span><span class="p">,</span>
@@ -655,6 +657,15 @@ TypeScript로 개발할때도 정의해놓은 Type의 재사용성을 염두에 
                                 
                                   
                                     
+                                        
+                                        
+                                            <li><a href="/typescript-utility-types-2">타입스크립트 유틸 타입 - 2</a></li>
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
                                   
                                 
                                   
@@ -679,8 +690,6 @@ TypeScript로 개발할때도 정의해놓은 Type의 재사용성을 염두에 
                                     
                                         
                                         
-                                            <li><a href="/let,const,var">var, let, const 무슨 차이일까?</a></li>
-                                        
                                     
                                   
                                 
@@ -689,7 +698,7 @@ TypeScript로 개발할때도 정의해놓은 Type의 재사용성을 염두에 
                         <footer class="read-next-card-footer">
                             <a href="/tag/posts/">
                                 
-                                    See all 3 posts  →
+                                    See all 4 posts  →
                                 
                             </a>
                         </footer>
@@ -698,6 +707,63 @@ TypeScript로 개발할때도 정의해놓은 Type의 재사용성을 염두에 
             
 
             <!-- If there's a next post, display it using the same markup included from - partials/post-card.hbs -->
+            
+                
+
+    <article class="post-card post-template">
+        
+            <a class="post-card-image-link" href="/typescript-utility-types-2">
+                <div class="post-card-image" style="background-image: url(/assets/images/typescript.jpg)"></div>
+            </a>
+        
+        <div class="post-card-content">
+            <a class="post-card-content-link" href="/typescript-utility-types-2">
+                <header class="post-card-header">
+                    
+                        
+                            
+                               <span class="post-card-tags">Posts</span>
+                            
+                        
+                            
+                               <span class="post-card-tags">Typescript</span>
+                            
+                        
+                            
+                                <span class="post-card-tags">Frontend</span>
+                            
+                        
+                    
+
+                    <h2 class="post-card-title">타입스크립트 유틸 타입 - 2</h2>
+                </header>
+                <section class="post-card-excerpt">
+                    
+                        <p></p>
+                    
+                </section>
+            </a>
+            <footer class="post-card-meta">
+                
+                    
+                        
+                        <img class="author-profile-image" src="/assets/images/ghost.png" alt="Ardo" />
+                        
+                        <span class="post-card-author">
+                            <a href="/author/ardo/">Ardo</a>
+                        </span>
+                    
+                
+                <span class="reading-time">
+                    
+                    
+                      1 min read
+                    
+                </span>
+            </footer>
+        </div>
+    </article>
+
             
 
             <!-- If there's a previous post, display it using the same markup included from - partials/post-card.hbs -->

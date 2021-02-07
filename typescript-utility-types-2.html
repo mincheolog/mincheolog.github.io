@@ -11,7 +11,7 @@
 
 
 
-    <title>var, let, const 무슨 차이일까?</title>
+    <title>타입스크립트 유틸 타입 - 2</title>
     <meta name="HandheldFriendly" content="True" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Styles'n'Scripts -->
@@ -36,27 +36,27 @@
     <!-- This tag outputs SEO meta+structured data and other important settings -->
     <meta name="description" content="" />
     <link rel="shortcut icon" href="/assets/images/favicon.png" type="image/png" />
-    <link rel="canonical" href="/let,const,var" />
+    <link rel="canonical" href="/typescript-utility-types-2" />
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <meta name="referrer" content="no-referrer-when-downgrade" />
 
      <!--title below is coming from _includes/dynamic_title-->
     <meta property="og:site_name" content="ArdoDulcis" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="var, let, const 무슨 차이일까?" />
-    <meta property="og:description" content="서술하기에 앞서. 앞서 먼저 말씀드립니다. 이 포스트는 var와 let, const에 어떤 차이가 있는지 정도만 알수있게끔 아주 가볍게 다룬 글입니다. var는 Function Scope다 let, const는 Block Scope다 뭐다 하는 설명은 싹다 생략 되어있습니다. 좀 더 깊은 지식을 위한 글이 아니며, JavaScript를 처음 배우시는 분들을 위해 궁금증을 해소하기 위한 정도의 글이오니 양해" />
-    <meta property="og:url" content="/let,const,var" />
-    <meta property="og:image" content="/assets/images/javascript.png" />
+    <meta property="og:title" content="타입스크립트 유틸 타입 - 2" />
+    <meta property="og:description" content="TypeScript Util Types 2 이번 포스트는 전에 쓴 타입스크립트 유틸 타입 - 1에서 소개하지 못한 나머지 유틸 타입들을 알아볼까 한다. 이 포스트에서 찾는 유틸 타입이 없는 경우 전 포스트를 읽어보는걸 권한다. Parameters&lt;Type&gt; Parameters는 Type에 typeof 함수명이나 함수선언식을 넣으면 함수에 쓰인 인수들을 추출하여 배열형태로 넘겨준다. 새로 만들어지는 함수에 기존 함수 인수의" />
+    <meta property="og:url" content="/typescript-utility-types-2" />
+    <meta property="og:image" content="/assets/images/typescript.jpg" />
     <meta property="article:publisher" content="https://www.facebook.com/" />
     <meta property="article:author" content="https://www.facebook.com/" />
-    <meta property="article:published_time" content="2019-09-27T19:00:00+09:00" />
-    <meta property="article:modified_time" content="2019-09-27T19:00:00+09:00" />
+    <meta property="article:published_time" content="2021-02-07T09:00:00+09:00" />
+    <meta property="article:modified_time" content="2021-02-07T09:00:00+09:00" />
     <meta property="article:tag" content="Posts" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="var, let, const 무슨 차이일까?" />
-    <meta name="twitter:description" content="서술하기에 앞서. 앞서 먼저 말씀드립니다. 이 포스트는 var와 let, const에 어떤 차이가 있는지 정도만 알수있게끔 아주 가볍게 다룬 글입니다. var는 Function Scope다 let, const는 Block Scope다 뭐다 하는 설명은 싹다 생략 되어있습니다. 좀 더 깊은 지식을 위한 글이 아니며, JavaScript를 처음 배우시는 분들을 위해 궁금증을 해소하기 위한 정도의 글이오니 양해" />
+    <meta name="twitter:title" content="타입스크립트 유틸 타입 - 2" />
+    <meta name="twitter:description" content="TypeScript Util Types 2 이번 포스트는 전에 쓴 타입스크립트 유틸 타입 - 1에서 소개하지 못한 나머지 유틸 타입들을 알아볼까 한다. 이 포스트에서 찾는 유틸 타입이 없는 경우 전 포스트를 읽어보는걸 권한다. Parameters&lt;Type&gt; Parameters는 Type에 typeof 함수명이나 함수선언식을 넣으면 함수에 쓰인 인수들을 추출하여 배열형태로 넘겨준다. 새로 만들어지는 함수에 기존 함수 인수의" />
     <meta name="twitter:url" content="/" />
-    <meta name="twitter:image" content="/assets/images/javascript.png" />
+    <meta name="twitter:image" content="/assets/images/typescript.jpg" />
     <meta name="twitter:label1" content="Written by" />
     <meta name="twitter:data1" content="ArdoDulcis" />
     <meta name="twitter:label2" content="Filed under" />
@@ -75,23 +75,23 @@
         "name": "ArdoDulcis",
         "logo": "/"
     },
-    "url": "/let,const,var",
+    "url": "/typescript-utility-types-2",
     "image": {
         "@type": "ImageObject",
-        "url": "/assets/images/javascript.png",
+        "url": "/assets/images/typescript.jpg",
         "width": 2000,
         "height": 666
     },
     "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "/let,const,var"
+        "@id": "/typescript-utility-types-2"
     },
-    "description": "서술하기에 앞서. 앞서 먼저 말씀드립니다. 이 포스트는 var와 let, const에 어떤 차이가 있는지 정도만 알수있게끔 아주 가볍게 다룬 글입니다. var는 Function Scope다 let, const는 Block Scope다 뭐다 하는 설명은 싹다 생략 되어있습니다. 좀 더 깊은 지식을 위한 글이 아니며, JavaScript를 처음 배우시는 분들을 위해 궁금증을 해소하기 위한 정도의 글이오니 양해"
+    "description": "TypeScript Util Types 2 이번 포스트는 전에 쓴 타입스크립트 유틸 타입 - 1에서 소개하지 못한 나머지 유틸 타입들을 알아볼까 한다. 이 포스트에서 찾는 유틸 타입이 없는 경우 전 포스트를 읽어보는걸 권한다. Parameters&lt;Type&gt; Parameters는 Type에 typeof 함수명이나 함수선언식을 넣으면 함수에 쓰인 인수들을 추출하여 배열형태로 넘겨준다. 새로 만들어지는 함수에 기존 함수 인수의"
 }
     </script>
     
     <meta name="generator" content="Jekyll 3.6.2" />
-    <link rel="alternate" type="application/rss+xml" title="var, let, const 무슨 차이일까?" href="/feed.xml" />
+    <link rel="alternate" type="application/rss+xml" title="타입스크립트 유틸 타입 - 2" href="/feed.xml" />
 
 
 </head>
@@ -261,12 +261,12 @@ style=" fill:#ffffff;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-w
 <main id="site-main" class="site-main outer" role="main">
     <div class="inner">
 
-        <article class="post-full  tag-posts tag-javascript post ">
+        <article class="post-full  tag-posts tag-typescript tag-frontend post ">
 
             <header class="post-full-header">
-                <h1 class="post-full-title">var, let, const 무슨 차이일까?</h1>
+                <h1 class="post-full-title">타입스크립트 유틸 타입 - 2</h1>
                 <section class="post-full-meta">
-                  <time class="post-full-meta-date" datetime="27 September 2019">27 September 2019</time>
+                  <time class="post-full-meta-date" datetime=" 7 February 2021"> 7 February 2021</time>
                   
                       <span class="date-divider">|</span>
                       
@@ -275,7 +275,11 @@ style=" fill:#ffffff;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-w
                           
                       
                           
-                              <a href='/tag/javascript/'>JAVASCRIPT</a>
+                              <a href='/tag/typescript/'>TYPESCRIPT</a>,
+                          
+                      
+                          
+                              <a href='/tag/frontend/'>FRONTEND</a>
                           
                       
                   
@@ -283,181 +287,225 @@ style=" fill:#ffffff;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-w
             </header>
 
             
-            <figure class="post-full-image" style="background-image: url(/assets/images/javascript.png)">
+            <figure class="post-full-image" style="background-image: url(/assets/images/typescript.jpg)">
             </figure>
             
 
             <section class="post-full-content ko">
                 <div class="kg-card-markdown">
-                    <h2 id="서술하기에-앞서">서술하기에 앞서.</h2>
+                    <h1 id="typescript-util-types-2">TypeScript Util Types 2</h1>
 
-<p>앞서 먼저 말씀드립니다. 이 포스트는 var와 let, const에 어떤 차이가 있는지 정도만 알수있게끔 아주 가볍게 다룬 글입니다. var는 Function Scope다 let, const는 Block Scope다 뭐다 하는 설명은 싹다 생략 되어있습니다. 좀 더 깊은 지식을 위한 글이 아니며, JavaScript를 처음 배우시는 분들을 위해 궁금증을 해소하기 위한 정도의 글이오니 양해 부탁드립니다. Function Scope는 무엇인지, Block Scope는 무엇인지에 관한 것은 후에 다른 포스트에서 서술 할 예정입니다.</p>
+<p>이번 포스트는 전에 쓴 <a href="https://ardodulcis.github.io/typescript-utility-types-1">타입스크립트 유틸 타입 - 1</a>에서 소개하지 못한 나머지 유틸 타입들을 알아볼까 한다. 이 포스트에서 찾는 유틸 타입이 없는 경우 전 포스트를 읽어보는걸 권한다.</p>
 
-<h2 id="var-let-const-대체-무슨-차이일까">var, let, const 대체 무슨 차이일까?</h2>
+<h2 id="parameterstype"><code class="highlighter-rouge">Parameters&lt;Type&gt;</code></h2>
 
-<p>ES6에 오면서 추가 된 변수 선언중에 let과 const가 있다. 대체 이놈들이 var로 선언해왔던 변수선언과 어떤 차이가 있을까? 이번 포스트에서는 var와 let, cosnt의 차이를 알아보고자 한다.</p>
+<p>Parameters는 Type에 <code class="highlighter-rouge">typeof 함수명</code>이나 함수선언식을 넣으면 함수에 쓰인 인수들을 추출하여 배열형태로 넘겨준다. 새로 만들어지는 함수에 기존 함수 인수의 타입을 상속받아서 구현하고 싶을때는 배열안의 타입을 Union형식으로 바꾸던가 해서 구현해야한다.</p>
 
-<h2 id="javascript를-배우면-가장-처음-접하는-선언법-var">JavaScript를 배우면 가장 처음 접하는 선언법 var.</h2>
+<p><a href="https://www.typescriptlang.org/docs/handbook/utility-types.html#parameterstype">TypeScript 공식 문서</a>에 공개된 코드의 예. <strong>똑같은 예시로 쓰기엔 뭐해서 좀 바꿔봤다.</strong></p>
 
-<p>요즘에는 어떤지 잘 모르겠는데, ES6문법이 주된 문법이 되기전까진 JavaScript를 배우기 시작하면 가장 먼저 배우게 되는 변수 선언이다.
-거창한 설명은 안하겠다. 선언법은 아래와 같다.</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">type</span> <span class="nx">TestFuncParams</span> <span class="o">=</span> <span class="nx">Parameters</span><span class="o">&lt;</span><span class="p">(</span><span class="nx">a</span><span class="p">:</span> <span class="nx">number</span><span class="p">,</span> <span class="nx">b</span><span class="p">:</span> <span class="nx">string</span><span class="p">,</span> <span class="nx">c</span><span class="p">:</span> <span class="kr">boolean</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="k">void</span><span class="o">&gt;</span><span class="p">;</span>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="s2">"hello world"</span><span class="p">;</span> <span class="c1">//a라는 상자에 hello world라는 문자를 집어넣음</span>
-
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span> <span class="c1">//콘솔창에 표시 hello world</span>
+<span class="c1">// TestFuncParams 밑의 결과와 같다.</span>
+<span class="cm">/*
+type TestFuncParams = [a: number, b: string, c: boolean];
+*/</span>
 </code></pre></div></div>
 
-<h2 id="let-const-이건-뭐지">let?? const?? 이건 뭐지…</h2>
+<p>기존 함수의 인수 타입을 상속받아서 새로운 함수를 만들고 싶을 때는 아래와 같이 구현하면 된다.</p>
 
-<p>필자같은 경운 JavaScript를 어느정도 배우고 난뒤에 ES6라는 문법을 알게되었다.</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">myFunc</span><span class="p">(</span><span class="nx">params</span><span class="p">:</span> <span class="p">{</span> <span class="nl">a</span><span class="p">:</span> <span class="nx">string</span><span class="p">;</span> <span class="nl">b</span><span class="p">:</span> <span class="nx">number</span><span class="p">;</span> <span class="nl">c</span><span class="p">:</span> <span class="kr">boolean</span> <span class="p">},</span> <span class="nx">option</span><span class="p">:</span> <span class="nx">string</span><span class="p">):</span> <span class="nx">number</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">{</span> <span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">c</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">params</span><span class="p">;</span>
 
-<p>ES6의 변수 선언식. 즉 var로 선언하던 ES5문법이 진화(?)한 형태다. 일단 코드부터 보자.</p>
+  <span class="k">return</span> <span class="nx">b</span><span class="p">;</span>
+<span class="p">}</span>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">a</span> <span class="o">=</span> <span class="s2">"hello world"</span><span class="p">;</span> <span class="c1">//a라는 상자에 hello world라는 문자를 집어넣음</span>
-<span class="kd">const</span> <span class="nx">b</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">//b라는 상자에 1이라는 숫자를 집어넣음</span>
+<span class="c1">// Parameters로 만들어진 배열을 [number]로 Union (튜플) 형태로 바꾸어준다. 이 기법은 TypeScript 3.4이상에서만 지원된다.</span>
+<span class="nx">type</span> <span class="nx">MyFuncParams</span> <span class="o">=</span> <span class="nx">Parameters</span><span class="o">&lt;</span><span class="k">typeof</span> <span class="nx">myFunc</span><span class="o">&gt;</span><span class="p">[</span><span class="nx">number</span><span class="p">];</span>
 
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span> <span class="c1">//콘솔창에 표시 결과는 hello world</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">b</span><span class="p">);</span> <span class="c1">//콘솔창에 표시 결과는 1</span>
+<span class="c1">// MyFuncParams는 밑의 결과와 같다.</span>
+<span class="cm">/*
+type MyFuncParams = string | {
+  a: string;
+  b: number;
+  c: boolean;
+};
+*/</span>
+
+<span class="c1">// Union형태로 바뀐 MyFuncParams에서 Exclude를 이용, 기존 함수의 인수인 option 인수의 타입을 빼준다.</span>
+<span class="kd">function</span> <span class="nx">childFunc</span><span class="p">(</span><span class="nx">params</span><span class="p">:</span> <span class="nx">Exclude</span><span class="o">&lt;</span><span class="nx">MyFuncParams</span><span class="p">,</span> <span class="nx">string</span><span class="o">&gt;</span><span class="p">):</span> <span class="nx">string</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">{</span> <span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">c</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">params</span><span class="p">;</span>
+
+  <span class="k">return</span> <span class="nx">a</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></div></div>
 
-<h2 id="아니-같은-변수선언식이면-var로-선언하면-되잖아">아니 같은 변수선언식이면 var로 선언하면 되잖아.</h2>
+<h2 id="constructorparameterstype"><code class="highlighter-rouge">ConstructorParameters&lt;Type&gt;</code></h2>
 
-<p>솔직히 필자도 처음에 봤을때 ‘아니 그냥 var로 선언하면 되잖아. 왜 굳이?’라고 생각했었다.</p>
+<p>ES6의 class문법에서 생성자 <code class="highlighter-rouge">new</code>를 이용해 인스턴스화 할때 넘겨주는 인수의 타입을 배열형식으로 넘겨준다. class만 되는건지 잘 모르겠는데 함수의 컨스트럭터로 했을땐 이상하게 타입 오류가 난다. (이해도가 낮아서 그런지 추후에 알게되면 다른 포스트에서 정리해보고 싶다.)</p>
 
-<p>하지만 우리가 누군가? 개발자다! 왜?라는 사고를 가진 사람들이다. 그래서 찾아봤다!
-왜! let, const라는 놈이 탄생했는지! var가 뭐가 나쁜데!를 말이다.</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Person</span> <span class="p">{</span>
+  <span class="nl">name</span><span class="p">:</span> <span class="nx">string</span><span class="p">;</span>
+  <span class="nl">age</span><span class="p">:</span> <span class="nx">number</span><span class="p">;</span>
 
-<h2 id="var-나쁜애-아니에요">var 나쁜애 아니에요.</h2>
+  <span class="kd">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">:</span> <span class="nx">string</span><span class="p">,</span> <span class="nx">age</span><span class="p">:</span> <span class="nx">number</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="nx">age</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 
-<p>그렇다. var는 나쁜애가 아니다. 나쁘다고 한다면 언어자체가 엄청나게? 유연한 JavaScript가 나쁜놈이다. 다음 코드를 보자.</p>
+<span class="nx">type</span> <span class="nx">PersonConstructor</span> <span class="o">=</span> <span class="nx">ConstructorParameters</span><span class="o">&lt;</span><span class="k">typeof</span> <span class="nx">Person</span><span class="o">&gt;</span><span class="p">;</span>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span> <span class="c1">//결과는 undefined</span>
-
-<span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="s2">"Dulcis"</span><span class="p">;</span> <span class="c1">// name이라는 상자안에 Dulcis라는 문자를 집어넣음</span>
-
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span> <span class="c1">//결과는 Dulcis</span>
+<span class="c1">// PersonConstructor 밑의 결과와 같다.</span>
+<span class="cm">/*
+type PersonConstructor = [name: string, age: number];
+*/</span>
 </code></pre></div></div>
 
-<p>왜 나쁠까? 일반적으로 프로그래밍에선 변수선언을 안하고 바로 변수를 참조하려고 하면 그냥 바로 에러를 뱉는다. 근데 JavaScript라는 놈은 호이스팅이라는 현상으로 인해 에러를 안뱉는다!! 호이스팅이라는 이슈는 나중에 다른 포스팅에서 다루도록 하겠다. 호이스팅이란 간단하게 말하자면 변수선언전에 참조하려고 할 때 참조하려는 변수를 참조를 할 수 없어서 최상단으로 끌어올려서 선언해버리는 현상이다. 호이스팅 현상으로 인해 위의 같은 코드를 JavaScript에선 이렇게 해석한다.</p>
+<h2 id="returntypetype"><code class="highlighter-rouge">ReturnType&lt;Type&gt;</code></h2>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">name</span><span class="p">;</span> <span class="c1">//name이라는 변수를 선언</span>
+<p>ReturnType은 함수의 반환 값의 타입을 반환하여 새로운 타입으로 만들어준다.</p>
 
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span> <span class="c1">//결과는 undefined</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">type</span> <span class="nx">TestFuncParams</span> <span class="o">=</span> <span class="nx">ReturnType</span><span class="o">&lt;</span><span class="p">(</span><span class="nx">a</span><span class="p">:</span> <span class="nx">number</span><span class="p">,</span> <span class="nx">b</span><span class="p">:</span> <span class="nx">string</span><span class="p">,</span> <span class="nx">c</span><span class="p">:</span> <span class="kr">boolean</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">number</span><span class="o">&gt;</span><span class="p">;</span>
 
-<span class="nx">name</span> <span class="o">=</span> <span class="s2">"Dulcis"</span><span class="p">;</span> <span class="c1">//name이라는 상자안에 Dulcis라는 문자를 집어넣음</span>
+<span class="c1">// type TestFuncParams = number;</span>
 
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span> <span class="c1">//결과는 Dulcis</span>
+<span class="kd">function</span> <span class="nx">myFunc</span><span class="p">():</span> <span class="nx">number</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">type</span> <span class="nx">MyFuncReturn</span> <span class="o">=</span> <span class="nx">ReturnType</span><span class="o">&lt;</span><span class="k">typeof</span> <span class="nx">myFunc</span><span class="o">&gt;</span><span class="p">;</span>
+
+<span class="c1">// type MyFuncReturn = number;</span>
+
+<span class="kd">function</span> <span class="nx">getSquareInfo</span><span class="p">():</span> <span class="p">{</span> <span class="nl">width</span><span class="p">:</span> <span class="nx">number</span><span class="p">,</span> <span class="nx">height</span><span class="p">:</span> <span class="nx">number</span> <span class="p">}</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="na">width</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="na">height</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
+  <span class="p">};</span>
+<span class="p">}</span>
+
+<span class="nx">type</span> <span class="nx">SquareInfo</span> <span class="o">=</span> <span class="nx">ReturnType</span><span class="o">&lt;</span><span class="k">typeof</span> <span class="nx">getSquareInfo</span><span class="o">&gt;</span><span class="p">;</span>
+
+<span class="cm">/*
+type SquareInfo = {
+  width: number;
+  height: number;
+};
+*/</span>
 </code></pre></div></div>
 
-<p>읭? 난 저렇게 코드 쓴적 없는데? <code class="highlighter-rouge">console.log(name)</code>사이에 선언한 변수식이 제멋대로 위로 올라갔다. 황당하기 그지없다. 개발자가 쓴 코드대로 실행이 안되고 지멋대로 변수 선언을 위로 올리고 앉아있다.</p>
+<h2 id="instancetypetype"><code class="highlighter-rouge">InstanceType&lt;Type&gt;</code></h2>
 
-<h2 id="그래서-왔습니다-im-let-im-const">그래서 왔습니다! I’m let! I’m const!</h2>
+<p>클래스 생성자의 인스턴스 타입을 반환해준다. 정확히 어떤때 쓰는지 잘 모르겠다.</p>
 
-<h3 id="let의-특징">let의 특징</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Person</span> <span class="p">{</span>
+  <span class="nl">name</span><span class="p">:</span> <span class="nx">string</span><span class="p">;</span>
+  <span class="nl">age</span><span class="p">:</span> <span class="nx">number</span><span class="p">;</span>
 
-<p><code class="highlighter-rouge">let</code>은 <code class="highlighter-rouge">var</code>와는 틀리게 재선언이 불가한 애다. 다음 코드를 보자.</p>
+  <span class="kd">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">:</span> <span class="nx">string</span><span class="p">,</span> <span class="nx">age</span><span class="p">:</span> <span class="nx">number</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="nx">age</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">animalName</span> <span class="o">=</span> <span class="s2">"native"</span><span class="p">;</span>
+<span class="nx">type</span> <span class="nx">PersonIns</span> <span class="o">=</span> <span class="nx">InstanceType</span><span class="o">&lt;</span><span class="k">typeof</span> <span class="nx">Person</span><span class="o">&gt;</span><span class="p">;</span>
 
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">animalName</span><span class="p">);</span> <span class="c1">//결과는 native</span>
-
-<span class="kd">let</span> <span class="nx">animalName</span> <span class="o">=</span> <span class="s2">"mave"</span><span class="p">;</span>
-
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">animalName</span><span class="p">);</span> <span class="c1">//결과는 Uncaught SyntaxError: Identifier 'animalName' has already been declared.</span>
+<span class="c1">// 새롭게 만들어진 PersonIns 타입은 밑의 결과와 같다.</span>
+<span class="cm">/*
+type PersonIns = Person;
+*/</span>
 </code></pre></div></div>
 
-<p>위의 코드와 같이 재선언을 하려고 하면 너 문법 틀림. 하고 빨갛게 엄청 화내는 걸 볼 수 있다. 그럼 재할당은 어떨까??</p>
+<h2 id="thisparametertypetype"><code class="highlighter-rouge">ThisParameterType&lt;Type&gt;</code></h2>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">animalName</span> <span class="o">=</span> <span class="s2">"native"</span><span class="p">;</span>
+<p>ThisParameterType은 객체가 가진 this 타입을 반환해준다. 일단 예제를 보자. 예시는 언제어디서나 예시로 자주 쓰이는 카운터를 예로 들었다.</p>
 
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">animalName</span><span class="p">);</span> <span class="c1">//결과는 native</span>
+<p><strong>주의. 해당 유틸 타입은 <code class="highlighter-rouge">--strictFunctionTypes</code>이 설정되어있을때만 제대로 동작한다.</strong></p>
 
-<span class="nx">animalName</span> <span class="o">=</span> <span class="s2">"mave"</span><span class="p">;</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">counter</span><span class="p">(</span>
+  <span class="k">this</span><span class="p">:</span> <span class="p">{</span> <span class="nl">count</span><span class="p">:</span> <span class="nx">number</span> <span class="p">},</span>
+  <span class="nx">initCount</span><span class="p">:</span> <span class="nx">number</span>
+<span class="p">):</span> <span class="p">{</span>
+  <span class="nl">inc</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">void</span><span class="p">,</span>
+  <span class="nx">dec</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">void</span><span class="p">,</span>
+  <span class="nx">showCount</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">void</span><span class="p">,</span>
+<span class="p">}</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">count</span> <span class="o">=</span> <span class="nx">initCount</span><span class="p">;</span>
 
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">animalName</span><span class="p">);</span> <span class="c1">//결과는 mave</span>
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="na">inc</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">count</span><span class="o">++</span><span class="p">,</span>
+    <span class="na">dec</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">count</span><span class="o">--</span><span class="p">,</span>
+    <span class="na">showCount</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">count</span><span class="p">),</span>
+  <span class="p">};</span>
+<span class="p">}</span>
+
+<span class="nx">type</span> <span class="nx">CounterThis</span> <span class="o">=</span> <span class="nx">ThisParameterType</span><span class="o">&lt;</span><span class="k">typeof</span> <span class="nx">counter</span><span class="o">&gt;</span><span class="p">;</span>
+
+<span class="c1">// 새롭게 만들어진 CounterThis 타입은 밑의 결과와 같다.</span>
+<span class="cm">/*
+type CounterThis = {
+  counter: number;
+};
+*/</span>
 </code></pre></div></div>
 
-<p>재선언은 안되지만 재할당은 아주 좋아하신다. <code class="highlighter-rouge">let</code>선언은 재선언은 불가능하지만 재할당은 가능한 걸 알 수 있다.</p>
+<h2 id="omitthisparametertype"><code class="highlighter-rouge">OmitThisParameter&lt;Type&gt;</code></h2>
 
-<p>다음은 <code class="highlighter-rouge">const</code>를 보자.</p>
+<p>OmitThisParameter는 객체가 가진 this 타입을 제거한 타입을 반환해준다.</p>
 
-<h3 id="const의-특징">const의 특징</h3>
+<p><strong>주의. 해당 유틸 타입은 <code class="highlighter-rouge">--strictFunctionTypes</code>이 설정되어있을때만 제대로 동작한다.</strong></p>
 
-<p><code class="highlighter-rouge">const</code>는 <code class="highlighter-rouge">let</code>, <code class="highlighter-rouge">var</code>와는 틀리게 재선언도 안되고 재할당도 안된다. 그냥 “나 한번 먹으면 끝임.” 이러는 고집불통이다. 그래서 그런지 변수선언과 동시에 값을 부여 해주지 않으면 바로 에러를 내뱉어 주신다. 다음 코드를 보자.</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">counter</span><span class="p">(</span>
+  <span class="k">this</span><span class="p">:</span> <span class="p">{</span> <span class="nl">count</span><span class="p">:</span> <span class="nx">number</span> <span class="p">},</span>
+  <span class="nx">initCount</span><span class="p">:</span> <span class="nx">number</span>
+<span class="p">):</span> <span class="p">{</span>
+  <span class="nl">inc</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">void</span><span class="p">,</span>
+  <span class="nx">dec</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">void</span><span class="p">,</span>
+  <span class="nx">showCount</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">void</span><span class="p">,</span>
+<span class="p">}</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">count</span> <span class="o">=</span> <span class="nx">initCount</span><span class="p">;</span>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">animalName</span><span class="p">;</span> <span class="c1">//결과는 Uncaught SyntaxError: Missing initializer in const declaration.</span>
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="na">inc</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">count</span><span class="o">++</span><span class="p">,</span>
+    <span class="na">dec</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">count</span><span class="o">--</span><span class="p">,</span>
+    <span class="na">showCount</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">count</span><span class="p">),</span>
+  <span class="p">};</span>
+<span class="p">}</span>
 
-<span class="kd">const</span> <span class="nx">animalName</span> <span class="o">=</span> <span class="s2">"native"</span><span class="p">;</span>
+<span class="nx">type</span> <span class="nx">Counter</span> <span class="o">=</span> <span class="nx">OmitThisParameter</span><span class="o">&lt;</span><span class="k">typeof</span> <span class="nx">counter</span><span class="o">&gt;</span><span class="p">;</span>
 
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">animalName</span><span class="p">);</span> <span class="c1">//결과는 native</span>
-
-<span class="kd">const</span> <span class="nx">animalName</span> <span class="o">=</span> <span class="s2">"mave"</span><span class="p">;</span>
-
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">animalName</span><span class="p">);</span> <span class="c1">//결과는 Uncaught SyntaxError: Identifier 'animalName' has already been declared.</span>
+<span class="c1">// 새롭게 만들어진 CounterThis 타입은 밑의 결과와 같다.</span>
+<span class="cm">/*
+type Counter = (initCount: number) =&gt; {
+  inc: () =&gt; void;
+  dec: () =&gt; void;
+  showCount: () =&gt; void;
+};
+*/</span>
 </code></pre></div></div>
 
-<p><code class="highlighter-rouge">let</code>과 똑같이 재선언을 못하고 에러를 내뱉는다. <code class="highlighter-rouge">let</code>도 그랬으니 여기까진 봐주자. 그렇다면 <code class="highlighter-rouge">let</code>에서는 가능했던 재할당은 어떨까? 다음 코드를 보자.</p>
+<h2 id="thistypetype"><code class="highlighter-rouge">ThisType&lt;Type&gt;</code></h2>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">animalName</span> <span class="o">=</span> <span class="s2">"native"</span><span class="p">;</span>
+<p>객체나 함수내에서 참조되는 this의 타입을 적용할 수 있다.</p>
 
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">animalName</span><span class="p">);</span> <span class="c1">//결과는 native</span>
+<p><strong>주의. 해당 유틸타입은 <code class="highlighter-rouge">-noImplicitThis</code>이 설정되어있어야 제대로 동작한다.</strong></p>
 
-<span class="nx">animalName</span> <span class="o">=</span> <span class="s2">"mave"</span><span class="p">;</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">type</span> <span class="nx">AnimalInfo</span> <span class="o">=</span> <span class="nx">ThisType</span><span class="o">&lt;</span><span class="p">{</span>
+  <span class="na">name</span><span class="p">:</span> <span class="nx">string</span><span class="p">,</span>
+  <span class="na">category</span><span class="p">:</span> <span class="nx">string</span><span class="p">,</span>
+<span class="p">}</span><span class="o">&gt;</span><span class="p">;</span>
 
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">animalName</span><span class="p">);</span> <span class="c1">//결과는 Uncaught TypeError: Assignment to constant variable.</span>
+<span class="kd">const</span> <span class="nx">animal</span><span class="p">:</span> <span class="nx">AnimalInfo</span> <span class="o">&amp;</span> <span class="p">{</span> <span class="na">say</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">void</span> <span class="p">}</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">say</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+  <span class="p">},</span>
+<span class="p">};</span>
 </code></pre></div></div>
 
-<p>한번 먹였으면 됬지 뭘 더 먹이려고 하냐면서 화를 내신다. 참 까탈스러운 분이다. 정리해보자면 <code class="highlighter-rouge">let</code>은 재선언은 불가능하지만 재할당은 가능하다. 그에 반해 <code class="highlighter-rouge">const</code>는 재할당도 안되고 재선언도 못한다.</p>
+<h2 id="마치며">마치며</h2>
 
-<p><code class="highlighter-rouge">var</code>의 호이스팅 문제로 인하여 <code class="highlighter-rouge">let</code>과 <code class="highlighter-rouge">const</code>변수선언이 ES6에서 등장했다고 서술했다. 방금 전 호이스팅 현상을 <code class="highlighter-rouge">let</code>과 <code class="highlighter-rouge">const</code>로 써보면 어떨까? 다음 코드에서는 한 눈으로 확인해보기 위하여 <code class="highlighter-rouge">let</code>과 <code class="highlighter-rouge">const</code> 둘 다 사용한 예제이다.</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">name</span> <span class="o">=</span> <span class="s2">"abcd"</span><span class="p">;</span> <span class="c1">//Uncaught ReferenceError: Cannot access 'name' before initialization.</span>
-
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">name</span> <span class="o">=</span> <span class="s2">"Yeah!!!!!!!"</span><span class="p">;</span>
-
-<span class="nx">animal</span> <span class="o">=</span> <span class="s2">"bat"</span><span class="p">;</span> <span class="c1">//Uncaught ReferenceError: Cannot access 'animal' before initialization.</span>
-
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">animal</span><span class="p">);</span>
-
-<span class="kd">const</span> <span class="nx">animal</span> <span class="o">=</span> <span class="s2">"O.O"</span><span class="p">;</span>
-</code></pre></div></div>
-
-<p>호이스팅이고 뭐고 다 필요없고 아주 멋지게 당장 에러를 내뱉어 주신다.</p>
-
-<h2 id="정리">정리</h2>
-
-<p>지금까지 ES5에서의 선언법 var와 ES6에서 새롭게 탑재된 선언법인 let과 const에 대해서 알아보았다.</p>
-
-<p>정리해보자면 var와 let, const의 차이점은 아래의 표와 같다.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>선언문</th>
-      <th style="text-align: left">재선언</th>
-      <th style="text-align: left">재할당</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code class="highlighter-rouge">var</code></td>
-      <td style="text-align: left">가능</td>
-      <td style="text-align: left">가능</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">let</code></td>
-      <td style="text-align: left">불가능</td>
-      <td style="text-align: left">가능</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">const</code></td>
-      <td style="text-align: left">불가능</td>
-      <td style="text-align: left">불가능</td>
-    </tr>
-  </tbody>
-</table>
+<p>TypeScript의 모든 유틸 타입을 알아보았다. 개인적인 생각이지만 ThisType이나 Parameters외에는 거의 쓰일일이 없을것 같다. 필자도 아직 위의 유틸타입들은 제대로 써본적이 없는터라 아직 모르는게 많고 어떤 상황에서 활용을 해야되는지 확실하게는 모르겠지만, 사이드 프로젝트나 회사에서 TypeScript로 코딩하다가 쓰게 된다면 추후에 하나하나 정리해 나갈 것 같다.
+정리해보니 딱히 이렇다 할 노하우나 그런게 없는거 같아 아쉽지만 이 글을 보고 아~ 대충 이런거구나 정도로 봐준다면 너무 기쁠 것 같다.</p>
 
                 </div>
             </section>
@@ -527,11 +575,6 @@ style=" fill:#ffffff;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-w
                                 
                                   
                                     
-                                        
-                                        
-                                            <li><a href="/typescript-utility-types-2">타입스크립트 유틸 타입 - 2</a></li>
-                                        
-                                    
                                   
                                 
                                   
@@ -556,10 +599,15 @@ style=" fill:#ffffff;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-w
                                     
                                         
                                         
+                                            <li><a href="/virtualDOM">가상 DOM</a></li>
+                                        
                                     
                                   
                                 
                                   
+                                    
+                                        
+                                        
                                     
                                   
                                 
@@ -578,16 +626,19 @@ style=" fill:#ffffff;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-w
 
             <!-- If there's a next post, display it using the same markup included from - partials/post-card.hbs -->
             
+
+            <!-- If there's a previous post, display it using the same markup included from - partials/post-card.hbs -->
+            
                 
 
     <article class="post-card post-template">
         
-            <a class="post-card-image-link" href="/virtualDOM">
-                <div class="post-card-image" style="background-image: url(/assets/images/virtualdom.png)"></div>
+            <a class="post-card-image-link" href="/typescript-utility-types-1">
+                <div class="post-card-image" style="background-image: url(/assets/images/typescript.jpg)"></div>
             </a>
         
         <div class="post-card-content">
-            <a class="post-card-content-link" href="/virtualDOM">
+            <a class="post-card-content-link" href="/typescript-utility-types-1">
                 <header class="post-card-header">
                     
                         
@@ -596,20 +647,16 @@ style=" fill:#ffffff;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-w
                             
                         
                             
-                               <span class="post-card-tags">Webapplication</span>
+                               <span class="post-card-tags">Typescript</span>
                             
                         
                             
-                               <span class="post-card-tags">Frontend</span>
-                            
-                        
-                            
-                                <span class="post-card-tags">Tech</span>
+                                <span class="post-card-tags">Frontend</span>
                             
                         
                     
 
-                    <h2 class="post-card-title">가상 DOM</h2>
+                    <h2 class="post-card-title">타입스크립트 유틸 타입 - 1</h2>
                 </header>
                 <section class="post-card-excerpt">
                     
@@ -640,9 +687,6 @@ style=" fill:#ffffff;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-w
 
             
 
-            <!-- If there's a previous post, display it using the same markup included from - partials/post-card.hbs -->
-            
-
         </div>
     </div>
 </aside>
@@ -661,7 +705,7 @@ style=" fill:#ffffff;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-w
     </a>
   </div>
   <span class="floating-header-divider">&mdash;</span>
-  <div class="floating-header-title">var, let, const 무슨 차이일까?</div>
+  <div class="floating-header-title">타입스크립트 유틸 타입 - 2</div>
   <progress class="progress" value="0">
     <div class="progress-container">
       <span class="progress-bar"></span>
