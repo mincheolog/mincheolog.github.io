@@ -4,7 +4,7 @@
   <generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator>
   <link href="/tag/posts/feed.xml" rel="self" type="application/atom+xml" />
   <link href="/" rel="alternate" type="text/html" />
-  <updated>2021-02-07T19:28:04+09:00</updated>
+  <updated>2021-07-24T20:15:47+09:00</updated>
   <id>/tag/posts/feed.xml</id>
 
   
@@ -28,6 +28,334 @@
   
   
 
+  
+    <entry>
+      <title type="html">Type VS Interface</title>
+      <link href="/typescript-type-vs-interface" rel="alternate" type="text/html" title="Type VS Interface" />
+      <published>2021-07-21T09:00:00+09:00</published>
+      <updated>2021-07-21T09:00:00+09:00</updated>
+      <id>/typescript-type-vs-interface</id>
+      <content type="html" xml:base="/typescript-type-vs-interface">&lt;h1 id=&quot;typescript-type-vs-interface&quot;&gt;TypeScript Type VS Interface&lt;/h1&gt;
+&lt;p&gt;타입스크립트에서 타입을 정의하는 방법중 type 선언과 interface 선언이 있다. 개인적으로 공부하고 실무에서 쓰기까지 지금껏 type선언만으로도 문제없이 코딩을 해왔고 딱히 interface를 쓸 필요가 없었다. 특히나 실무에선 type선언으로만 코딩을 해왔기에 더욱 interface에 대해서 신경 쓸 일이 없던 것 같다. 그러던 어느날 팀원중 한분께서 type과 interface의 차이점, 어느때 쓰는게 제일 적당한지 설명을 듣고싶다고 하셨는데 type으로만 타입정의를 해왔던 나로써는 바로 정확한 대답을 할 수가 없었다. 이번일을 계기로 type과 interface의 특징 그리고 내가 개인적으로 생각하는 type과 interface의 쓰임새를 적어보고자 한다.
+일단 type과 interface의 차이점을 보기위해 각각의 특징을 알아보자.&lt;/p&gt;
+
+&lt;h2 id=&quot;interface&quot;&gt;Interface&lt;/h2&gt;
+&lt;p&gt;Interface는 아래와 같은 특징을 가진다.&lt;/p&gt;
+
+&lt;h3 id=&quot;type-extends-가능-여부&quot;&gt;type extends 가능 여부&lt;/h3&gt;
+
+&lt;p&gt;밑의 코드와 같이 문제없이 가능하다.&lt;/p&gt;
+
+&lt;div class=&quot;language-typescript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kr&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;IPos2&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;kr&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;IPos3&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;IPos2&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 결과&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt;/*
+interface IPos3 {
+  x: number;
+  y: number;
+  z: number;
+}
+*/&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;ts파일내-같은-이름의-타입으로-선언시-에러-여부&quot;&gt;ts파일내 같은 이름의 타입으로 선언시 에러 여부&lt;/h3&gt;
+
+&lt;p&gt;type을 자주써왔던 나로서는 가장 놀랬던 부분이다. type의 경우 에러가 나는 부분인데 interface의 경우 에러는 나지 않고 암묵적으로 머지된다.&lt;/p&gt;
+
+&lt;div class=&quot;language-typescript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kr&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;IPos&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;kr&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;IPos&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 결과&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt;/*
+interface IPos {
+  x: number;
+  y: number;
+  z: number;
+}
+*/&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;class에-implements-가능-여부&quot;&gt;Class에 &lt;a href=&quot;#implements&quot;&gt;implements&lt;/a&gt; 가능 여부&lt;/h3&gt;
+&lt;p&gt;가능하다.&lt;/p&gt;
+
+&lt;div class=&quot;language-typescript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kr&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;IPerson&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Person&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;IPerson&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;''&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;age&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;교차-타입-유니언-타입-튜플-타입-정의-가능-여부&quot;&gt;교차 타입, 유니언 타입, 튜플 타입 정의 가능 여부&lt;/h3&gt;
+&lt;p&gt;싹다 안된다.&lt;/p&gt;
+
+&lt;div class=&quot;language-typescript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;c1&quot;&gt;// Union&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;IPerson&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// Intersection&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;IPerson&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 결과&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt;/*
+The right-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type. ts(2363)
+*/&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// Tuple 얘는 그냥 문법적으로 에러...&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;IPerson&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;mapped-types-가능-여부&quot;&gt;&lt;a href=&quot;#mapped-types&quot;&gt;Mapped Types&lt;/a&gt; 가능 여부&lt;/h3&gt;
+&lt;p&gt;일단 결론부터 말하자면 에러 터진다. interface자체가 mapped type이용하여 타입을 매핑할수 없게 만들어졌기 때문이라는데, TypeScript 4.4버전부터 interface에도 mapped typed를 쓸 수 있게끔 된다고 한다. (&lt;a href=&quot;https://github.com/microsoft/TypeScript/pull/26797&quot;&gt;관련 이슈&lt;/a&gt;)
+그럼 코드를 확인해보자.&lt;/p&gt;
+
+&lt;div class=&quot;language-typescript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;TBloodType&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'O'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'A'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'B'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'AB'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;IBloodInfo&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;key&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;TBloodType&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 결과&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt;/*
+Error: A computed property name in an interface must refer to an expression whose type is a literal type or a 'unique symbol' type .ts(1169)
+*/&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;type&quot;&gt;Type&lt;/h2&gt;
+&lt;p&gt;Type은 아래와 같은 특징을 가진다.&lt;/p&gt;
+
+&lt;h3 id=&quot;extends-가능-여부&quot;&gt;extends 가능 여부&lt;/h3&gt;
+&lt;p&gt;밑의 코드와 같이 교차타입을 만드는 방식으로 interface와 같은 extends를 구현할 수 있다.&lt;/p&gt;
+
+&lt;div class=&quot;language-typescript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;IPos&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;IPos3D&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;IPos&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 결과&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt;/*
+type IPos3D = {
+  x: number;
+  y: number;
+  z: number;
+}
+*/&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;ts파일내-같은-이름의-타입으로-선언시-에러-여부-1&quot;&gt;ts파일내 같은 이름의 타입으로 선언시 에러 여부&lt;/h3&gt;
+&lt;p&gt;interface와 다르게 같은 이름으로 선언시 에러가 터진다.&lt;/p&gt;
+
+&lt;div class=&quot;language-typescript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;IPos&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;IPos&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 결과&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt;/*
+Error: Duplicate identifier 'IPos'. ts(2300)
+*/&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;class에-implements-가능-여부-1&quot;&gt;Class에 &lt;a href=&quot;#implements&quot;&gt;implements&lt;/a&gt; 가능 여부&lt;/h3&gt;
+&lt;p&gt;가능하다&lt;/p&gt;
+
+&lt;div class=&quot;language-typescript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;TPerson&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Person&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;IPerson&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;''&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;age&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;교차-타입-유니언-타입-튜플-타입-정의-가능-여부-1&quot;&gt;교차 타입, 유니언 타입, 튜플 타입 정의 가능 여부&lt;/h3&gt;
+
+&lt;p&gt;가능하다.&lt;/p&gt;
+
+&lt;div class=&quot;language-typescript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Union&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;OneOrTwo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'One'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Two'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// Intersection&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;OneAndTwo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'One'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Two'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// Tuple&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Tuple&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;mapped-types-가능-여부-1&quot;&gt;&lt;a href=&quot;#mapped-types&quot;&gt;Mapped Types&lt;/a&gt; 가능 여부&lt;/h3&gt;
+&lt;p&gt;필자는 서브셋 유틸 타입을 만들거나 할때 자주 쓰는 편이다. 아래와 같이 구현이 가능하다.&lt;/p&gt;
+
+&lt;div class=&quot;language-typescript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;TBloodType&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'O'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'A'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'B'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'AB'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;TBloodTypeInfo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;key&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;TBloodType&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 결과&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt;/*
+type TBloodTypeInfo = {
+  O: string;
+  A: string;
+  B: string;
+  AB: string;
+};
+*/&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 깨알 코드! 유틸함수 Partial&amp;lt;Type&amp;gt;을 구현해보자&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Partial&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;K&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;keyof&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]?:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;K&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;TBloodType&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'O'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'A'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'B'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'AB'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;TBloodTypeInfo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;key&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;TBloodType&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;TBloodPartial&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Partial&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;TBloodTypeInfo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 결과&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt;/*
+type TBloodPartial = {
+  O?: string;
+  A?: string;
+  B?: string;
+  AB?: string;
+};
+*/&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;언제-쓰는게-좋은가&quot;&gt;언제 쓰는게 좋은가&lt;/h2&gt;
+&lt;p&gt;거의 케바케인거 같다. 게다가 TypeScript 로드맵에 4.4부터 interface에 대한 Mapped Types지원을 한다는게 있는거 보면 type과 interface에 대한 구분이 없어지지 않나… 라는 생각이 든다.
+이 둘이 구분선이 없어졌을때 고려해야 한다고 하면 프로젝트 단위로 interface를 쓸것인지 type을 쓸것인지 그 규약만 정하면 되지 않을까? 추후엔 type과 interface에 대한 경계선이 무너지면 이 둘이 통합될거 같다는 생각도 든다. (그냥 개인적인 추측이다 ㅋㅋ)&lt;/p&gt;
+
+&lt;h2 id=&quot;마치며&quot;&gt;마치며&lt;/h2&gt;
+&lt;p&gt;이번 포스트를 쓰면서 implements의 개념이라던가 Tuple이 정확히 뭔지 알게 된 것같다. interface와 type의 차이점을 알아가면서 TypeScript 4.4부터는 interface도 Mapped types를 지원한다는 점도 알게되었다. 요즘 회사 모든 신규 프로젝트를 TypeScript로 진행하려고 했는데 Type을 쓸것인지 interface를 쓸것인지 규악을 정할때 여러모로 많은 참고가 된 것 같다. type으로도 충분히 interface의 상속을 모방할 수 있으며 implements도 가능하다는 점. 특히나 같은 ts파일내에서 같은 타입변수명으로 타입 정의를 할 경우 에러가 난다는점과 Tuple형을 정의 가능하다는 점에서 앞으로도 주로 type으로 타입정의를 할 것 같다.&lt;/p&gt;
+
+&lt;h3 id=&quot;용어-해설&quot;&gt;용어 해설&lt;/h3&gt;
+&lt;h4 id=&quot;tuple&quot;&gt;Tuple&lt;/h4&gt;
+&lt;p&gt;TypeScript에서 Tuple은 배열에서 각 원소의 타입이 정확히 지정된 타입을 말한다. 만일 지정된 원소의 수나 타입이 정확하지 않을 경우 에러를 내준다.&lt;/p&gt;
+
+&lt;div class=&quot;language-typescript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Tuple&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// OK&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Tuple&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'a'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// NG&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;array2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Tuple&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'a'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;implements&quot;&gt;implements&lt;/h4&gt;
+&lt;p&gt;Java라는 언어에서 extends와 implements는 둘다 상속이라고 한다. Java에서 다중상속이 지원되지 않는다고 하는데 그걸 해결하기 위해 나온것이 implements. extends는 하나의 부모객체에서만 상속받을수 있으며 implements는 다중 상속 (여러 부모객체의 메소드나 프로퍼티를 상속받는다)이 가능하다고 한다. implements로 상속받을 경우 interface를 재정의 해야하는데 그 개념을 TypeScript로 가져온거 같다. implements는 그냥 객체에 대한 interface정의라고 보면 될거 같다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;참고 기사 원문&lt;/strong&gt;
+&lt;a href=&quot;https://velog.io/@hkoo9329/%EC%9E%90%EB%B0%94-extends-implements-%EC%B0%A8%EC%9D%B4&quot;&gt;자바 extends, implements 차이&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;mapped-types&quot;&gt;Mapped Types&lt;/h4&gt;
+&lt;p&gt;TypeScript에서 타입 정의를 할때 key in을 이용하여 만든 Type을 말한다. 개념적으로는 JavaScript에서 map키워드나 for in같은 문법으로 배열을 순회하여 새로운 결과값을 만드는 것과 비슷하다. (솔직히 유틸타입인 Record를 이용해서 구현가능한 부분이다.)&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;numbers&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// numbers안의 숫자를 기반으로 각 요소에 2를 곱한 새로운 배열 요소를 만든다.&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;newNumbers&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;numbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;num&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 결과&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt;/*
+[2, 4, 6]
+*/&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Mapped Types의 경우&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;language-typescript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;TNumbers&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// UnionType의 TNumbers를 기반으로 새로운 타입을 만들어 반환한다.&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;TNewNumbers&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;key&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;TNumbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]?:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;number&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 결과&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt;/*
+type TNewNumbers = {
+  1?: number;
+  2?: number;
+  3?: number;
+}
+*/&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Record의 경우&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;language-typescript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;TNumbers&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;TNewNumbers&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Record&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;TNumbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 결과&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt;/*
+type TNewNumbers = {
+  1: number;
+  2: number;
+  3: number;
+}
+*/&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>Ardo</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="posts" />
+      
+        <category term="TypeScript" />
+      
+        <category term="FrontEnd" />
+      
+
+      
+        <summary type="html">TypeScript Type VS Interface 타입스크립트에서 타입을 정의하는 방법중 type 선언과 interface 선언이 있다. 개인적으로 공부하고 실무에서 쓰기까지 지금껏 type선언만으로도 문제없이 코딩을 해왔고 딱히 interface를 쓸 필요가 없었다. 특히나 실무에선 type선언으로만 코딩을 해왔기에 더욱 interface에 대해서 신경 쓸 일이 없던 것 같다. 그러던 어느날 팀원중 한분께서 type과 interface의 차이점, 어느때 쓰는게 제일 적당한지 설명을 듣고싶다고 하셨는데 type으로만 타입정의를 해왔던 나로써는 바로 정확한 대답을 할 수가 없었다. 이번일을 계기로 type과 interface의 특징 그리고 내가 개인적으로 생각하는 type과 interface의 쓰임새를 적어보고자 한다. 일단 type과 interface의 차이점을 보기위해 각각의 특징을 알아보자. Interface Interface는 아래와 같은 특징을 가진다. type extends 가능 여부 밑의 코드와 같이 문제없이 가능하다. interface IPos2 { x: number; y: number; }; interface IPos3 extends IPos2 { z: number; }; // 결과 /* interface IPos3 { x: number; y: number; z: number; } */ ts파일내 같은 이름의 타입으로 선언시 에러 여부 type을 자주써왔던 나로서는 가장 놀랬던 부분이다. type의 경우 에러가 나는 부분인데 interface의 경우 에러는 나지 않고 암묵적으로 머지된다. interface IPos { x: number; y: number; }; interface IPos { z: number; }; // 결과 /* interface IPos { x: number; y: number; z: number; } */ Class에 implements 가능 여부 가능하다. interface IPerson { name: string; age: number; }; class Person implements IPerson { name = ''; age = 0; } 교차 타입, 유니언 타입, 튜플 타입 정의 가능 여부 싹다 안된다. // Union interface IPerson { age: number; } | { name: string; } // Intersection interface IPerson { age: number; } &amp;amp; { name: string; } // 결과 /* The right-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type. ts(2363) */ // Tuple 얘는 그냥 문법적으로 에러... interface IPerson [string, number] Mapped Types 가능 여부 일단 결론부터 말하자면 에러 터진다. interface자체가 mapped type이용하여 타입을 매핑할수 없게 만들어졌기 때문이라는데, TypeScript 4.4버전부터 interface에도 mapped typed를 쓸 수 있게끔 된다고 한다. (관련 이슈) 그럼 코드를 확인해보자. type TBloodType = 'O' | 'A' | 'B' | 'AB'; interface IBloodInfo { [key in TBloodType]: string; }; // 결과 /* Error: A computed property name in an interface must refer to an expression whose type is a literal type or a 'unique symbol' type .ts(1169) */ Type Type은 아래와 같은 특징을 가진다. extends 가능 여부 밑의 코드와 같이 교차타입을 만드는 방식으로 interface와 같은 extends를 구현할 수 있다. type IPos = { x: number; y: number; }; type IPos3D = IPos &amp;amp; { z: number; }; // 결과 /* type IPos3D = { x: number; y: number; z: number; } */ ts파일내 같은 이름의 타입으로 선언시 에러 여부 interface와 다르게 같은 이름으로 선언시 에러가 터진다. type IPos = { x: number; y: number; }; type IPos = { z: number; }; // 결과 /* Error: Duplicate identifier 'IPos'. ts(2300) */ Class에 implements 가능 여부 가능하다 type TPerson = { name: string; age: number; }; class Person implements IPerson { name = ''; age = 0; } 교차 타입, 유니언 타입, 튜플 타입 정의 가능 여부 가능하다. // Union type OneOrTwo = 'One' | 'Two'; // Intersection type OneAndTwo = 'One' &amp;amp; 'Two'; // Tuple type Tuple = [string, number]; Mapped Types 가능 여부 필자는 서브셋 유틸 타입을 만들거나 할때 자주 쓰는 편이다. 아래와 같이 구현이 가능하다. type TBloodType = 'O' | 'A' | 'B' | 'AB'; type TBloodTypeInfo = { [key in TBloodType]: string; }; // 결과 /* type TBloodTypeInfo = { O: string; A: string; B: string; AB: string; }; */ // 깨알 코드! 유틸함수 Partial&amp;lt;Type&amp;gt;을 구현해보자 type Partial&amp;lt;T&amp;gt; = { [K in keyof T]?: T[K]; }; type TBloodType = 'O' | 'A' | 'B' | 'AB'; type TBloodTypeInfo = { [key in TBloodType]: string; }; type TBloodPartial = Partial&amp;lt;TBloodTypeInfo&amp;gt;; // 결과 /* type TBloodPartial = { O?: string; A?: string; B?: string; AB?: string; }; */ 언제 쓰는게 좋은가 거의 케바케인거 같다. 게다가 TypeScript 로드맵에 4.4부터 interface에 대한 Mapped Types지원을 한다는게 있는거 보면 type과 interface에 대한 구분이 없어지지 않나… 라는 생각이 든다. 이 둘이 구분선이 없어졌을때 고려해야 한다고 하면 프로젝트 단위로 interface를 쓸것인지 type을 쓸것인지 그 규약만 정하면 되지 않을까? 추후엔 type과 interface에 대한 경계선이 무너지면 이 둘이 통합될거 같다는 생각도 든다. (그냥 개인적인 추측이다 ㅋㅋ) 마치며 이번 포스트를 쓰면서 implements의 개념이라던가 Tuple이 정확히 뭔지 알게 된 것같다. interface와 type의 차이점을 알아가면서 TypeScript 4.4부터는 interface도 Mapped types를 지원한다는 점도 알게되었다. 요즘 회사 모든 신규 프로젝트를 TypeScript로 진행하려고 했는데 Type을 쓸것인지 interface를 쓸것인지 규악을 정할때 여러모로 많은 참고가 된 것 같다. type으로도 충분히 interface의 상속을 모방할 수 있으며 implements도 가능하다는 점. 특히나 같은 ts파일내에서 같은 타입변수명으로 타입 정의를 할 경우 에러가 난다는점과 Tuple형을 정의 가능하다는 점에서 앞으로도 주로 type으로 타입정의를 할 것 같다. 용어 해설 Tuple TypeScript에서 Tuple은 배열에서 각 원소의 타입이 정확히 지정된 타입을 말한다. 만일 지정된 원소의 수나 타입이 정확하지 않을 경우 에러를 내준다. type Tuple = [string, number]; // OK const array: Tuple = ['a', 1]; // NG const array2: Tuple = [1, 'a', 3]; implements Java라는 언어에서 extends와 implements는 둘다 상속이라고 한다. Java에서 다중상속이 지원되지 않는다고 하는데 그걸 해결하기 위해 나온것이 implements. extends는 하나의 부모객체에서만 상속받을수 있으며 implements는 다중 상속 (여러 부모객체의 메소드나 프로퍼티를 상속받는다)이 가능하다고 한다. implements로 상속받을 경우 interface를 재정의 해야하는데 그 개념을 TypeScript로 가져온거 같다. implements는 그냥 객체에 대한 interface정의라고 보면 될거 같다. 참고 기사 원문 자바 extends, implements 차이 Mapped Types TypeScript에서 타입 정의를 할때 key in을 이용하여 만든 Type을 말한다. 개념적으로는 JavaScript에서 map키워드나 for in같은 문법으로 배열을 순회하여 새로운 결과값을 만드는 것과 비슷하다. (솔직히 유틸타입인 Record를 이용해서 구현가능한 부분이다.) const numbers = [1, 2, 3]; // numbers안의 숫자를 기반으로 각 요소에 2를 곱한 새로운 배열 요소를 만든다. const newNumbers = numbers.map((num) =&amp;gt; num * 2); // 결과 /* [2, 4, 6] */ Mapped Types의 경우 type TNumbers = 1 | 2 | 3; // UnionType의 TNumbers를 기반으로 새로운 타입을 만들어 반환한다. type TNewNumbers = { [key in TNumbers]?: number }; // 결과 /* type TNewNumbers = { 1?: number; 2?: number; 3?: number; } */ Record의 경우 type TNumbers = 1 | 2 | 3; type TNewNumbers = Record&amp;lt;TNumbers, number&amp;gt;; // 결과 /* type TNewNumbers = { 1: number; 2: number; 3: number; } */</summary>
+      
+
+      
+      
+    </entry>
   
     <entry>
       <title type="html">타입스크립트 유틸 타입 - 2</title>
